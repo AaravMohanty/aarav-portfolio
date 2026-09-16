@@ -1,17 +1,103 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Aarav Mohanty — Projects</title>
-  <meta name="description" content="Aarav Mohanty. Computer science at Purdue. Building AI systems, backend infrastructure, and useful software.">
-  <meta name="theme-color" content="#201e1a">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects — Aarav Mohanty</title>
+  <meta name="description" content="Selected software, AI, fintech, and research projects by Aarav Mohanty.">
+  <meta name="theme-color" content="#0b0b0c">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  
-  
-  
-<link rel="stylesheet" href="/journal.css"></head>
-<body id="top"><a class="skip" href="#main">Skip to content</a><div class="page work-page"><header class="site-header"><a class="wordmark" href="/" aria-label="Aarav Mohanty home">am<span>.</span></a><nav aria-label="Main navigation"><a href="/projects/">Projects</a><a href="/experience/">Experience</a><a href="/outside/">Outside work</a></nav><a class="resume-link" href="/resume.pdf" target="_blank" rel="noopener">Résumé ↗</a></header><main id="main"><div class="page-intro"><p class="eyebrow">SELECTED WORK</p><h1>Projects<em>.</em></h1><p>A few projects I’ve helped bring into the world.</p></div>    <section id="work" class="section" aria-labelledby="work-title"><div class="section-label"><h2 id="work-title" class="sr-only">Selected work</h2></div>
-      <details class="project"><summary><span class="number">01</span><span class="project-body"><span class="project-title">Amdahl</span><span class="description">Document extraction for legal records.</span><span class="tags">AI infrastructure · Co-founder</span></span><span class="expand" aria-hidden="true">+</span></summary><div class="detail"><p>Built document-extraction workflows for multi-format legal records, standardizing metadata and reducing manual retention analysis.</p><p class="result">10,000+ pages processed · 85% less manual analysis</p><p class="stack">Python / LangChain / ChromaDB / AWS GovCloud</p></div></details>
-      <details class="project"><summary><span class="number">02</span><span class="project-body"><span class="project-title">Radius</span><span class="description">Compliance infrastructure for stablecoin payments.</span><span class="tags">Fintech · Co-founder & backend lead</span></span><span class="expand" aria-hidden="true">+</span></summary><div class="detail"><p>Built the compliance engine for a stablecoin payment-attestation platform, including risk scoring, wallet verification, and Travel Rule automation.</p><p class="result">15+ API endpoints · 30+ jurisdictions</p><p class="stack">Python / FastAPI / SQLAlchemy / PostgreSQL</p></div></details>
-      <details class="project"><summary><span class="number">03</span><span class="project-body"><span class="project-title">ArisTalkle</span><span class="description">Video-based debate practice with AI.</span><span class="tags">AI video · BoilerMake project</span></span><span class="expand" aria-hidden="true">+</span></summary><div class="detail"><p>A debate practice app that turns uploaded videos into AI-generated arguments, spoken responses, and synchronized video. Built a working MVP in 24 hours with a team of four.</p><p class="stack">Next.js / Flask / MongoDB</p><a class="text-link" href="https://github.com/AaravMohanty/ArisTalkle" target="_blank" rel="noopener">Explore the code ↗</a></div></details>
-    </section></main><footer><a href="mailto:aarav.mohanty23@gmail.com">Say hello ↗</a><span>Aarav Mohanty · 2026</span><a href="#top" class="back-top">Back to top ↑</a></footer></div><script src="/journal.js" defer></script></body></html>
+  <link rel="stylesheet" href="/main.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="main-theme interior-page projects-page" id="top">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="cursor-light" aria-hidden="true"></div>
+  <header class="masthead">
+    <a class="brand magnetic" href="/" aria-label="Aarav Mohanty home">aarav<span>.</span></a>
+    <nav aria-label="Main navigation">
+      <a href="/projects/" aria-current="page">Projects</a>
+      <a href="/experience/">Experience</a>
+      <a href="/outside/">Outside work</a>
+    </nav>
+    <a class="resume-link magnetic" href="/resume.pdf" target="_blank" rel="noopener">Résumé <span>↗</span></a>
+  </header>
+
+  <main id="main" class="interior-main">
+    <header class="page-heading reveal">
+      <span class="micro-label">01 / SELECTED WORK</span>
+      <h1>Projects<span>.</span></h1>
+      <p>Products and systems I’ve built across AI, fintech, community, and research. Select a row for the full story.</p>
+    </header>
+
+    <div class="project-layout">
+      <section class="project-list reveal" aria-label="Selected projects">
+        <details class="project-row" data-index="01" data-name="Amdahl" data-meta="AI infrastructure · 2025–now">
+          <summary><span class="project-number">01</span><span class="project-name">Amdahl</span><span class="project-one-line">Legal records, made searchable.</span><span class="project-arrow">+</span></summary>
+          <div class="project-detail">
+            <p>Co-founded a document intelligence platform for legal records. I built ingestion and retrieval workflows that normalize inconsistent files and surface retention-critical information.</p>
+            <div class="project-facts"><span>10,000+ pages</span><span>85% less manual analysis</span><span>Python · LangChain · AWS</span></div>
+            <a href="https://github.com/AaravMohanty/Amdahl-Website" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+        </details>
+
+        <details class="project-row" data-index="02" data-name="Radius" data-meta="Fintech infrastructure · 2025">
+          <summary><span class="project-number">02</span><span class="project-name">Radius</span><span class="project-one-line">Compliance rails for stablecoin payments.</span><span class="project-arrow">+</span></summary>
+          <div class="project-detail">
+            <p>Led the backend for a payment-attestation platform, covering risk scoring, wallet verification, and Travel Rule automation across a fragmented regulatory landscape.</p>
+            <div class="project-facts"><span>15+ API endpoints</span><span>30+ jurisdictions</span><span>FastAPI · PostgreSQL</span></div>
+            <a href="https://get-radius.vercel.app/" target="_blank" rel="noopener">Visit Radius ↗</a>
+          </div>
+        </details>
+
+        <details class="project-row" data-index="03" data-name="ArisTalkle" data-meta="AI video · BoilerMake 2025">
+          <summary><span class="project-number">03</span><span class="project-name">ArisTalkle</span><span class="project-one-line">Practice an argument against AI.</span><span class="project-arrow">+</span></summary>
+          <div class="project-detail">
+            <p>A 24-hour hackathon build that turns an uploaded debate video into an AI-generated counterargument, voice response, and synchronized video.</p>
+            <div class="project-facts"><span>BoilerMake winner</span><span>Built in 24 hours</span><span>Next.js · Flask · MongoDB</span></div>
+            <a href="https://github.com/AaravMohanty/ArisTalkle" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+        </details>
+
+        <details class="project-row" data-index="04" data-name="THINKedIn" data-meta="Community platform · 2025–26">
+          <summary><span class="project-number">04</span><span class="project-name">THINKedIn</span><span class="project-one-line">A private network for Purdue THINK.</span><span class="project-arrow">+</span></summary>
+          <div class="project-detail">
+            <p>Built the alumni directory, AI matching, outreach tools, member profiles, and admin workflows for Purdue THINK’s internal community.</p>
+            <div class="project-facts"><span>6,500+ records</span><span>1,500 profiles sourced</span><span>React · Flask · Supabase</span></div>
+            <a href="https://github.com/AaravMohanty/thinkinternalproject" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+        </details>
+
+        <details class="project-row" data-index="05" data-name="GNN Anomaly Detection" data-meta="Graph ML · Empower AI">
+          <summary><span class="project-number">05</span><span class="project-name">GNN Anomaly Detection</span><span class="project-one-line">Finding fraud in healthcare graphs.</span><span class="project-arrow">+</span></summary>
+          <div class="project-detail">
+            <p>A graph neural network pipeline for detecting fraud, waste, and abuse patterns across large Medicare and Medicaid datasets.</p>
+            <div class="project-facts"><span>30M+ records</span><span>97% accuracy</span><span>98% recall</span></div>
+            <a href="https://github.com/AaravMohanty/GNN-Anomaly-Detection" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+        </details>
+
+        <details class="project-row" data-index="06" data-name="Clarity" data-meta="Distributed systems · 2024">
+          <summary><span class="project-number">06</span><span class="project-name">Clarity</span><span class="project-one-line">A concurrent social messaging system.</span><span class="project-arrow">+</span></summary>
+          <div class="project-detail">
+            <p>A multi-client Java messaging app with authentication, profiles, friends, blocking, persistent conversations, and a threaded server.</p>
+            <div class="project-facts"><span>Concurrent clients</span><span>Persistent state</span><span>Java · JUnit · sockets</span></div>
+            <a href="https://github.com/AaravMohanty/Clarity-Social-Messaging" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+        </details>
+      </section>
+
+      <aside class="project-stage reveal" aria-hidden="true">
+        <span class="stage-index">01</span>
+        <div><span class="micro-label stage-meta">AI infrastructure · 2025–now</span><strong class="stage-name">Amdahl</strong></div>
+        <span class="stage-prompt">Move through the index</span>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="main-footer">
+    <span>© 2026 Aarav Mohanty</span><span class="local-time">Indianapolis · --:--</span><a href="#top">Back to top ↑</a>
+  </footer>
+  <script src="/main.js" defer></script>
+</body>
+</html>
