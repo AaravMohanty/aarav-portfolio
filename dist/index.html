@@ -5,72 +5,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Aarav Mohanty — Software Engineer</title>
   <meta name="description" content="Aarav Mohanty is a software engineer and Purdue computer science student building AI systems, backend infrastructure, and useful software.">
-  <meta name="theme-color" content="#0b0b0c">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/main.css">
+  <meta name="theme-color" content="#10100f">
+  <link rel="icon" href="/favicon.svg?v=8" type="image/svg+xml">
+  <link rel="stylesheet" href="/main.css?v=8">
   <script>document.documentElement.classList.add('js')</script>
 </head>
-<body class="main-theme home-page" id="top">
-  <div class="entry-screen" aria-hidden="true">
-    <div class="entry-top"><span>AM / PORTFOLIO</span><span class="entry-count">00</span></div>
-    <div class="entry-rule"><i></i></div>
-    <div class="entry-name">Aarav Mohanty</div>
+<body class="main-theme home-page globe-pending" id="top">
+  <section class="globe-intro" aria-label="Aarav's world">
+    <canvas class="globe-canvas" aria-hidden="true"></canvas>
+    <div class="globe-grain" aria-hidden="true"></div>
+    <div class="globe-topline">
+      <span>AARAV / WORLD VIEW</span>
+      <span class="globe-clock">40.42° N · 86.91° W</span>
+    </div>
+    <div class="globe-copy">
+      <p class="globe-kicker">A few coordinates that made me</p>
+      <h1>Small world.<br><em>Keep moving.</em></h1>
+    </div>
+    <ol class="globe-locations" aria-label="Places in Aarav's story">
+      <li class="is-active" data-location="virginia"><span>01</span><strong>Virginia</strong><small>home</small></li>
+      <li data-location="purdue"><span>02</span><strong>West Lafayette</strong><small>now</small></li>
+      <li data-location="europe"><span>03</span><strong>Europe</strong><small>Italy · Switzerland · France · Spain · Portugal</small></li>
+    </ol>
+    <button class="globe-enter" type="button"><span>Enter portfolio</span><b>↘</b></button>
+    <div class="globe-orbit-note">Drag to orbit · scroll to enter</div>
+  </section>
+
+  <div class="site-shell">
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="cursor-light" aria-hidden="true"></div>
+    <figure class="portrait-peek" aria-hidden="true"><img src="/headshot.jpg" alt="" width="280" height="350"></figure>
+
+    <header class="masthead">
+      <a class="brand magnetic" href="/" aria-label="Aarav Mohanty home">aarav<span>.</span></a>
+      <nav aria-label="Main navigation">
+        <a href="/projects/">Projects</a>
+        <a href="/experience/">Experience</a>
+        <a href="/outside/">Outside work</a>
+      </nav>
+      <a class="resume-link magnetic" href="/resume.pdf" target="_blank" rel="noopener">Résumé <span>↗</span></a>
+    </header>
+
+    <main id="main" class="home-main">
+      <section class="hero-shell" aria-labelledby="home-title">
+        <div class="hero-intro reveal">
+          <p class="kicker"><span class="status-pulse"></span> Purdue CS · building useful systems</p>
+          <h1 id="home-title">Hello, I’m <span class="hero-name" tabindex="0">Aarav.</span></h1>
+          <p class="hero-lede">I’m a software engineer interested in <a href="/projects/">AI systems</a>, backend infrastructure, and turning messy problems into things people can actually use.</p>
+          <div class="hero-links" aria-label="Social links">
+            <a href="https://github.com/aaravmohanty" target="_blank" rel="noopener">GitHub ↗</a>
+            <a href="https://linkedin.com/in/aaravmohanty" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a href="mailto:aarav.mohanty23@gmail.com">Email ↗</a>
+          </div>
+        </div>
+
+        <aside class="now-panel reveal" aria-label="About Aarav">
+          <div class="now-block">
+            <span class="micro-label">Right now</span>
+            <p>Studying computer science at Purdue and building Amdahl.</p>
+          </div>
+          <div class="now-block">
+            <span class="micro-label">Previously</span>
+            <p>Shipped software at Capital One, Empower AI, Ackuity, and the Kihara Lab.</p>
+          </div>
+          <div class="now-block">
+            <span class="micro-label">Usually</span>
+            <p>Somewhere between a run, a book, a trail, and a half-finished side project.</p>
+          </div>
+        </aside>
+      </section>
+
+      <nav class="home-index reveal" aria-label="Explore the site">
+        <a href="/projects/" class="index-link magnetic"><span>01</span><strong>Selected projects</strong><em>Code, products, experiments</em><b>↗</b></a>
+        <a href="/experience/" class="index-link magnetic"><span>02</span><strong>Experience</strong><em>Work, research, impact</em><b>↗</b></a>
+        <a href="/outside/" class="index-link outside-link"><span>03</span><strong>Outside work</strong><em>Music, books, movement</em><b>↗</b></a>
+      </nav>
+    </main>
+
+    <footer class="main-footer">
+      <span>© 2026 Aarav Mohanty</span>
+      <span class="local-time" aria-label="Current time in Indianapolis">Indianapolis · --:--</span>
+      <a href="#top">Back to top ↑</a>
+    </footer>
   </div>
-  <a class="skip" href="#main">Skip to content</a>
-  <div class="cursor-light" aria-hidden="true"></div>
-  <figure class="portrait-peek" aria-hidden="true"><img src="/headshot.jpg" alt="" width="280" height="350"></figure>
-
-  <header class="masthead">
-    <a class="brand magnetic" href="/" aria-label="Aarav Mohanty home">aarav<span>.</span></a>
-    <nav aria-label="Main navigation">
-      <a href="/projects/">Projects</a>
-      <a href="/experience/">Experience</a>
-      <a href="/outside/">Outside work</a>
-    </nav>
-    <a class="resume-link magnetic" href="/resume.pdf" target="_blank" rel="noopener">Résumé <span>↗</span></a>
-  </header>
-
-  <main id="main" class="home-main">
-    <section class="hero-shell" aria-labelledby="home-title">
-      <div class="hero-intro reveal">
-        <p class="kicker"><span class="status-pulse"></span> Purdue CS · building useful systems</p>
-        <h1 id="home-title">Hello, I’m <span class="hero-name" tabindex="0">Aarav.</span></h1>
-        <p class="hero-lede">I’m a software engineer interested in <a href="/projects/">AI systems</a>, backend infrastructure, and turning messy problems into things people can actually use.</p>
-        <div class="hero-links" aria-label="Social links">
-          <a href="https://github.com/aaravmohanty" target="_blank" rel="noopener">GitHub ↗</a>
-          <a href="https://linkedin.com/in/aaravmohanty" target="_blank" rel="noopener">LinkedIn ↗</a>
-          <a href="mailto:aarav.mohanty23@gmail.com">Email ↗</a>
-        </div>
-      </div>
-
-      <aside class="now-panel reveal" aria-label="About Aarav">
-        <div class="now-block">
-          <span class="micro-label">Right now</span>
-          <p>Studying computer science at Purdue and building Amdahl.</p>
-        </div>
-        <div class="now-block">
-          <span class="micro-label">Previously</span>
-          <p>Shipped software at Capital One, Empower AI, Ackuity, and the Kihara Lab.</p>
-        </div>
-        <div class="now-block">
-          <span class="micro-label">Usually</span>
-          <p>Somewhere between a run, a book, a trail, and a half-finished side project.</p>
-        </div>
-      </aside>
-    </section>
-
-    <nav class="home-index reveal" aria-label="Explore the site">
-      <a href="/projects/" class="index-link magnetic"><span>01</span><strong>Selected projects</strong><em>Code, products, experiments</em><b>↗</b></a>
-      <a href="/experience/" class="index-link magnetic"><span>02</span><strong>Experience</strong><em>Work, research, impact</em><b>↗</b></a>
-      <a href="/outside/" class="index-link outside-link"><span>03</span><strong>Outside work</strong><em>Music, books, movement</em><b>↗</b></a>
-    </nav>
-  </main>
-
-  <footer class="main-footer">
-    <span>© 2026 Aarav Mohanty</span>
-    <span class="local-time" aria-label="Current time in Indianapolis">Indianapolis · --:--</span>
-    <a href="#top">Back to top ↑</a>
-  </footer>
-  <script src="/main.js" defer></script>
+  <script src="/main.js?v=8" defer></script>
 </body>
 </html>
