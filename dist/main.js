@@ -8,15 +8,42 @@
   if (intro && canvas) {
     const context = canvas.getContext('2d');
     const locationItems = [...intro.querySelectorAll('.globe-locations li')];
-    const locations = {
-      virginia: { lat: 38.8462, lon: -77.3064, label: 'VIRGINIA / HOME' },
-      purdue: { lat: 40.4259, lon: -86.9081, label: 'WEST LAFAYETTE / NOW' },
-      paris: { lat: 48.8566, lon: 2.3522, label: 'FRANCE' },
-      rome: { lat: 41.9028, lon: 12.4964, label: 'ITALY' },
-      interlaken: { lat: 46.6863, lon: 7.8632, label: 'SWITZERLAND' },
-      madrid: { lat: 40.4168, lon: -3.7038, label: 'SPAIN' },
-      lisbon: { lat: 38.7223, lon: -9.1393, label: 'PORTUGAL' }
-    };
+    const locations = [
+      { group: 'now', lat: 40.4259, lon: -86.9081, label: 'WEST LAFAYETTE / NOW', featured: true },
+      { group: 'roots', lat: 38.8462, lon: -77.3064, label: 'VIRGINIA / HOME', featured: true },
+      { group: 'roots', lat: 20.5937, lon: 78.9629, label: 'INDIA', featured: true },
+      { group: 'roots', lat: 4.2105, lon: 101.9758, label: 'MALAYSIA' },
+      { group: 'world', lat: 3.2028, lon: 73.2207, label: 'MALDIVES', featured: true },
+      { group: 'world', lat: 9.7489, lon: -83.7534, label: 'COSTA RICA' },
+      { group: 'world', lat: -9.19, lon: -75.0152, label: 'PERU', featured: true },
+      { group: 'world', lat: 56.1304, lon: -106.3468, label: 'CANADA' },
+      { group: 'world', lat: 19.8968, lon: -155.5828, label: 'HAWAII' },
+      { group: 'world', lat: 64.2008, lon: -149.4937, label: 'ALASKA' },
+      { group: 'world', lat: 18.1096, lon: -77.2975, label: 'JAMAICA' },
+      { group: 'world', lat: 25.0343, lon: -77.3963, label: 'BAHAMAS' },
+      { group: 'world', lat: 46.2276, lon: 2.2137, label: 'FRANCE' },
+      { group: 'world', lat: 40.4637, lon: -3.7492, label: 'SPAIN' },
+      { group: 'world', lat: 39.3999, lon: -8.2245, label: 'PORTUGAL' },
+      { group: 'world', lat: 46.8182, lon: 8.2275, label: 'SWITZERLAND' },
+      { group: 'world', lat: 41.8719, lon: 12.5674, label: 'ITALY', featured: true },
+      { group: 'world', lat: 38.9637, lon: 35.2433, label: 'TURKEY' },
+      { group: 'world', lat: 39.0742, lon: 21.8243, label: 'GREECE' },
+      { group: 'world', lat: 23.6345, lon: -102.5528, label: 'MEXICO' },
+      { group: 'wild', lat: 41.2132, lon: -124.0046, label: 'REDWOODS' },
+      { group: 'wild', lat: 44.6, lon: -124.1, label: 'OREGON COAST' },
+      { group: 'wild', lat: 46.8523, lon: -121.7603, label: 'MT. RAINIER', featured: true },
+      { group: 'wild', lat: 47.8021, lon: -123.6044, label: 'OLYMPIC' },
+      { group: 'wild', lat: 44.428, lon: -110.5885, label: 'YELLOWSTONE' },
+      { group: 'wild', lat: 37.8651, lon: -119.5383, label: 'YOSEMITE', featured: true },
+      { group: 'wild', lat: 37.2982, lon: -113.0263, label: 'ZION' },
+      { group: 'wild', lat: 36.0544, lon: -112.1401, label: 'GRAND CANYON' },
+      { group: 'wild', lat: 48.7596, lon: -113.787, label: 'GLACIER' },
+      { group: 'wild', lat: 44.3386, lon: -68.2733, label: 'ACADIA' },
+      { group: 'wild', lat: 40.3428, lon: -105.6836, label: 'ROCKY MOUNTAIN' },
+      { group: 'wild', lat: 35.6118, lon: -83.4895, label: 'GREAT SMOKY MOUNTAINS' },
+      { group: 'wild', lat: 25.2866, lon: -80.8987, label: 'EVERGLADES' },
+      { group: 'wild', lat: 33.8734, lon: -115.901, label: 'JOSHUA TREE' }
+    ];
     let countries = [];
     let width = 0;
     let height = 0;
@@ -152,9 +179,10 @@
     const draw = (time) => {
       const elapsed = time - startedAt;
       if (!dragged && !reduceMotion) {
-        if (elapsed < 1900) targetLon = -77;
-        else if (elapsed < 3500) targetLon = -87;
-        else targetLon = 3;
+        if (elapsed < 1100) targetLon = -87;
+        else if (elapsed < 2250) targetLon = 78;
+        else if (elapsed < 3500) targetLon = -16;
+        else targetLon = -115;
       }
       centerLon += (targetLon - centerLon) * (reduceMotion ? 1 : .025);
       context.clearRect(0, 0, width, height);
@@ -189,13 +217,17 @@
       context.lineWidth = 1.2;
       context.stroke();
 
-      drawArc(locations.virginia, locations.purdue, .5);
-      drawArc(locations.virginia, locations.paris, .3);
-      drawMarker(locations.virginia, elapsed < 1900, time);
-      drawMarker(locations.purdue, elapsed >= 1900 && elapsed < 3500, time);
-      ['paris', 'rome', 'interlaken', 'madrid', 'lisbon'].forEach((key) => drawMarker(locations[key], elapsed >= 3500, time));
+      const activeIndex = elapsed < 1100 ? 0 : elapsed < 2250 ? 1 : elapsed < 3500 ? 2 : 3;
+      const activeGroup = ['now', 'roots', 'world', 'wild'][activeIndex];
+      const virginia = locations.find((location) => location.label.startsWith('VIRGINIA'));
+      const purdue = locations.find((location) => location.group === 'now');
+      const india = locations.find((location) => location.label === 'INDIA');
+      const italy = locations.find((location) => location.label === 'ITALY');
+      drawArc(virginia, purdue, .5);
+      drawArc(virginia, india, .24);
+      drawArc(virginia, italy, .24);
+      locations.forEach((location) => drawMarker(location, location.group === activeGroup && location.featured, time));
 
-      const activeIndex = elapsed < 1900 ? 0 : elapsed < 3500 ? 1 : 2;
       locationItems.forEach((item, index) => item.classList.toggle('is-active', index === activeIndex));
       if (!finished) requestAnimationFrame(draw);
     };
@@ -211,7 +243,7 @@
         document.querySelectorAll('.reveal').forEach((item) => {
           if (item.getBoundingClientRect().top < window.innerHeight * .95) item.classList.add('is-in');
         });
-      }, 900);
+      }, 650);
     };
 
     resize();
@@ -228,6 +260,9 @@
       pointerX = event.clientX;
     });
     canvas.addEventListener('pointerup', () => { pointerDown = false; });
+    canvas.addEventListener('click', () => {
+      if (!dragged) finishIntro();
+    });
     enterButton?.addEventListener('click', finishIntro);
     window.addEventListener('wheel', (event) => {
       if (Math.abs(event.deltaY) > 18) finishIntro();
@@ -235,8 +270,8 @@
     window.addEventListener('keydown', (event) => {
       if (['Enter', 'Escape', ' ', 'ArrowDown'].includes(event.key)) finishIntro();
     });
-    window.setTimeout(() => enterButton?.classList.add('is-ready'), reduceMotion ? 0 : 1100);
-    if (!reduceMotion) window.setTimeout(finishIntro, 6500);
+    window.setTimeout(() => enterButton?.classList.add('is-ready'), reduceMotion ? 0 : 180);
+    if (!reduceMotion) window.setTimeout(finishIntro, 5000);
     requestAnimationFrame(draw);
   } else {
     document.body.classList.remove('globe-pending');

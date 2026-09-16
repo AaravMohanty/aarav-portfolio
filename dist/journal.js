@@ -7,6 +7,29 @@
     root.style.setProperty('--my', `${event.clientY}px`);
   }, { passive: true });
 
+  const turntable = document.querySelector('.turntable-card');
+  const turntableToggle = document.querySelector('.turntable-toggle');
+  const playState = document.querySelector('.play-state');
+  if (turntable && turntableToggle && playState) {
+    const toggleRecord = () => {
+      const paused = turntable.classList.toggle('is-paused');
+      turntableToggle.setAttribute('aria-pressed', String(paused));
+      turntableToggle.setAttribute('aria-label', paused ? 'Play the record player' : 'Pause the record player');
+      playState.textContent = paused ? 'Play record' : 'Pause record';
+    };
+    turntableToggle.addEventListener('click', toggleRecord);
+    playState.addEventListener('click', toggleRecord);
+  }
+
+  const shelfCurrent = document.querySelector('.shelf-current');
+  document.querySelectorAll('.book').forEach((book) => {
+    const showTitle = () => {
+      if (shelfCurrent) shelfCurrent.textContent = book.dataset.title;
+    };
+    book.addEventListener('pointerenter', showTitle);
+    book.addEventListener('focus', showTitle);
+  });
+
   const sections = document.querySelectorAll('.journal-section');
   if (reduced || !('IntersectionObserver' in window)) {
     sections.forEach((section) => section.classList.add('is-in'));
@@ -86,4 +109,18 @@
       opener?.focus();
     });
   }
+
+  const notes = [...document.querySelectorAll('.notes-list details')];
+  notes.forEach((note) => {
+    note.addEventListener('toggle', () => {
+      if (note.open) notes.forEach((other) => { if (other !== note) other.open = false; });
+    });
+  });
+
+  window.addEventListener('load', () => {
+    if (!window.location.hash) return;
+    window.setTimeout(() => {
+      document.querySelector(window.location.hash)?.scrollIntoView({ block: 'start' });
+    }, 120);
+  });
 })();
