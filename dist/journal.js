@@ -10,15 +10,38 @@
   const turntable = document.querySelector('.turntable-card');
   const turntableToggle = document.querySelector('.turntable-toggle');
   const playState = document.querySelector('.play-state');
-  if (turntable && turntableToggle && playState) {
-    const toggleRecord = () => {
-      const paused = turntable.classList.toggle('is-paused');
-      turntableToggle.setAttribute('aria-pressed', String(paused));
-      turntableToggle.setAttribute('aria-label', paused ? 'Play the record player' : 'Pause the record player');
-      playState.textContent = paused ? 'Play record' : 'Pause record';
+  const recordAudio = document.querySelector('.record-audio');
+  if (turntable && turntableToggle && playState && recordAudio) {
+    const setPlaying = (playing) => {
+      turntable.classList.toggle('is-paused', !playing);
+      turntableToggle.setAttribute('aria-pressed', String(playing));
+      turntableToggle.setAttribute('aria-label', playing ? 'Pause the record' : 'Play the record');
+      playState.textContent = playing ? 'Pause record' : 'Play record';
+    };
+    const toggleRecord = async () => {
+      if (!recordAudio.paused) {
+        recordAudio.pause();
+        setPlaying(false);
+        return;
+      }
+      try {
+        await recordAudio.play();
+        setPlaying(true);
+      } catch {
+        setPlaying(false);
+        playState.textContent = 'Preview unavailable';
+      }
     };
     turntableToggle.addEventListener('click', toggleRecord);
     playState.addEventListener('click', toggleRecord);
+    recordAudio.addEventListener('ended', () => {
+      recordAudio.currentTime = 0;
+      setPlaying(false);
+    });
+    recordAudio.addEventListener('error', () => {
+      setPlaying(false);
+      playState.textContent = 'Preview unavailable';
+    });
   }
 
   const shelfCurrent = document.querySelector('.shelf-current');
