@@ -67,6 +67,7 @@
     let pointerMoved = false;
     let dragged = false;
     let finished = false;
+    let activeLocation = null;
     let hitTargets = [];
     const startedAt = performance.now();
 
@@ -84,9 +85,15 @@
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
-      radius = Math.min(width < 720 ? width * .43 : width * .285, height * .42);
-      centerX = width < 720 ? width * .5 : width * .54;
-      centerY = height * .48;
+      if (width < 720) {
+        radius = Math.min(width * .37, height * (height < 740 ? .2 : .25));
+        centerX = width * .5;
+        centerY = height * .52;
+      } else {
+        radius = Math.min(width * .235, height * .4);
+        centerX = width * .7;
+        centerY = height * .48;
+      }
     };
 
     const clamp = (value, minimum, maximum) => Math.min(maximum, Math.max(minimum, value));
@@ -174,10 +181,11 @@
     const drawMarker = (location, emphasis = false, time = 0) => {
       const point = project(location.lon, location.lat);
       if (point.z < .08) return;
-      if (location.image) hitTargets.push({ x: point.x, y: point.y, location });
+      const isSelected = activeLocation === location;
+      if (location.image && (!activeLocation || isSelected)) hitTargets.push({ x: point.x, y: point.y, location });
       const pulse = 5 + Math.sin(time / 320) * 2;
       context.save();
-      context.globalAlpha = Math.min(1, (point.z + .1) * 1.15);
+      context.globalAlpha = Math.min(1, (point.z + .1) * 1.15) * (activeLocation && !isSelected ? .07 : 1);
       context.beginPath();
       context.arc(point.x, point.y, emphasis ? pulse + 4 : pulse, 0, Math.PI * 2);
       context.strokeStyle = 'rgba(209, 154, 97, .32)';
@@ -251,17 +259,19 @@
       context.lineWidth = 1.2;
       context.stroke();
 
-      const sequenceIndex = Math.floor((elapsed % 15000) / 3000);
+      const sequenceIndex = Math.floor((Math.max(0, elapsed) % 15000) / 3000);
       const activeGroup = sequenceIndex === 0 ? 'now' : sequenceIndex === 4 ? 'parks' : 'world';
       const activeIndex = activeGroup === 'now' ? 0 : activeGroup === 'world' ? 1 : 2;
       const virginia = locations.find((location) => location.label.startsWith('VIRGINIA'));
       const purdue = locations.find((location) => location.group === 'now');
       const india = locations.find((location) => location.label === 'INDIA');
       const italy = locations.find((location) => location.label === 'ITALY');
-      drawArc(virginia, purdue, .5);
-      drawArc(virginia, india, .24);
-      drawArc(virginia, italy, .24);
-      locations.forEach((location) => drawMarker(location, location.group === activeGroup && location.featured, time));
+      if (!activeLocation) {
+        drawArc(virginia, purdue, .5);
+        drawArc(virginia, india, .24);
+        drawArc(virginia, italy, .24);
+      }
+      locations.forEach((location) => drawMarker(location, activeLocation === location || (location.group === activeGroup && location.featured), time));
 
       locationItems.forEach((item, index) => item.classList.toggle('is-active', index === activeIndex));
       if (!finished) requestAnimationFrame(draw);
@@ -269,19 +279,26 @@
 
     const openPlace = (location) => {
       if (!placeCard || !placeImage || !placeTitle || !placeCredit) return;
+      activeLocation = location;
+      dragged = true;
+      targetLon = location.lon;
+      targetLat = clamp(location.lat, -68, 68);
       placeImage.src = location.image;
       placeImage.alt = location.alt;
       placeTitle.textContent = location.label.replace(' / HOME', '');
       placeCredit.textContent = `${location.credit} / Wikimedia Commons ↗`;
       placeCredit.href = location.source;
       placeCard.hidden = false;
+      intro.classList.add('is-focusing-place');
       window.requestAnimationFrame(() => placeCard.classList.add('is-open'));
     };
 
     const closePlace = () => {
       if (!placeCard) return;
       placeCard.classList.remove('is-open');
-      window.setTimeout(() => { placeCard.hidden = true; }, reduceMotion ? 0 : 240);
+      intro.classList.remove('is-focusing-place');
+      activeLocation = null;
+      window.setTimeout(() => { placeCard.hidden = true; }, reduceMotion ? 0 : 320);
     };
 
     const finishIntro = () => {
