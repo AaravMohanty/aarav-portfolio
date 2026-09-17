@@ -17,24 +17,24 @@
       { group: 'now', lat: 40.4259, lon: -86.9081, label: 'WEST LAFAYETTE / NOW', featured: true },
       { group: 'world', lat: 38.8462, lon: -77.3064, label: 'VIRGINIA / HOME', featured: true },
       { group: 'world', lat: 20.5937, lon: 78.9629, label: 'INDIA', featured: true, image: '/places/india.jpg', alt: 'The Taj Mahal in Agra, India', credit: 'Jakub Michankow · CC BY 2.0', source: 'https://commons.wikimedia.org/wiki/File:Taj_Mahal,_Agra,_India1.jpg' },
-      { group: 'world', lat: 4.2105, lon: 101.9758, label: 'MALAYSIA' },
+      { group: 'world', lat: 4.2105, lon: 101.9758, label: 'MALAYSIA', image: '/places/malaysia.jpg', alt: 'The Petronas Towers at night in Kuala Lumpur, Malaysia', credit: 'Dcubillas · CC BY-SA 3.0', source: 'https://commons.wikimedia.org/wiki/File:Petronas_Towers_at_Night_-_from_the_base_upwards.jpg' },
       { group: 'world', lat: 3.2028, lon: 73.2207, label: 'MALDIVES', featured: true, image: '/places/maldives.jpg', alt: 'A small island and coral reef in the Maldives', credit: 'Ondřej Havelka · CC BY-SA 4.0', source: 'https://commons.wikimedia.org/wiki/File:Aerial_shot_of_a_small_island_on_a_coral_reef_in_the_Maldives.jpg' },
       { group: 'world', lat: 9.7489, lon: -83.7534, label: 'COSTA RICA', image: '/places/costa-rica.jpg', alt: 'La Paz waterfall in Costa Rica', credit: 'Matthias Bethke · CC BY-SA 4.0', source: 'https://commons.wikimedia.org/wiki/File:2006-08-04_Cascada_La_Paz.jpg' },
       { group: 'world', lat: -9.19, lon: -75.0152, label: 'PERU', featured: true, image: '/places/peru.jpg', alt: 'Machu Picchu in Peru', credit: 'Diego Delso · CC BY-SA 4.0', source: 'https://commons.wikimedia.org/wiki/File:Machu_Picchu,_Per%C3%BA,_2015-07-30,_DD_47.JPG' },
-      { group: 'world', lat: 56.1304, lon: -106.3468, label: 'CANADA' },
-      { group: 'world', lat: 19.8968, lon: -155.5828, label: 'HAWAII' },
-      { group: 'world', lat: 64.2008, lon: -149.4937, label: 'ALASKA' },
+      { group: 'world', lat: 56.1304, lon: -106.3468, label: 'CANADA', image: '/places/canada.jpg', alt: 'Moraine Lake in Banff National Park, Canada', credit: 'Chensiyuan · CC BY-SA 4.0', source: 'https://commons.wikimedia.org/wiki/File:1_moraine_lake_pano_2019.jpg' },
+      { group: 'world', lat: 19.8968, lon: -155.5828, label: 'HAWAII', image: '/places/hawaii.jpg', alt: 'The Na Pali Coast on Kauai, Hawaii', credit: 'Christian Joudrey · CC0', source: 'https://commons.wikimedia.org/wiki/File:Na_Pali_Coast_(Unsplash).jpg' },
+      { group: 'world', lat: 64.2008, lon: -149.4937, label: 'ALASKA', image: '/places/alaska.jpg', alt: 'Denali National Park in Alaska', credit: 'Diego Delso · CC BY-SA 4.0', source: 'https://commons.wikimedia.org/wiki/File:Parque_nacional_y_reserva_Denali,_Alaska,_Estados_Unidos,_2017-08-30,_DD_72.jpg' },
       { group: 'world', lat: 18.1096, lon: -77.2975, label: 'JAMAICA' },
       { group: 'world', lat: 25.0343, lon: -77.3963, label: 'BAHAMAS' },
-      { group: 'world', lat: 46.2276, lon: 2.2137, label: 'FRANCE' },
-      { group: 'world', lat: 40.4637, lon: -3.7492, label: 'SPAIN' },
+      { group: 'world', lat: 46.2276, lon: 2.2137, label: 'FRANCE', image: '/places/france.jpg', alt: 'The Eiffel Tower in Paris, France', credit: 'Benh LIEU SONG · Public domain', source: 'https://commons.wikimedia.org/wiki/File:Tour_Eiffel_Wikimedia_Commons.jpg' },
+      { group: 'world', lat: 40.4637, lon: -3.7492, label: 'SPAIN', image: '/places/spain.jpg', alt: 'The Sagrada Família in Barcelona, Spain', credit: 'Alvesgaspar · CC BY-SA 4.0', source: 'https://commons.wikimedia.org/wiki/File:Sagrada_Familia_March_2015-10a.jpg' },
       { group: 'world', lat: 39.3999, lon: -8.2245, label: 'PORTUGAL' },
-      { group: 'world', lat: 46.8182, lon: 8.2275, label: 'SWITZERLAND' },
+      { group: 'world', lat: 46.8182, lon: 8.2275, label: 'SWITZERLAND', image: '/places/switzerland.jpg', alt: 'The Matterhorn reflected in Stellisee, Switzerland', credit: 'Giles Laurent · CC BY-SA 4.0', source: 'https://commons.wikimedia.org/wiki/File:008_Milky_way_aligned_with_the_Matterhorn_reflecting_in_Stellisee_Photo_by_Giles_Laurent.jpg' },
       { group: 'world', lat: 41.8719, lon: 12.5674, label: 'ITALY', featured: true, image: '/places/italy.jpg', alt: 'St. Angelo Bridge in Rome, Italy', credit: 'AngMoKio · CC BY-SA 2.5', source: 'https://commons.wikimedia.org/wiki/File:StAngelo_Bridge_Rome.jpg' },
       { group: 'world', lat: 38.9637, lon: 35.2433, label: 'TURKEY' },
-      { group: 'world', lat: 39.0742, lon: 21.8243, label: 'GREECE' },
-      { group: 'world', lat: 23.6345, lon: -102.5528, label: 'MEXICO' },
-      { group: 'parks', lat: 41.2132, lon: -124.0046, label: 'REDWOODS' },
+      { group: 'world', lat: 39.0742, lon: 21.8243, label: 'GREECE', image: '/places/greece.jpg', alt: 'The blue domes of Oia in Santorini, Greece', credit: 'Giles Laurent · CC BY-SA 4.0', source: 'https://commons.wikimedia.org/wiki/File:1000_Three_domes_of_Oia_in_Santorini_Photo_by_Giles_Laurent.jpg' },
+      { group: 'world', lat: 23.6345, lon: -102.5528, label: 'MEXICO', image: '/places/mexico.jpg', alt: 'Chichén Itzá in Mexico', credit: 'Daniel Schwen · CC BY-SA 4.0', source: 'https://commons.wikimedia.org/wiki/File:Chichen_Itza_2.jpg' },
+      { group: 'parks', lat: 41.2132, lon: -124.0046, label: 'REDWOODS', image: '/places/redwoods.jpg', alt: 'Fog among the trees in Redwood National Park', credit: 'Michael Schweppe · CC BY-SA 2.0', source: 'https://commons.wikimedia.org/wiki/File:Redwood_National_Park,_fog_in_the_forest.jpg' },
       { group: 'parks', lat: 44.6, lon: -124.1, label: 'OREGON COAST' },
       { group: 'parks', lat: 46.8523, lon: -121.7603, label: 'MT. RAINIER', featured: true, image: '/places/mt-rainier.jpg', alt: 'Mount Rainier behind the flowering meadows of Paradise Park', credit: 'Bob Collowan · CC BY-SA 3.0', source: 'https://commons.wikimedia.org/wiki/File:Mount_Rainier_behind_the_flowering_meadows_of_Paradise_Park_(18_August_2012).jpg' },
       { group: 'parks', lat: 47.8021, lon: -123.6044, label: 'OLYMPIC' },
@@ -57,8 +57,11 @@
     let centerY = 0;
     let centerLon = -77;
     let targetLon = -77;
+    let centerLat = 22;
+    let targetLat = 22;
     let pointerDown = false;
     let pointerX = 0;
+    let pointerY = 0;
     let pointerStartX = 0;
     let pointerStartY = 0;
     let pointerMoved = false;
@@ -86,14 +89,20 @@
       centerY = height * .48;
     };
 
+    const clamp = (value, minimum, maximum) => Math.min(maximum, Math.max(minimum, value));
+
     const project = (lon, lat) => {
       const lambda = (lon - centerLon) * Math.PI / 180;
       const phi = lat * Math.PI / 180;
+      const phi0 = centerLat * Math.PI / 180;
       const cosPhi = Math.cos(phi);
+      const sinPhi = Math.sin(phi);
+      const cosPhi0 = Math.cos(phi0);
+      const sinPhi0 = Math.sin(phi0);
       return {
         x: centerX + radius * cosPhi * Math.sin(lambda),
-        y: centerY - radius * Math.sin(phi),
-        z: cosPhi * Math.cos(lambda)
+        y: centerY - radius * (cosPhi0 * sinPhi - sinPhi0 * cosPhi * Math.cos(lambda)),
+        z: sinPhi0 * sinPhi + cosPhi0 * cosPhi * Math.cos(lambda)
       };
     };
 
@@ -196,10 +205,19 @@
     const draw = (time) => {
       const elapsed = time - startedAt;
       if (!dragged && !reduceMotion) {
-        const sequence = [-87, 78, -76, 12, -121];
-        targetLon = sequence[Math.floor((elapsed % 15000) / 3000)];
+        const sequence = [
+          { lon: -87, lat: 28 },
+          { lon: 78, lat: 16 },
+          { lon: -76, lat: 18 },
+          { lon: 12, lat: 38 },
+          { lon: -121, lat: 42 }
+        ];
+        const scene = sequence[Math.floor((Math.max(0, elapsed) % 15000) / 3000)];
+        targetLon = scene.lon;
+        targetLat = scene.lat;
       }
       centerLon += (targetLon - centerLon) * (reduceMotion ? 1 : .025);
+      centerLat += (targetLat - centerLat) * (reduceMotion ? 1 : .025);
       context.clearRect(0, 0, width, height);
       hitTargets = [];
 
@@ -285,6 +303,7 @@
     canvas.addEventListener('pointerdown', (event) => {
       pointerDown = true;
       pointerX = event.clientX;
+      pointerY = event.clientY;
       pointerStartX = event.clientX;
       pointerStartY = event.clientY;
       pointerMoved = false;
@@ -297,7 +316,9 @@
           pointerMoved = true;
         }
         targetLon -= (event.clientX - pointerX) * .35;
+        targetLat = clamp(targetLat + (event.clientY - pointerY) * .3, -72, 72);
         pointerX = event.clientX;
+        pointerY = event.clientY;
       } else {
         const overPlace = hitTargets.some((target) => Math.hypot(event.clientX - target.x, event.clientY - target.y) < 17);
         canvas.classList.toggle('is-over-place', overPlace);
@@ -305,6 +326,12 @@
     });
     canvas.addEventListener('pointerup', () => { pointerDown = false; });
     canvas.addEventListener('pointercancel', () => { pointerDown = false; });
+    canvas.addEventListener('wheel', (event) => {
+      event.preventDefault();
+      dragged = true;
+      targetLon -= event.deltaX * .09;
+      targetLat = clamp(targetLat + event.deltaY * .055, -72, 72);
+    }, { passive: false });
     canvas.addEventListener('click', (event) => {
       if (pointerMoved) return;
       const target = hitTargets

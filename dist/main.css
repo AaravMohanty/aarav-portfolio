@@ -240,6 +240,7 @@ img { display: block; max-width: 100%; }
 .globe-kicker { margin: 0 0 1.2rem; color: #a09b91; font-size: .72rem; letter-spacing: .13em; text-transform: uppercase; }
 .globe-copy h1 { margin: 0; font-size: clamp(2.7rem, 6.2vw, 6.7rem); line-height: .88; letter-spacing: -.065em; font-weight: 500; }
 .globe-copy h1 em { color: var(--accent); font-style: normal; }
+.globe-intro-note { max-width: 430px; margin: 1.4rem 0 0; color: #9b978f; font-size: clamp(.82rem, 1.2vw, 1rem); line-height: 1.55; }
 .globe-locations {
   position: absolute; z-index: 2; right: var(--pad); top: 16%; width: min(280px, 25vw);
   margin: 0; padding: 0; list-style: none; border-top: 1px solid rgba(238,236,231,.2);
@@ -280,8 +281,9 @@ img { display: block; max-width: 100%; }
 
 @media (max-width: 760px) {
   .globe-copy { top: 11%; }
-  .globe-copy h1 { font-size: clamp(2.55rem, 13vw, 4.7rem); }
+  .globe-copy h1 { font-size: clamp(2.35rem, 11.5vw, 4.4rem); }
   .globe-kicker { margin-bottom: .8rem; }
+  .globe-intro-note { max-width: 290px; margin-top: .9rem; font-size: .76rem; }
   .globe-locations { top: auto; right: var(--pad); bottom: 6.5rem; left: var(--pad); width: auto; display: grid; grid-template-columns: repeat(3,1fr); }
   .globe-locations li { display: block; padding: .65rem .5rem .65rem 0; border-bottom: 0; }
   .globe-locations li span { display: block; margin-bottom: .25rem; }
