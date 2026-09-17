@@ -8,14 +8,19 @@
   if (intro && canvas) {
     const context = canvas.getContext('2d');
     const locationItems = [...intro.querySelectorAll('.globe-locations li')];
+    const placeCard = intro.querySelector('.globe-place-card');
+    const placeImage = placeCard?.querySelector('img');
+    const placeTitle = placeCard?.querySelector('.place-card-title');
+    const placeCredit = placeCard?.querySelector('.place-card-credit');
+    const placeClose = placeCard?.querySelector('.place-card-close');
     const locations = [
       { group: 'now', lat: 40.4259, lon: -86.9081, label: 'WEST LAFAYETTE / NOW', featured: true },
-      { group: 'roots', lat: 38.8462, lon: -77.3064, label: 'VIRGINIA / HOME', featured: true },
-      { group: 'roots', lat: 20.5937, lon: 78.9629, label: 'INDIA', featured: true },
-      { group: 'roots', lat: 4.2105, lon: 101.9758, label: 'MALAYSIA' },
-      { group: 'world', lat: 3.2028, lon: 73.2207, label: 'MALDIVES', featured: true },
-      { group: 'world', lat: 9.7489, lon: -83.7534, label: 'COSTA RICA' },
-      { group: 'world', lat: -9.19, lon: -75.0152, label: 'PERU', featured: true },
+      { group: 'world', lat: 38.8462, lon: -77.3064, label: 'VIRGINIA / HOME', featured: true },
+      { group: 'world', lat: 20.5937, lon: 78.9629, label: 'INDIA', featured: true, image: '/places/india.jpg', alt: 'The Taj Mahal in Agra, India', credit: 'Jakub Michankow · CC BY 2.0', source: 'https://commons.wikimedia.org/wiki/File:Taj_Mahal,_Agra,_India1.jpg' },
+      { group: 'world', lat: 4.2105, lon: 101.9758, label: 'MALAYSIA' },
+      { group: 'world', lat: 3.2028, lon: 73.2207, label: 'MALDIVES', featured: true, image: '/places/maldives.jpg', alt: 'A small island and coral reef in the Maldives', credit: 'Ondřej Havelka · CC BY-SA 4.0', source: 'https://commons.wikimedia.org/wiki/File:Aerial_shot_of_a_small_island_on_a_coral_reef_in_the_Maldives.jpg' },
+      { group: 'world', lat: 9.7489, lon: -83.7534, label: 'COSTA RICA', image: '/places/costa-rica.jpg', alt: 'La Paz waterfall in Costa Rica', credit: 'Matthias Bethke · CC BY-SA 4.0', source: 'https://commons.wikimedia.org/wiki/File:2006-08-04_Cascada_La_Paz.jpg' },
+      { group: 'world', lat: -9.19, lon: -75.0152, label: 'PERU', featured: true, image: '/places/peru.jpg', alt: 'Machu Picchu in Peru', credit: 'Diego Delso · CC BY-SA 4.0', source: 'https://commons.wikimedia.org/wiki/File:Machu_Picchu,_Per%C3%BA,_2015-07-30,_DD_47.JPG' },
       { group: 'world', lat: 56.1304, lon: -106.3468, label: 'CANADA' },
       { group: 'world', lat: 19.8968, lon: -155.5828, label: 'HAWAII' },
       { group: 'world', lat: 64.2008, lon: -149.4937, label: 'ALASKA' },
@@ -25,24 +30,24 @@
       { group: 'world', lat: 40.4637, lon: -3.7492, label: 'SPAIN' },
       { group: 'world', lat: 39.3999, lon: -8.2245, label: 'PORTUGAL' },
       { group: 'world', lat: 46.8182, lon: 8.2275, label: 'SWITZERLAND' },
-      { group: 'world', lat: 41.8719, lon: 12.5674, label: 'ITALY', featured: true },
+      { group: 'world', lat: 41.8719, lon: 12.5674, label: 'ITALY', featured: true, image: '/places/italy.jpg', alt: 'St. Angelo Bridge in Rome, Italy', credit: 'AngMoKio · CC BY-SA 2.5', source: 'https://commons.wikimedia.org/wiki/File:StAngelo_Bridge_Rome.jpg' },
       { group: 'world', lat: 38.9637, lon: 35.2433, label: 'TURKEY' },
       { group: 'world', lat: 39.0742, lon: 21.8243, label: 'GREECE' },
       { group: 'world', lat: 23.6345, lon: -102.5528, label: 'MEXICO' },
-      { group: 'wild', lat: 41.2132, lon: -124.0046, label: 'REDWOODS' },
-      { group: 'wild', lat: 44.6, lon: -124.1, label: 'OREGON COAST' },
-      { group: 'wild', lat: 46.8523, lon: -121.7603, label: 'MT. RAINIER', featured: true },
-      { group: 'wild', lat: 47.8021, lon: -123.6044, label: 'OLYMPIC' },
-      { group: 'wild', lat: 44.428, lon: -110.5885, label: 'YELLOWSTONE' },
-      { group: 'wild', lat: 37.8651, lon: -119.5383, label: 'YOSEMITE', featured: true },
-      { group: 'wild', lat: 37.2982, lon: -113.0263, label: 'ZION' },
-      { group: 'wild', lat: 36.0544, lon: -112.1401, label: 'GRAND CANYON' },
-      { group: 'wild', lat: 48.7596, lon: -113.787, label: 'GLACIER' },
-      { group: 'wild', lat: 44.3386, lon: -68.2733, label: 'ACADIA' },
-      { group: 'wild', lat: 40.3428, lon: -105.6836, label: 'ROCKY MOUNTAIN' },
-      { group: 'wild', lat: 35.6118, lon: -83.4895, label: 'GREAT SMOKY MOUNTAINS' },
-      { group: 'wild', lat: 25.2866, lon: -80.8987, label: 'EVERGLADES' },
-      { group: 'wild', lat: 33.8734, lon: -115.901, label: 'JOSHUA TREE' }
+      { group: 'parks', lat: 41.2132, lon: -124.0046, label: 'REDWOODS' },
+      { group: 'parks', lat: 44.6, lon: -124.1, label: 'OREGON COAST' },
+      { group: 'parks', lat: 46.8523, lon: -121.7603, label: 'MT. RAINIER', featured: true, image: '/places/mt-rainier.jpg', alt: 'Mount Rainier behind the flowering meadows of Paradise Park', credit: 'Bob Collowan · CC BY-SA 3.0', source: 'https://commons.wikimedia.org/wiki/File:Mount_Rainier_behind_the_flowering_meadows_of_Paradise_Park_(18_August_2012).jpg' },
+      { group: 'parks', lat: 47.8021, lon: -123.6044, label: 'OLYMPIC' },
+      { group: 'parks', lat: 44.428, lon: -110.5885, label: 'YELLOWSTONE' },
+      { group: 'parks', lat: 37.8651, lon: -119.5383, label: 'YOSEMITE', featured: true },
+      { group: 'parks', lat: 37.2982, lon: -113.0263, label: 'ZION' },
+      { group: 'parks', lat: 36.0544, lon: -112.1401, label: 'GRAND CANYON' },
+      { group: 'parks', lat: 48.7596, lon: -113.787, label: 'GLACIER' },
+      { group: 'parks', lat: 44.3386, lon: -68.2733, label: 'ACADIA' },
+      { group: 'parks', lat: 40.3428, lon: -105.6836, label: 'ROCKY MOUNTAIN' },
+      { group: 'parks', lat: 35.6118, lon: -83.4895, label: 'GREAT SMOKY MOUNTAINS' },
+      { group: 'parks', lat: 25.2866, lon: -80.8987, label: 'EVERGLADES' },
+      { group: 'parks', lat: 33.8734, lon: -115.901, label: 'JOSHUA TREE' }
     ];
     let countries = [];
     let width = 0;
@@ -54,8 +59,12 @@
     let targetLon = -77;
     let pointerDown = false;
     let pointerX = 0;
+    let pointerStartX = 0;
+    let pointerStartY = 0;
+    let pointerMoved = false;
     let dragged = false;
     let finished = false;
+    let hitTargets = [];
     const startedAt = performance.now();
 
     fetch('/world.geo.json')
@@ -156,6 +165,7 @@
     const drawMarker = (location, emphasis = false, time = 0) => {
       const point = project(location.lon, location.lat);
       if (point.z < .08) return;
+      if (location.image) hitTargets.push({ x: point.x, y: point.y, location });
       const pulse = 5 + Math.sin(time / 320) * 2;
       context.save();
       context.globalAlpha = Math.min(1, (point.z + .1) * 1.15);
@@ -167,6 +177,13 @@
       context.arc(point.x, point.y, emphasis ? 3.4 : 2.3, 0, Math.PI * 2);
       context.fillStyle = '#d19a61';
       context.fill();
+      if (location.image) {
+        context.beginPath();
+        context.arc(point.x, point.y, emphasis ? 10.5 : 8.5, 0, Math.PI * 2);
+        context.strokeStyle = 'rgba(238, 236, 231, .72)';
+        context.lineWidth = .8;
+        context.stroke();
+      }
       if (emphasis && width > 680) {
         context.fillStyle = 'rgba(238, 236, 231, .76)';
         context.font = '10px Arial, sans-serif';
@@ -179,13 +196,12 @@
     const draw = (time) => {
       const elapsed = time - startedAt;
       if (!dragged && !reduceMotion) {
-        if (elapsed < 1100) targetLon = -87;
-        else if (elapsed < 2250) targetLon = 78;
-        else if (elapsed < 3500) targetLon = -16;
-        else targetLon = -115;
+        const sequence = [-87, 78, -76, 12, -121];
+        targetLon = sequence[Math.floor((elapsed % 15000) / 3000)];
       }
       centerLon += (targetLon - centerLon) * (reduceMotion ? 1 : .025);
       context.clearRect(0, 0, width, height);
+      hitTargets = [];
 
       const glow = context.createRadialGradient(centerX - radius * .28, centerY - radius * .3, radius * .05, centerX, centerY, radius * 1.18);
       glow.addColorStop(0, 'rgba(65, 61, 53, .98)');
@@ -217,8 +233,9 @@
       context.lineWidth = 1.2;
       context.stroke();
 
-      const activeIndex = elapsed < 1100 ? 0 : elapsed < 2250 ? 1 : elapsed < 3500 ? 2 : 3;
-      const activeGroup = ['now', 'roots', 'world', 'wild'][activeIndex];
+      const sequenceIndex = Math.floor((elapsed % 15000) / 3000);
+      const activeGroup = sequenceIndex === 0 ? 'now' : sequenceIndex === 4 ? 'parks' : 'world';
+      const activeIndex = activeGroup === 'now' ? 0 : activeGroup === 'world' ? 1 : 2;
       const virginia = locations.find((location) => location.label.startsWith('VIRGINIA'));
       const purdue = locations.find((location) => location.group === 'now');
       const india = locations.find((location) => location.label === 'INDIA');
@@ -230,6 +247,23 @@
 
       locationItems.forEach((item, index) => item.classList.toggle('is-active', index === activeIndex));
       if (!finished) requestAnimationFrame(draw);
+    };
+
+    const openPlace = (location) => {
+      if (!placeCard || !placeImage || !placeTitle || !placeCredit) return;
+      placeImage.src = location.image;
+      placeImage.alt = location.alt;
+      placeTitle.textContent = location.label.replace(' / HOME', '');
+      placeCredit.textContent = `${location.credit} / Wikimedia Commons ↗`;
+      placeCredit.href = location.source;
+      placeCard.hidden = false;
+      window.requestAnimationFrame(() => placeCard.classList.add('is-open'));
+    };
+
+    const closePlace = () => {
+      if (!placeCard) return;
+      placeCard.classList.remove('is-open');
+      window.setTimeout(() => { placeCard.hidden = true; }, reduceMotion ? 0 : 240);
     };
 
     const finishIntro = () => {
@@ -251,27 +285,41 @@
     canvas.addEventListener('pointerdown', (event) => {
       pointerDown = true;
       pointerX = event.clientX;
+      pointerStartX = event.clientX;
+      pointerStartY = event.clientY;
+      pointerMoved = false;
       canvas.setPointerCapture(event.pointerId);
     });
     canvas.addEventListener('pointermove', (event) => {
-      if (!pointerDown) return;
-      dragged = true;
-      targetLon -= (event.clientX - pointerX) * .35;
-      pointerX = event.clientX;
+      if (pointerDown) {
+        if (Math.hypot(event.clientX - pointerStartX, event.clientY - pointerStartY) > 4) {
+          dragged = true;
+          pointerMoved = true;
+        }
+        targetLon -= (event.clientX - pointerX) * .35;
+        pointerX = event.clientX;
+      } else {
+        const overPlace = hitTargets.some((target) => Math.hypot(event.clientX - target.x, event.clientY - target.y) < 17);
+        canvas.classList.toggle('is-over-place', overPlace);
+      }
     });
     canvas.addEventListener('pointerup', () => { pointerDown = false; });
-    canvas.addEventListener('click', () => {
-      if (!dragged) finishIntro();
+    canvas.addEventListener('pointercancel', () => { pointerDown = false; });
+    canvas.addEventListener('click', (event) => {
+      if (pointerMoved) return;
+      const target = hitTargets
+        .map((item) => ({ ...item, distance: Math.hypot(event.clientX - item.x, event.clientY - item.y) }))
+        .filter((item) => item.distance < 18)
+        .sort((a, b) => a.distance - b.distance)[0];
+      if (target) openPlace(target.location);
+      else finishIntro();
     });
     enterButton?.addEventListener('click', finishIntro);
-    window.addEventListener('wheel', (event) => {
-      if (Math.abs(event.deltaY) > 18) finishIntro();
-    }, { passive: true, once: true });
+    placeClose?.addEventListener('click', closePlace);
     window.addEventListener('keydown', (event) => {
-      if (['Enter', 'Escape', ' ', 'ArrowDown'].includes(event.key)) finishIntro();
+      if (event.key === 'Escape' && placeCard && !placeCard.hidden) closePlace();
     });
     window.setTimeout(() => enterButton?.classList.add('is-ready'), reduceMotion ? 0 : 180);
-    if (!reduceMotion) window.setTimeout(finishIntro, 5000);
     requestAnimationFrame(draw);
   } else {
     document.body.classList.remove('globe-pending');
@@ -300,27 +348,6 @@
     root.style.setProperty('--mx', `${event.clientX}px`);
     root.style.setProperty('--my', `${event.clientY}px`);
   }, { passive: true });
-
-  const portrait = document.querySelector('.portrait-peek');
-  const heroName = document.querySelector('.hero-name');
-  if (portrait && heroName && !reduceMotion) {
-    const movePortrait = (event) => {
-      const portraitWidth = Math.min(260, window.innerWidth * .18);
-      const x = Math.min(window.innerWidth - portraitWidth - 18, event.clientX + 22);
-      const y = Math.min(window.innerHeight - portraitWidth * 1.25 - 18, event.clientY - portraitWidth * .55);
-      portrait.style.setProperty('--px', `${Math.max(18, x)}px`);
-      portrait.style.setProperty('--py', `${Math.max(18, y)}px`);
-    };
-    heroName.addEventListener('pointerenter', (event) => { movePortrait(event); portrait.classList.add('is-visible'); });
-    heroName.addEventListener('pointermove', movePortrait);
-    heroName.addEventListener('pointerleave', () => portrait.classList.remove('is-visible'));
-    heroName.addEventListener('focus', () => {
-      portrait.style.setProperty('--px', `${Math.min(window.innerWidth - 290, window.innerWidth * .62)}px`);
-      portrait.style.setProperty('--py', `${Math.min(window.innerHeight - 380, window.innerHeight * .28)}px`);
-      portrait.classList.add('is-visible');
-    });
-    heroName.addEventListener('blur', () => portrait.classList.remove('is-visible'));
-  }
 
   const timeNodes = document.querySelectorAll('.local-time');
   const updateTime = () => {

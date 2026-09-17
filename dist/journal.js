@@ -71,8 +71,7 @@
   if (lightbox) {
     const photos = [
       { src: '/photos/hike.jpg', alt: 'Aarav hiking on a green coastal trail at sunset' },
-      { src: '/photos/coast.jpg', alt: 'Tree-covered sea stacks reflected in blue water' },
-      { src: '/photos/soccer.jpg', alt: 'Aarav playing soccer in an Oakton jersey' }
+      { src: '/photos/coast.jpg', alt: 'Tree-covered sea stacks reflected in blue water' }
     ];
     let index = 0;
     let opener;
