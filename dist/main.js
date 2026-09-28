@@ -289,14 +289,12 @@
       placeCredit.textContent = `${location.credit} / Wikimedia Commons ↗`;
       placeCredit.href = location.source;
       placeCard.hidden = false;
-      intro.classList.add('is-focusing-place');
       window.requestAnimationFrame(() => placeCard.classList.add('is-open'));
     };
 
     const closePlace = () => {
       if (!placeCard) return;
       placeCard.classList.remove('is-open');
-      intro.classList.remove('is-focusing-place');
       activeLocation = null;
       window.setTimeout(() => { placeCard.hidden = true; }, reduceMotion ? 0 : 320);
     };
@@ -403,30 +401,11 @@
   updateTime();
   window.setInterval(updateTime, 30000);
 
-  const stage = document.querySelector('.project-stage');
   const rows = document.querySelectorAll('.project-row');
-  if (stage && rows.length) {
-    const stageIndex = stage.querySelector('.stage-index');
-    const stageName = stage.querySelector('.stage-name');
-    const stageMeta = stage.querySelector('.stage-meta');
-    const setStage = (row) => {
-      if (stageName.textContent === row.dataset.name) return;
-      stage.classList.add('is-changing');
-      window.setTimeout(() => {
-        stageIndex.textContent = row.dataset.index;
-        stageName.textContent = row.dataset.name;
-        stageMeta.textContent = row.dataset.meta;
-        stage.classList.remove('is-changing');
-      }, 150);
-    };
+  if (rows.length) {
     rows.forEach((row) => {
-      row.addEventListener('pointerenter', () => setStage(row));
-      row.querySelector('summary').addEventListener('focus', () => setStage(row));
       row.addEventListener('toggle', () => {
-        if (row.open) {
-          setStage(row);
-          rows.forEach((other) => { if (other !== row) other.open = false; });
-        }
+        if (row.open) rows.forEach((other) => { if (other !== row) other.open = false; });
       });
     });
   }
