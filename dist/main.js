@@ -52,7 +52,10 @@
     let countries = [];
     let width = 0;
     let height = 0;
+    let baseRadius = 0;
     let radius = 0;
+    let zoom = 1;
+    let targetZoom = 1;
     let centerX = 0;
     let centerY = 0;
     let centerLon = -77;
@@ -68,6 +71,7 @@
     let dragged = false;
     let finished = false;
     let activeLocation = null;
+    let focusTimer = 0;
     let hitTargets = [];
     const startedAt = performance.now();
 
@@ -86,14 +90,15 @@
       canvas.style.height = `${height}px`;
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
       if (width < 720) {
-        radius = Math.min(width * .37, height * (height < 740 ? .2 : .25));
+        baseRadius = Math.min(width * .37, height * (height < 740 ? .2 : .25));
         centerX = width * .5;
         centerY = height * .52;
       } else {
-        radius = Math.min(width * .235, height * .4);
+        baseRadius = Math.min(width * .235, height * .4);
         centerX = width * .7;
         centerY = height * .48;
       }
+      radius = baseRadius * zoom;
     };
 
     const clamp = (value, minimum, maximum) => Math.min(maximum, Math.max(minimum, value));
@@ -226,6 +231,8 @@
       }
       centerLon += (targetLon - centerLon) * (reduceMotion ? 1 : .025);
       centerLat += (targetLat - centerLat) * (reduceMotion ? 1 : .025);
+      zoom += (targetZoom - zoom) * (reduceMotion ? 1 : .055);
+      radius = baseRadius * zoom;
       context.clearRect(0, 0, width, height);
       hitTargets = [];
 
@@ -260,7 +267,7 @@
       context.stroke();
 
       const sequenceIndex = Math.floor((Math.max(0, elapsed) % 15000) / 3000);
-      const activeGroup = sequenceIndex === 0 ? 'now' : sequenceIndex === 4 ? 'parks' : 'world';
+      const activeGroup = activeLocation?.group ?? (sequenceIndex === 0 ? 'now' : sequenceIndex === 4 ? 'parks' : 'world');
       const activeIndex = activeGroup === 'now' ? 0 : activeGroup === 'world' ? 1 : 2;
       const virginia = locations.find((location) => location.label.startsWith('VIRGINIA'));
       const purdue = locations.find((location) => location.group === 'now');
@@ -283,18 +290,28 @@
       dragged = true;
       targetLon = location.lon;
       targetLat = clamp(location.lat, -68, 68);
+      targetZoom = width < 720 ? 2.05 : 2.45;
       placeImage.src = location.image;
       placeImage.alt = location.alt;
       placeTitle.textContent = location.label.replace(' / HOME', '');
-      placeCredit.textContent = `${location.credit} / Wikimedia Commons ↗`;
+      placeCredit.textContent = `${location.credit} / Wikimedia Commons`;
       placeCredit.href = location.source;
-      placeCard.hidden = false;
-      window.requestAnimationFrame(() => placeCard.classList.add('is-open'));
+      intro.classList.add('is-zoomed');
+      window.clearTimeout(focusTimer);
+      placeCard.classList.remove('is-open');
+      placeCard.hidden = true;
+      focusTimer = window.setTimeout(() => {
+        placeCard.hidden = false;
+        window.requestAnimationFrame(() => placeCard.classList.add('is-open'));
+      }, reduceMotion ? 0 : 720);
     };
 
     const closePlace = () => {
       if (!placeCard) return;
+      window.clearTimeout(focusTimer);
       placeCard.classList.remove('is-open');
+      intro.classList.remove('is-zoomed');
+      targetZoom = 1;
       activeLocation = null;
       window.setTimeout(() => { placeCard.hidden = true; }, reduceMotion ? 0 : 320);
     };
@@ -354,6 +371,7 @@
         .filter((item) => item.distance < 18)
         .sort((a, b) => a.distance - b.distance)[0];
       if (target) openPlace(target.location);
+      else if (activeLocation) closePlace();
       else finishIntro();
     });
     enterButton?.addEventListener('click', finishIntro);
