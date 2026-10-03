@@ -133,6 +133,34 @@ img { display: block; max-width: 100%; }
 .flow strong { min-height: 70px; padding: .85rem; display: grid; place-items: center; border: 1px solid rgba(238,236,231,.2); font-size: .8rem; font-weight: 500; text-align: center; }
 .flow i { color: var(--accent); font-style: normal; }
 .document-stack,.orbit-graphic { display: none; }
+.pipeline-visual { min-height: 250px; display: grid; grid-template-columns: .72fr 1fr 1.1fr; align-items: center; gap: clamp(.7rem,2vw,1.5rem); }
+.source-stack { position: relative; height: 120px; display: grid; place-items: center; }
+.source-stack i { position: absolute; width: 74px; height: 94px; border: 1px solid rgba(238,236,231,.25); background: #1e1e1c; transform: translate(calc(var(--n,0) * 7px),calc(var(--n,0) * -6px)) rotate(calc(var(--n,0) * 2deg)); }
+.source-stack i:nth-child(1) { --n:-1; }
+.source-stack i:nth-child(2) { --n:0; }
+.source-stack i:nth-child(3) { --n:1; }
+.source-stack i::after { content:""; position:absolute; left:13px; right:13px; top:22px; height:1px; background:#777; box-shadow:0 13px #555,0 26px #555,0 39px #444; }
+.source-stack span { position:absolute; bottom:-12px; color:#8f8e89; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; }
+.pipeline-track { display:grid; grid-template-columns:1fr auto 1fr auto 1fr; align-items:center; color:#9e9d98; font-size:.62rem; text-transform:uppercase; letter-spacing:.1em; }
+.pipeline-track i { height:1px; background:linear-gradient(90deg,transparent,var(--accent)); }
+.pipeline-track i:last-child { background:linear-gradient(90deg,var(--accent),transparent); }
+.pipeline-track b { width:44px; height:44px; display:grid; place-items:center; border:1px solid rgba(209,154,97,.42); border-radius:50%; font-weight:400; }
+.search-result { padding:1rem; background:#eeece7; color:#171716; box-shadow:14px 18px 0 rgba(0,0,0,.18); transform:rotate(1deg); }
+.search-result>span { font-size:.58rem; letter-spacing:.15em; color:#777; }
+.search-result strong { display:block; margin:.8rem 0 1.2rem; font-size:.88rem; }
+.search-result p { margin:0 0 .8rem; }
+.search-result p i { display:block; width:100%; height:3px; margin:.42rem 0; background:#bbb; }
+.search-result p i:nth-child(2) { width:78%; background:var(--accent); }
+.search-result small { color:#666; font-size:.62rem; }
+.agent-map { position:relative; min-height:270px; }
+.agent-map svg { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+.agent-map path { fill:none; stroke:rgba(209,154,97,.38); stroke-width:1; stroke-dasharray:5 7; }
+.agent-core,.agent-node { position:absolute; z-index:2; display:grid; place-items:center; border:1px solid rgba(238,236,231,.22); background:#171716; }
+.agent-core { left:50%; top:50%; width:112px; height:112px; margin:-56px; border-color:rgba(209,154,97,.7); border-radius:50%; box-shadow:0 0 50px rgba(209,154,97,.12); }
+.agent-core b { font-size:.78rem; letter-spacing:.16em; }
+.agent-core small { color:var(--accent); font-size:.6rem; }
+.agent-node { min-width:72px; padding:.65rem .75rem; color:#aaa7a0; font-size:.67rem; text-transform:uppercase; letter-spacing:.1em; }
+.node-task { left:2%; top:5%; }.node-code { right:1%; top:7%; }.node-tools { left:1%; bottom:5%; }.node-memory { right:0; bottom:5%; color:var(--paper); border-color:rgba(209,154,97,.45); }
 .waveform { height: 72px; display: flex; align-items: center; justify-content: center; gap: clamp(.35rem,1.1vw,.8rem); }
 .waveform i { width: 4px; height: 25%; background: rgba(209,154,97,.72); animation: wave 1.8s ease-in-out infinite alternate; }
 .waveform i:nth-child(2n) { height: 68%; animation-delay: -.4s; }
@@ -194,6 +222,16 @@ img { display: block; max-width: 100%; }
   .role-row ul { grid-column: 2; }
   .education { grid-template-columns: .3fr 1fr; }
   .education a { grid-column: 2; justify-self: start; }
+}
+
+@media (min-width: 901px) {
+  .home-page .site-shell { min-height:100svh; display:grid; grid-template-rows:88px minmax(0,1fr) 59px; }
+  .home-page .home-main { min-height:0; padding-top:clamp(2rem,5vh,4rem); padding-bottom:1rem; gap:clamp(1.5rem,3vh,2.75rem); }
+  .home-page .hero-intro h1 { font-size:clamp(3.8rem,8.2vw,8rem); }
+  .home-page .hero-lede { margin-top:clamp(1.2rem,2.4vh,2rem); }
+  .home-page .hero-links { margin-top:1.25rem; }
+  .home-page .home-index { margin-top:auto; }
+  .home-page .index-link { min-height:88px; }
 }
 
 @media (max-width: 650px) {

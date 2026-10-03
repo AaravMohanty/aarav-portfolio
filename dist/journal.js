@@ -93,8 +93,10 @@
   const lightbox = document.querySelector('.lightbox');
   if (lightbox) {
     const photos = [
-      { src: '/photos/hike.jpg', alt: 'Aarav hiking on a green coastal trail at sunset' },
-      { src: '/photos/coast.jpg', alt: 'Tree-covered sea stacks reflected in blue water' }
+      { src: '/photos/friends-hike.png', alt: 'Aarav and three friends on a mountain hike' },
+      { src: '/photos/creek.png', alt: 'A small waterfall flowing through mossy rock formations' },
+      { src: '/photos/multnomah-falls.png', alt: 'Multnomah Falls and its footbridge in a green gorge' },
+      { src: '/photos/soccer.png', alt: 'Aarav controlling the ball during a soccer match' }
     ];
     let index = 0;
     let opener;

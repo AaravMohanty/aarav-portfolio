@@ -7,7 +7,7 @@
   <meta name="description" content="Software, AI, fintech, and side projects built by Aarav Mohanty.">
   <meta name="theme-color" content="#10100f">
   <link rel="icon" href="/favicon.svg?v=15" type="image/svg+xml">
-  <link rel="stylesheet" href="/main.css?v=21">
+  <link rel="stylesheet" href="/main.css?v=22">
   <script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="main-theme interior-page projects-page" id="top">
@@ -44,10 +44,13 @@
           <div class="case-facts"><strong>10,000+ pages</strong><strong>85% less manual analysis</strong><span>Python · LangChain · AWS</span></div>
           <a href="https://github.com/AaravMohanty/Amdahl-Website" target="_blank" rel="noopener">View on GitHub</a>
         </div>
-        <div class="case-visual" aria-label="Amdahl data flow">
-          <span class="visual-label">HOW IT WORKS</span>
-          <div class="flow"><strong>Legal records</strong><i>→</i><strong>Clean + index</strong><i>→</i><strong>Search + evidence</strong></div>
-          <div class="document-stack" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="case-visual amdahl-visual" aria-label="Amdahl turns raw legal files into searchable evidence">
+          <span class="visual-label">FROM FILES TO ANSWERS</span>
+          <div class="pipeline-visual" aria-hidden="true">
+            <div class="source-stack"><i></i><i></i><i></i><span>raw records</span></div>
+            <div class="pipeline-track"><i></i><b>clean</b><i></i><b>index</b><i></i></div>
+            <div class="search-result"><span>QUERY</span><strong>What changed?</strong><p><i></i><i></i><i></i></p><small>source found</small></div>
+          </div>
         </div>
       </article>
 
@@ -72,12 +75,18 @@
           <h2>Atlas</h2>
           <p>Atlas is my personal coding agent. It runs in the cloud and keeps context through long tasks.</p>
           <div class="case-facts"><strong>Personal agent</strong><strong>Always-on runner</strong><span>TypeScript</span></div>
-          <a href="https://github.com/AaravMohanty/atlas-personal-agent" target="_blank" rel="noopener">View private repo on GitHub</a>
+          <a href="https://github.com/AaravMohanty/atlas-personal-agent" target="_blank" rel="noopener">View on GitHub</a>
         </div>
-        <div class="case-visual" aria-label="Atlas workflow">
-          <span class="visual-label">LONG-RUNNING CONTEXT</span>
-          <div class="flow"><strong>Task</strong><i>→</i><strong>Cloud runner</strong><i>→</i><strong>Saved context</strong></div>
-          <div class="orbit-graphic" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="case-visual atlas-visual" aria-label="Atlas keeps tasks, tools, and context connected">
+          <span class="visual-label">ONE AGENT, CONTINUOUS CONTEXT</span>
+          <div class="agent-map" aria-hidden="true">
+            <span class="agent-core"><b>ATLAS</b><small>active</small></span>
+            <span class="agent-node node-task">task</span>
+            <span class="agent-node node-code">code</span>
+            <span class="agent-node node-tools">tools</span>
+            <span class="agent-node node-memory">memory</span>
+            <svg viewBox="0 0 500 260" preserveAspectRatio="none"><path d="M250 130L94 56M250 130L410 58M250 130L92 216M250 130L416 214"/></svg>
+          </div>
         </div>
       </article>
     </section>
@@ -85,11 +94,12 @@
     <section class="more-projects reveal" aria-labelledby="more-projects-title">
       <div class="more-projects-heading"><span class="micro-label">MORE FROM GITHUB</span><h2 id="more-projects-title">More projects</h2></div>
       <div class="project-list">
-        <details class="project-row"><summary><span class="project-number">04</span><span class="project-name">Radius</span><span class="project-one-line">Compliance tools for stablecoin payments.</span><span class="project-arrow">+</span></summary><div class="project-detail"><p>I led the backend for a payment-attestation project: risk scores, wallet checks, and Travel Rule workflows across dozens of jurisdictions.</p><div class="project-facts"><span>15+ API endpoints</span><span>30+ jurisdictions</span><span>FastAPI · PostgreSQL</span></div><a href="https://github.com/shriatluri/sc-compliance" target="_blank" rel="noopener">View private repo on GitHub</a></div></details>
-        <details class="project-row"><summary><span class="project-number">05</span><span class="project-name">THINKedIn</span><span class="project-one-line">An internal network for Purdue THINK.</span><span class="project-arrow">+</span></summary><div class="project-detail"><p>I built an alumni directory, member profiles, AI matching, outreach tools, and the admin side that keeps it usable.</p><div class="project-facts"><span>6,500+ records</span><span>1,500 profiles sourced</span><span>React · Flask · Supabase</span></div><a href="https://github.com/AaravMohanty/thinkinternalproject" target="_blank" rel="noopener">View on GitHub</a></div></details>
-        <details class="project-row"><summary><span class="project-number">06</span><span class="project-name">GNN Anomaly Detection</span><span class="project-one-line">Finding fraud patterns in healthcare data.</span><span class="project-arrow">+</span></summary><div class="project-detail"><p>I used graph neural networks to look for fraud, waste, and abuse across large Medicare and Medicaid datasets.</p><div class="project-facts"><span>30M+ records</span><span>97% accuracy</span><span>98% recall</span></div><a href="https://github.com/AaravMohanty/GNN-Anomaly-Detection" target="_blank" rel="noopener">View on GitHub</a></div></details>
-        <details class="project-row"><summary><span class="project-number">07</span><span class="project-name">Clarity</span><span class="project-one-line">A Java chat app built with sockets.</span><span class="project-arrow">+</span></summary><div class="project-detail"><p>A messaging app built from the network layer up, with multiple clients, authentication, profiles, friends, blocking, saved conversations, and a threaded server.</p><div class="project-facts"><span>Concurrent clients</span><span>Persistent state</span><span>Java · JUnit · sockets</span></div><a href="https://github.com/AaravMohanty/Clarity-Social-Messaging" target="_blank" rel="noopener">View on GitHub</a></div></details>
-        <details class="project-row"><summary><span class="project-number">08</span><span class="project-name">StockGuessr</span><span class="project-one-line">Guess the company from market data.</span><span class="project-arrow">+</span></summary><div class="project-detail"><p>Use market clues to guess the company. The game is built with real financial data.</p><div class="project-facts"><span>Financial data</span><span>Interactive game</span><span>TypeScript</span></div><a href="https://github.com/pradyumchitlu/StockGuessr" target="_blank" rel="noopener">View private repo on GitHub</a></div></details>
+        <details class="project-row"><summary><span class="project-number">04</span><span class="project-name">Auxo</span><span class="project-one-line">A new project I am building now.</span><span class="project-arrow">+</span></summary><div class="project-detail"><p>Auxo is still early. The public repo is where I am documenting and building it.</p><div class="project-facts"><span>In progress</span><span>Open source</span></div><a href="https://github.com/rakeers9/Auxo" target="_blank" rel="noopener">Follow the build on GitHub</a></div></details>
+        <details class="project-row"><summary><span class="project-number">05</span><span class="project-name">Radius</span><span class="project-one-line">Compliance tools for stablecoin payments.</span><span class="project-arrow">+</span></summary><div class="project-detail"><p>I led the backend for a payment-attestation project: risk scores, wallet checks, and Travel Rule workflows across dozens of jurisdictions.</p><div class="project-facts"><span>15+ API endpoints</span><span>30+ jurisdictions</span><span>FastAPI · PostgreSQL</span></div><a href="https://github.com/shriatluri/sc-compliance" target="_blank" rel="noopener">View on GitHub</a></div></details>
+        <details class="project-row"><summary><span class="project-number">06</span><span class="project-name">THINKedIn</span><span class="project-one-line">An internal network for Purdue THINK.</span><span class="project-arrow">+</span></summary><div class="project-detail"><p>I built an alumni directory, member profiles, AI matching, outreach tools, and the admin side that keeps it usable.</p><div class="project-facts"><span>6,500+ records</span><span>1,500 profiles sourced</span><span>React · Flask · Supabase</span></div><a href="https://github.com/AaravMohanty/thinkinternalproject" target="_blank" rel="noopener">View on GitHub</a></div></details>
+        <details class="project-row"><summary><span class="project-number">07</span><span class="project-name">GNN Anomaly Detection</span><span class="project-one-line">Finding fraud patterns in healthcare data.</span><span class="project-arrow">+</span></summary><div class="project-detail"><p>I used graph neural networks to look for fraud, waste, and abuse across large Medicare and Medicaid datasets.</p><div class="project-facts"><span>30M+ records</span><span>97% accuracy</span><span>98% recall</span></div><a href="https://github.com/AaravMohanty/GNN-Anomaly-Detection" target="_blank" rel="noopener">View on GitHub</a></div></details>
+        <details class="project-row"><summary><span class="project-number">08</span><span class="project-name">Clarity</span><span class="project-one-line">A Java chat app built with sockets.</span><span class="project-arrow">+</span></summary><div class="project-detail"><p>A messaging app built from the network layer up, with multiple clients, authentication, profiles, friends, blocking, saved conversations, and a threaded server.</p><div class="project-facts"><span>Concurrent clients</span><span>Persistent state</span><span>Java · JUnit · sockets</span></div><a href="https://github.com/AaravMohanty/Clarity-Social-Messaging" target="_blank" rel="noopener">View on GitHub</a></div></details>
+        <details class="project-row"><summary><span class="project-number">09</span><span class="project-name">StockGuessr</span><span class="project-one-line">Guess the company from market data.</span><span class="project-arrow">+</span></summary><div class="project-detail"><p>Use market clues to guess the company. The game is built with real financial data.</p><div class="project-facts"><span>Financial data</span><span>Interactive game</span><span>TypeScript</span></div><a href="https://github.com/pradyumchitlu/StockGuessr" target="_blank" rel="noopener">View on GitHub</a></div></details>
       </div>
     </section>
   </main>
@@ -97,6 +107,6 @@
   <footer class="main-footer">
     <span>© 2026 Aarav Mohanty</span><span class="local-time">Indianapolis · --:--</span><a href="#top">Back to top</a>
   </footer>
-  <script src="/main.js?v=21" defer></script>
+  <script src="/main.js?v=22" defer></script>
 </body>
 </html>
