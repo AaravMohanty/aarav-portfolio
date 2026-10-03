@@ -1,9 +1,47 @@
 (() => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const flightIntro = document.querySelector('.flight-intro');
+  const flightSkip = flightIntro?.querySelector('.flight-skip');
+  let flightFinished = false;
+
+  const finishFlight = (instant = false) => {
+    if (!flightIntro || flightFinished) return;
+    flightFinished = true;
+    try { sessionStorage.setItem('aarav-flight-intro', 'seen'); } catch (error) {}
+    document.body.classList.remove('flight-pending');
+    document.body.classList.add('flight-complete');
+    window.dispatchEvent(new Event('flight:intro-complete'));
+    if (instant) {
+      document.documentElement.classList.add('flight-seen');
+      flightIntro.hidden = true;
+      return;
+    }
+    flightIntro.classList.add('is-leaving');
+    window.setTimeout(() => {
+      flightIntro.hidden = true;
+      document.documentElement.classList.add('flight-seen');
+    }, 720);
+  };
+
+  if (flightIntro) {
+    let flightSeen = false;
+    try { flightSeen = sessionStorage.getItem('aarav-flight-intro') === 'seen'; } catch (error) {}
+    if (reduceMotion || flightSeen) finishFlight(true);
+    else window.setTimeout(() => finishFlight(false), 3050);
+    flightSkip?.addEventListener('click', () => finishFlight(false));
+  }
 
   const intro = document.querySelector('.globe-intro');
   const canvas = document.querySelector('.globe-canvas');
   const enterButton = document.querySelector('.globe-enter');
+
+  if (intro) {
+    if (document.body.classList.contains('flight-pending')) {
+      window.addEventListener('flight:intro-complete', () => intro.removeAttribute('aria-hidden'), { once: true });
+    } else {
+      intro.removeAttribute('aria-hidden');
+    }
+  }
 
   if (intro && canvas) {
     const context = canvas.getContext('2d');
@@ -73,7 +111,8 @@
     let activeLocation = null;
     let focusTimer = 0;
     let hitTargets = [];
-    const startedAt = performance.now();
+    let startedAt = performance.now();
+    window.addEventListener('flight:intro-complete', () => { startedAt = performance.now(); });
 
     fetch('/world.geo.json')
       .then((response) => response.json())

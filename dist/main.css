@@ -242,6 +242,50 @@ img { display: block; max-width: 100%; }
   .js .reveal { opacity: 1; transform: none; }
 }
 
+/* Flight entrance */
+.flight-intro {
+  position: fixed; inset: 0; z-index: 600; overflow: hidden; color: var(--paper);
+  background: radial-gradient(circle at 62% 36%, #25231e 0, #11110f 40%, #070707 100%);
+  font-family: Arial, Helvetica, sans-serif; opacity: 1;
+  transition: opacity .68s ease, filter .68s ease; isolation: isolate;
+}
+.flight-intro.is-leaving { opacity: 0; filter: blur(5px); pointer-events: none; }
+.flight-intro[hidden], .flight-seen .flight-intro { display: none; }
+.flight-sky { position: absolute; inset: 0; }
+.flight-route { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.flight-route > #flight-path {
+  fill: none; stroke: rgba(219, 176, 121, .44); stroke-width: 1.15; stroke-linecap: round;
+  stroke-dasharray: 9 10; stroke-dashoffset: 440; animation: flightTrail 2.8s cubic-bezier(.2,.7,.2,1) .12s forwards;
+}
+.flight-plane { fill: #eee9df; filter: drop-shadow(0 0 9px rgba(224,181,125,.7)); }
+.flight-horizon {
+  position: absolute; left: -8%; right: -8%; bottom: -67vw; height: 82vw; border-radius: 50% 50% 0 0;
+  border-top: 1px solid rgba(226,185,131,.32); background: radial-gradient(circle at 50% 0, rgba(54,51,44,.85), #0c0c0b 48%, #050505 70%);
+  box-shadow: 0 -22px 80px rgba(207,155,96,.08);
+}
+.flight-horizon::before, .flight-horizon::after {
+  content: ""; position: absolute; left: 10%; right: 10%; top: 5%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(226,185,131,.16), transparent);
+}
+.flight-horizon::after { top: 9%; left: 24%; right: 24%; opacity: .55; }
+.flight-copy { position: absolute; z-index: 2; left: var(--pad); top: 50%; transform: translateY(-50%); }
+.flight-copy p { margin: 0 0 1rem; color: #9d988f; font-size: .72rem; letter-spacing: .15em; }
+.flight-copy h1 { margin: 0; font-size: clamp(3rem, 7vw, 7.5rem); line-height: .88; letter-spacing: -.065em; font-weight: 500; }
+.flight-copy span { display: block; margin-top: 1.15rem; color: var(--accent); font-size: clamp(.9rem, 1.5vw, 1.15rem); }
+.flight-skip {
+  position: absolute; z-index: 3; right: var(--pad); bottom: 2rem; padding: .65rem 0;
+  color: #aaa59b; background: none; border: 0; border-bottom: 1px solid rgba(238,236,231,.25);
+  font: inherit; font-size: .72rem; letter-spacing: .11em; text-transform: uppercase; cursor: pointer;
+}
+.flight-skip:hover, .flight-skip:focus-visible { color: var(--paper); border-color: var(--accent); }
+.flight-star { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #dcb47f; box-shadow: 0 0 12px rgba(220,180,127,.7); animation: flightTwinkle 1.6s ease-in-out infinite alternate; }
+.flight-star-one { left: 13%; top: 18%; }
+.flight-star-two { left: 56%; top: 12%; animation-delay: -.4s; }
+.flight-star-three { right: 18%; top: 38%; animation-delay: -.8s; }
+.flight-star-four { left: 41%; top: 68%; animation-delay: -1.1s; }
+@keyframes flightTrail { to { stroke-dashoffset: 0; } }
+@keyframes flightTwinkle { to { opacity: .25; transform: scale(.55); } }
+
 /* Globe entrance */
 .site-shell { transition: opacity .58s ease .08s, transform .68s cubic-bezier(.22,.8,.2,1) .08s; }
 .globe-pending { overflow: hidden; }
@@ -252,6 +296,8 @@ img { display: block; max-width: 100%; }
   background: radial-gradient(circle at 54% 48%, #1c1b18 0, #10100f 42%, #080808 100%);
   font-family: Arial, Helvetica, sans-serif; transition: opacity .55s ease, transform .65s cubic-bezier(.7,0,.3,1), filter .55s ease;
 }
+.flight-pending .globe-intro { opacity: 0; transform: scale(.965); pointer-events: none; }
+.flight-seen .flight-pending .globe-intro { opacity: 1; transform: none; pointer-events: auto; }
 .globe-intro.is-leaving { opacity: 0; transform: scale(1.075); filter: blur(8px); pointer-events: none; }
 .globe-canvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: grab; touch-action: none; clip-path: inset(0 0 0 40%); transition: filter .45s ease, clip-path .5s ease; }
 .globe-canvas:active { cursor: grabbing; }
@@ -273,8 +319,8 @@ img { display: block; max-width: 100%; }
 .globe-copy h1 em { color: var(--accent); font-style: normal; }
 .globe-intro-note { max-width: 430px; margin: 1.4rem 0 0; color: #9b978f; font-size: clamp(.82rem, 1.2vw, 1rem); line-height: 1.55; }
 .globe-locations {
-  position: absolute; z-index: 2; left: var(--pad); top: 57%; width: min(460px, 36vw);
-  display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; padding: 0; list-style: none; border-top: 1px solid rgba(238,236,231,.2);
+  position: relative; z-index: 2; width: 100%;
+  display: grid; grid-template-columns: repeat(3, 1fr); margin: 1.35rem 0 0; padding: 0; list-style: none; border-top: 1px solid rgba(238,236,231,.2);
 }
 .globe-locations li {
   display: block; padding: .85rem .8rem .85rem 0;
@@ -314,13 +360,17 @@ img { display: block; max-width: 100%; }
 .globe-intro.is-zoomed .globe-orbit-note { opacity:0; }
 
 @media (max-width: 760px) {
+  .flight-copy { top: 43%; right: var(--pad); }
+  .flight-copy h1 { font-size: clamp(3.1rem, 16vw, 5.2rem); }
+  .flight-horizon { bottom: -38vw; height: 80vw; }
+  .flight-route { width: 160%; left: -38%; }
   .globe-canvas { clip-path: inset(27% 0 14% 0); }
   .globe-intro.is-zoomed .globe-canvas { clip-path: inset(37% 0 12% 0); }
   .globe-copy { top: 11%; width: auto; right: var(--pad); }
   .globe-copy h1 { font-size: clamp(2.35rem, 11.5vw, 4.4rem); }
   .globe-kicker { margin-bottom: .8rem; }
   .globe-intro-note { max-width: 290px; margin-top: .9rem; font-size: .76rem; }
-  .globe-locations { top: auto; right: var(--pad); bottom: 6.5rem; left: var(--pad); width: auto; display: grid; grid-template-columns: repeat(3,1fr); }
+  .globe-locations { position: fixed; top: auto; right: var(--pad); bottom: 6.5rem; left: var(--pad); width: auto; margin: 0; display: grid; grid-template-columns: repeat(3,1fr); }
   .globe-locations li { display: block; padding: .65rem .5rem .65rem 0; border-bottom: 0; }
   .globe-locations li span { display: block; margin-bottom: .25rem; }
   .globe-locations small { display: block; }
@@ -342,7 +392,38 @@ img { display: block; max-width: 100%; }
   .globe-enter { bottom: .9rem; }
 }
 
+@media (max-width: 760px) and (max-height: 500px) {
+  .globe-canvas { clip-path: inset(0 0 0 45%); }
+  .globe-copy { top: 9%; right: auto; width: 46%; }
+  .globe-kicker { margin-bottom: .55rem; font-size: .65rem; }
+  .globe-copy h1 { font-size: clamp(2.15rem, 5.6vw, 2.9rem); }
+  .globe-locations { right: auto; bottom: 4.1rem; width: 42%; }
+  .globe-locations li { padding-top: .45rem; padding-bottom: .45rem; }
+  .globe-enter { bottom: .45rem; }
+}
+
+@media (max-height: 320px) {
+  .globe-locations { display: none; }
+  .globe-copy { top: 13%; }
+  .globe-copy h1 { font-size: clamp(2rem, 5vw, 2.7rem); }
+}
+
+@media (min-width: 761px) and (max-height: 620px) {
+  .globe-copy { top: 8%; }
+  .globe-copy h1 { font-size: clamp(2.5rem, 5vw, 4.3rem); }
+  .globe-intro-note { margin-top: .75rem; font-size: .78rem; }
+  .globe-locations { margin-top: .8rem; }
+  .globe-locations li { padding-top: .55rem; padding-bottom: .55rem; }
+  .globe-enter { bottom: .8rem; }
+}
+
+@media (min-width: 761px) and (max-height: 480px) {
+  .globe-intro-note { display: none; }
+  .globe-locations { margin-top: .75rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .flight-route > #flight-path, .flight-star { animation: none; }
   .globe-grain { animation: none; }
   .globe-enter { opacity: 1; transform: none; }
 }
