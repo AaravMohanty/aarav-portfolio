@@ -7,7 +7,7 @@
   const markFound = (key) => {
     found.add(key);
     meterDots.forEach((dot, index) => dot.classList.toggle('is-found', index < found.size));
-    if (meterCount) meterCount.textContent = `${found.size} / 3`;
+    if (meterCount) meterCount.textContent = `${found.size} / 5`;
   };
 
   window.addEventListener('pointermove', (event) => {
@@ -64,10 +64,10 @@
   });
 
   const plans = {
-    trail: { image:'/photos/friends-hike.png', alt:'Aarav hiking with friends', label:'TRAIL DAY', title:'The best plans start early.', copy:'Pick a trail, bring friends, and stay out until the light changes.', coordinate:'38°N / somewhere outside' },
-    match: { image:'/photos/soccer.png', alt:'Aarav playing in a soccer match', label:'MATCH DAY', title:'I will always make time for a game.', copy:'Soccer is the constant. Tennis, golf, and pickleball are making their way in.', coordinate:'90 minutes / no shortcuts' },
-    run: { image:'/photos/creek.png', alt:'A creek running through mossy rocks', label:'RUN DAY', title:'Pick a direction and go.', copy:'The route matters less than getting outside and moving for a while.', coordinate:'pace optional / distance earned' },
-    new: { image:'/photos/multnomah-falls.png', alt:'Multnomah Falls in Oregon', label:'OPEN DAY', title:'Leave room for a new plan.', copy:'A new park, a new sport, or a place I have never seen before.', coordinate:'next stop / undecided' }
+    trail: { image:'/photos/friends-hike.png', alt:'Aarav hiking with friends', label:'TRAIL DAY', title:'Early start, bad signal.', copy:'Usually better with friends.', coordinate:'phone on 10%' },
+    match: { image:'/photos/soccer.png', alt:'Aarav playing in a soccer match', label:'MATCH DAY', title:'One more game.', copy:'Soccer is the constant. Tennis is catching up.', coordinate:'next goal wins' },
+    run: { image:'/photos/creek.png', alt:'A creek running through mossy rocks', label:'RUN DAY', title:'No route planned.', copy:'Pick a direction and figure out the way back later.', coordinate:'watch says keep going' },
+    new: { image:'/photos/multnomah-falls.png', alt:'Multnomah Falls in Oregon', label:'OPEN DAY', title:'Try it once.', copy:'Golf and pickleball got onto the list this way.', coordinate:'plans pending' }
   };
   const planStage = document.querySelector('.plan-stage');
   document.querySelectorAll('.plan-option').forEach((button) => {
@@ -87,6 +87,51 @@
       }, reduced ? 0 : 220);
       markFound('plan');
     });
+  });
+
+  const kickButton = document.querySelector('.soccer-ball');
+  const kickScore = document.querySelector('.kick-score');
+  let kicks = 0;
+  const resetKicks = () => {
+    kicks = 0;
+    if (kickScore) kickScore.textContent = '0';
+    if (kickButton) {
+      kickButton.style.setProperty('--ball-x', '0px');
+      kickButton.style.setProperty('--ball-y', '0px');
+      kickButton.classList.remove('is-kicked', 'is-winner');
+    }
+  };
+  if (kickButton) {
+    kickButton.addEventListener('click', () => {
+      kicks += 1;
+      kickScore.textContent = String(kicks);
+      const x = Math.round((Math.random() - .5) * 190);
+      const y = -65 - Math.round(Math.random() * 120);
+      kickButton.style.setProperty('--ball-x', `${x}px`);
+      kickButton.style.setProperty('--ball-y', `${y}px`);
+      kickButton.classList.remove('is-kicked');
+      void kickButton.offsetWidth;
+      kickButton.classList.add('is-kicked');
+      if (kicks >= 23) kickButton.classList.add('is-winner');
+      markFound('keepy');
+    });
+    document.querySelector('.kick-reset')?.addEventListener('click', resetKicks);
+  }
+
+  const stops = ['Turkey', 'Peru', 'Olympic', 'Costa Rica', 'The Redwoods', 'Portugal', 'Mt. Rainier', 'Greece', 'Alaska', 'Switzerland', 'Japan', 'New Zealand'];
+  const departure = document.querySelector('.departure-board strong');
+  const gate = document.querySelector('.departure-board span');
+  document.querySelector('.travel-spin')?.addEventListener('click', () => {
+    let ticks = 0;
+    const spin = window.setInterval(() => {
+      departure.textContent = stops[Math.floor(Math.random() * stops.length)];
+      gate.textContent = `Gate ${String.fromCharCode(65 + Math.floor(Math.random() * 6))}${1 + Math.floor(Math.random() * 24)}`;
+      ticks += 1;
+      if (ticks > 9) {
+        window.clearInterval(spin);
+        markFound('travel');
+      }
+    }, reduced ? 1 : 65);
   });
 
   const sections = document.querySelectorAll('.journal-section');
