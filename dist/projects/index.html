@@ -7,7 +7,7 @@
   <meta name="description" content="Software, AI, fintech, and side projects built by Aarav Mohanty.">
   <meta name="theme-color" content="#10100f">
   <link rel="icon" href="/favicon.svg?v=15" type="image/svg+xml">
-  <link rel="stylesheet" href="/main.css?v=22">
+  <link rel="stylesheet" href="/main.css?v=23">
   <script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="main-theme interior-page projects-page" id="top">
@@ -32,17 +32,21 @@
     <header class="page-heading reveal">
       <span class="micro-label">01 / THINGS I’VE BUILT</span>
       <h1>Projects<span>.</span></h1>
-      <p>A closer look at three projects, followed by a few more from GitHub.</p>
+      <p>Nine projects, each with its own problem, system, and story.</p>
     </header>
 
-    <section class="featured-projects" aria-label="Featured projects">
-      <article class="case-study reveal">
+    <nav class="project-jump reveal" aria-label="Jump to a project">
+      <a href="#amdahl"><span>01</span>Amdahl</a><a href="#aristalkle"><span>02</span>ArisTalkle</a><a href="#atlas"><span>03</span>Atlas</a><a href="#auxo"><span>04</span>Auxo</a><a href="#radius"><span>05</span>Radius</a><a href="#thinkedin"><span>06</span>THINKedIn</a><a href="#gnn"><span>07</span>GNN</a><a href="#clarity"><span>08</span>Clarity</a><a href="#stockguessr"><span>09</span>StockGuessr</a>
+    </nav>
+
+    <section class="featured-projects project-catalog" aria-label="Projects">
+      <article id="amdahl" class="case-study reveal">
         <div class="case-copy">
           <div class="case-topline"><span>01</span><span>Co-founder · 2025 to now</span></div>
           <h2>Amdahl</h2>
           <p>I co-founded Amdahl to make large sets of legal records easier to search. I built the ingestion and retrieval tools that clean, index, and search inconsistent files.</p>
           <div class="case-facts"><strong>10,000+ pages</strong><strong>85% less manual analysis</strong><span>Python · LangChain · AWS</span></div>
-          <a href="https://github.com/AaravMohanty/Amdahl-Website" target="_blank" rel="noopener">View on GitHub</a>
+          <a href="https://github.com/AaravMohanty/Amdahl" target="_blank" rel="noopener">View on GitHub</a>
         </div>
         <div class="case-visual amdahl-visual" aria-label="Amdahl turns raw legal files into searchable evidence">
           <span class="visual-label">FROM FILES TO ANSWERS</span>
@@ -54,7 +58,7 @@
         </div>
       </article>
 
-      <article class="case-study reveal">
+      <article id="aristalkle" class="case-study reveal">
         <div class="case-copy">
           <div class="case-topline"><span>02</span><span>BoilerMake · 2025</span></div>
           <h2>ArisTalkle</h2>
@@ -69,7 +73,7 @@
         </div>
       </article>
 
-      <article class="case-study reveal">
+      <article id="atlas" class="case-study reveal">
         <div class="case-copy">
           <div class="case-topline"><span>03</span><span>Personal agent · 2026</span></div>
           <h2>Atlas</h2>
@@ -89,24 +93,96 @@
           </div>
         </div>
       </article>
-    </section>
 
-    <section class="more-projects reveal" aria-labelledby="more-projects-title">
-      <div class="more-projects-heading"><span class="micro-label">MORE FROM GITHUB</span><h2 id="more-projects-title">More projects</h2></div>
-      <div class="project-list">
-        <details class="project-row"><summary><span class="project-number">04</span><span class="project-name">Auxo</span><span class="project-one-line">A new project I am building now.</span><span class="project-arrow">+</span></summary><div class="project-detail"><p>Auxo is still early. The public repo is where I am documenting and building it.</p><div class="project-facts"><span>In progress</span><span>Open source</span></div><a href="https://github.com/rakeers9/Auxo" target="_blank" rel="noopener">Follow the build on GitHub</a></div></details>
-        <details class="project-row"><summary><span class="project-number">05</span><span class="project-name">Radius</span><span class="project-one-line">Compliance tools for stablecoin payments.</span><span class="project-arrow">+</span></summary><div class="project-detail"><p>I led the backend for a payment-attestation project: risk scores, wallet checks, and Travel Rule workflows across dozens of jurisdictions.</p><div class="project-facts"><span>15+ API endpoints</span><span>30+ jurisdictions</span><span>FastAPI · PostgreSQL</span></div><a href="https://github.com/shriatluri/sc-compliance" target="_blank" rel="noopener">View on GitHub</a></div></details>
-        <details class="project-row"><summary><span class="project-number">06</span><span class="project-name">THINKedIn</span><span class="project-one-line">An internal network for Purdue THINK.</span><span class="project-arrow">+</span></summary><div class="project-detail"><p>I built an alumni directory, member profiles, AI matching, outreach tools, and the admin side that keeps it usable.</p><div class="project-facts"><span>6,500+ records</span><span>1,500 profiles sourced</span><span>React · Flask · Supabase</span></div><a href="https://github.com/AaravMohanty/thinkinternalproject" target="_blank" rel="noopener">View on GitHub</a></div></details>
-        <details class="project-row"><summary><span class="project-number">07</span><span class="project-name">GNN Anomaly Detection</span><span class="project-one-line">Finding fraud patterns in healthcare data.</span><span class="project-arrow">+</span></summary><div class="project-detail"><p>I used graph neural networks to look for fraud, waste, and abuse across large Medicare and Medicaid datasets.</p><div class="project-facts"><span>30M+ records</span><span>97% accuracy</span><span>98% recall</span></div><a href="https://github.com/AaravMohanty/GNN-Anomaly-Detection" target="_blank" rel="noopener">View on GitHub</a></div></details>
-        <details class="project-row"><summary><span class="project-number">08</span><span class="project-name">Clarity</span><span class="project-one-line">A Java chat app built with sockets.</span><span class="project-arrow">+</span></summary><div class="project-detail"><p>A messaging app built from the network layer up, with multiple clients, authentication, profiles, friends, blocking, saved conversations, and a threaded server.</p><div class="project-facts"><span>Concurrent clients</span><span>Persistent state</span><span>Java · JUnit · sockets</span></div><a href="https://github.com/AaravMohanty/Clarity-Social-Messaging" target="_blank" rel="noopener">View on GitHub</a></div></details>
-        <details class="project-row"><summary><span class="project-number">09</span><span class="project-name">StockGuessr</span><span class="project-one-line">Guess the company from market data.</span><span class="project-arrow">+</span></summary><div class="project-detail"><p>Use market clues to guess the company. The game is built with real financial data.</p><div class="project-facts"><span>Financial data</span><span>Interactive game</span><span>TypeScript</span></div><a href="https://github.com/pradyumchitlu/StockGuessr" target="_blank" rel="noopener">View on GitHub</a></div></details>
-      </div>
+      <article id="auxo" class="case-study reveal">
+        <div class="case-copy">
+          <div class="case-topline"><span>04</span><span>Building now · 2026</span></div>
+          <h2>Auxo</h2>
+          <p>A browser extension and backend that share one decision contract. The first API endpoint evaluates a request and returns a structured decision.</p>
+          <div class="case-facts"><strong>Shared contracts</strong><strong>Policy evaluation</strong><span>TypeScript · Supabase · pnpm</span></div>
+          <a href="https://github.com/rakeers9/Auxo" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+        <div class="case-visual auxo-visual" aria-label="Auxo evaluates browser actions">
+          <span class="visual-label">CHECK BEFORE ACTION</span>
+          <div class="browser-check" aria-hidden="true"><div class="browser-bar"><i></i><i></i><i></i><span>checkout</span></div><div class="decision-row"><span>request</span><b>→</b><span>policy</span><b>→</b><strong>ALLOW</strong></div><small>contract matched · 42 ms</small></div>
+        </div>
+      </article>
+
+      <article id="radius" class="case-study reveal">
+        <div class="case-copy">
+          <div class="case-topline"><span>05</span><span>Backend lead · 2025</span></div>
+          <h2>Radius</h2>
+          <p>I led the backend for a stablecoin compliance project. It scores wallet risk and supports Travel Rule workflows across many jurisdictions.</p>
+          <div class="case-facts"><strong>15+ endpoints</strong><strong>30+ jurisdictions</strong><span>FastAPI · PostgreSQL</span></div>
+          <a href="https://github.com/shriatluri/sc-compliance" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+        <div class="case-visual radius-visual" aria-label="Radius compliance console">
+          <span class="visual-label">PAYMENT RISK CHECK</span>
+          <div class="risk-console" aria-hidden="true"><div><small>WALLET SCORE</small><strong>18</strong><span>LOW RISK</span></div><ul><li><b></b>Identity checked</li><li><b></b>Sanctions clear</li><li><b></b>Travel Rule ready</li></ul></div>
+        </div>
+      </article>
+
+      <article id="thinkedin" class="case-study reveal">
+        <div class="case-copy">
+          <div class="case-topline"><span>06</span><span>Purdue THINK · 2026</span></div>
+          <h2>THINKedIn</h2>
+          <p>An internal network for Purdue THINK. Members can find alumni, get AI-powered matches, draft outreach, and manage their profiles.</p>
+          <div class="case-facts"><strong>6,500+ records</strong><strong>AI matching</strong><span>React · Flask · Supabase</span></div>
+          <a href="https://github.com/AaravMohanty/thinkinternalproject" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+        <div class="case-visual think-visual" aria-label="THINKedIn alumni matching network">
+          <span class="visual-label">FIND THE RIGHT ALUM</span>
+          <div class="people-match" aria-hidden="true"><span class="person-card one"><i>AM</i><b>Product</b><small>Chicago</small></span><span class="match-line">92% MATCH</span><span class="person-card two"><i>SK</i><b>Engineering</b><small>New York</small></span></div>
+        </div>
+      </article>
+
+      <article id="gnn" class="case-study reveal">
+        <div class="case-copy">
+          <div class="case-topline"><span>07</span><span>Healthcare ML · 2026</span></div>
+          <h2>GNN Anomaly Detection</h2>
+          <p>A graph neural network pipeline that looks for unusual relationships in Medicare and Medicaid data to surface possible fraud, waste, and abuse.</p>
+          <div class="case-facts"><strong>30M+ records</strong><strong>98% recall</strong><span>Python · graph learning</span></div>
+          <a href="https://github.com/AaravMohanty/GNN-Anomaly-Detection" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+        <div class="case-visual gnn-visual" aria-label="Graph anomaly detection visualization">
+          <span class="visual-label">ANOMALY FOUND</span>
+          <div class="graph-field" aria-hidden="true"><svg viewBox="0 0 500 260"><path d="M68 71L182 49L257 128L396 61M68 71L105 205L257 128L347 213L396 61M182 49L105 205M257 128L455 155"/></svg><i class="g1"></i><i class="g2"></i><i class="g3"></i><i class="g4"></i><i class="g5 alert"></i><i class="g6"></i><i class="g7"></i></div>
+        </div>
+      </article>
+
+      <article id="clarity" class="case-study reveal">
+        <div class="case-copy">
+          <div class="case-topline"><span>08</span><span>Network programming · 2025</span></div>
+          <h2>Clarity</h2>
+          <p>A social messaging app built from the socket layer up, with accounts, profiles, friends, blocking, saved conversations, and concurrent clients.</p>
+          <div class="case-facts"><strong>Concurrent clients</strong><strong>Persistent state</strong><span>Java · JUnit · sockets</span></div>
+          <a href="https://github.com/AaravMohanty/Clarity-Social-Messaging" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+        <div class="case-visual clarity-visual" aria-label="Clarity messaging interface">
+          <span class="visual-label">SOCKET TO SOCKET</span>
+          <div class="chat-window" aria-hidden="true"><div><i></i><span>clarity / online</span></div><p class="bubble left">Made it through the server.</p><p class="bubble right">Received in real time.</p><small>3 clients connected</small></div>
+        </div>
+      </article>
+
+      <article id="stockguessr" class="case-study reveal">
+        <div class="case-copy">
+          <div class="case-topline"><span>09</span><span>Market game · 2025</span></div>
+          <h2>StockGuessr</h2>
+          <p>A game that hides the ticker and asks you to identify a company from its market clues. It turns real financial data into a quick challenge.</p>
+          <div class="case-facts"><strong>Real market data</strong><strong>Interactive game</strong><span>TypeScript</span></div>
+          <a href="https://github.com/pradyumchitlu/StockGuessr" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+        <div class="case-visual stock-visual" aria-label="StockGuessr market chart challenge">
+          <span class="visual-label">GUESS THE COMPANY</span>
+          <div class="stock-card" aria-hidden="true"><div><span>???</span><strong>+24.8%</strong></div><svg viewBox="0 0 500 190"><path d="M8 165L70 148L125 157L186 112L240 126L302 70L360 91L420 38L492 18"/></svg><p><b>TECH</b><b>NASDAQ</b><b>2004</b></p></div>
+        </div>
+      </article>
     </section>
   </main>
 
   <footer class="main-footer">
     <span>© 2026 Aarav Mohanty</span><span class="local-time">Indianapolis · --:--</span><a href="#top">Back to top</a>
   </footer>
-  <script src="/main.js?v=22" defer></script>
+  <script src="/main.js?v=23" defer></script>
 </body>
 </html>
