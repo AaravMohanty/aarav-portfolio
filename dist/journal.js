@@ -1,6 +1,14 @@
 (() => {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const root = document.documentElement;
+  const found = new Set();
+  const meterDots = [...document.querySelectorAll('.discovery-meter i')];
+  const meterCount = document.querySelector('.discovery-meter strong');
+  const markFound = (key) => {
+    found.add(key);
+    meterDots.forEach((dot, index) => dot.classList.toggle('is-found', index < found.size));
+    if (meterCount) meterCount.textContent = `${found.size} / 3`;
+  };
 
   window.addEventListener('pointermove', (event) => {
     root.style.setProperty('--mx', `${event.clientX}px`);
@@ -34,6 +42,7 @@
     };
     turntableToggle.addEventListener('click', toggleRecord);
     playState.addEventListener('click', toggleRecord);
+    turntableToggle.addEventListener('click', () => markFound('record'));
     recordAudio.addEventListener('ended', () => {
       recordAudio.currentTime = 0;
       setPlaying(false);
@@ -51,6 +60,33 @@
     };
     book.addEventListener('pointerenter', showTitle);
     book.addEventListener('focus', showTitle);
+    book.addEventListener('click', () => markFound('book'));
+  });
+
+  const plans = {
+    trail: { image:'/photos/friends-hike.png', alt:'Aarav hiking with friends', label:'TRAIL DAY', title:'The best plans start early.', copy:'Pick a trail, bring friends, and stay out until the light changes.', coordinate:'38°N / somewhere outside' },
+    match: { image:'/photos/soccer.png', alt:'Aarav playing in a soccer match', label:'MATCH DAY', title:'I will always make time for a game.', copy:'Soccer is the constant. Tennis, golf, and pickleball are making their way in.', coordinate:'90 minutes / no shortcuts' },
+    run: { image:'/photos/creek.png', alt:'A creek running through mossy rocks', label:'RUN DAY', title:'Pick a direction and go.', copy:'The route matters less than getting outside and moving for a while.', coordinate:'pace optional / distance earned' },
+    new: { image:'/photos/multnomah-falls.png', alt:'Multnomah Falls in Oregon', label:'OPEN DAY', title:'Leave room for a new plan.', copy:'A new park, a new sport, or a place I have never seen before.', coordinate:'next stop / undecided' }
+  };
+  const planStage = document.querySelector('.plan-stage');
+  document.querySelectorAll('.plan-option').forEach((button) => {
+    button.addEventListener('click', () => {
+      const plan = plans[button.dataset.plan];
+      if (!plan || !planStage) return;
+      document.querySelectorAll('.plan-option').forEach((item) => item.classList.toggle('is-active', item === button));
+      planStage.classList.add('is-changing');
+      window.setTimeout(() => {
+        const image = planStage.querySelector('img');
+        image.src = plan.image; image.alt = plan.alt;
+        planStage.querySelector('.plan-label').textContent = plan.label;
+        planStage.querySelector('.plan-title').textContent = plan.title;
+        planStage.querySelector('.plan-copy').textContent = plan.copy;
+        planStage.querySelector('.plan-coordinate').textContent = plan.coordinate;
+        planStage.classList.remove('is-changing');
+      }, reduced ? 0 : 220);
+      markFound('plan');
+    });
   });
 
   const sections = document.querySelectorAll('.journal-section');
@@ -88,50 +124,6 @@
       }
     }, { passive: true });
     update();
-  }
-
-  const lightbox = document.querySelector('.lightbox');
-  if (lightbox) {
-    const photos = [
-      { src: '/photos/friends-hike.png', alt: 'Aarav and three friends on a mountain hike' },
-      { src: '/photos/creek.png', alt: 'A small waterfall flowing through mossy rock formations' },
-      { src: '/photos/multnomah-falls.png', alt: 'Multnomah Falls and its footbridge in a green gorge' },
-      { src: '/photos/soccer.png', alt: 'Aarav controlling the ball during a soccer match' }
-    ];
-    let index = 0;
-    let opener;
-    const image = lightbox.querySelector('img');
-    const count = lightbox.querySelector('.photo-count');
-    const show = (next) => {
-      index = (next + photos.length) % photos.length;
-      image.src = photos[index].src;
-      image.alt = photos[index].alt;
-      count.textContent = `${index + 1} / ${photos.length}`;
-    };
-    document.querySelectorAll('.photo-open').forEach((button) => {
-      button.addEventListener('click', () => {
-        opener = button;
-        show(Number(button.dataset.photo));
-        lightbox.showModal();
-        document.body.style.overflow = 'hidden';
-      });
-    });
-    lightbox.querySelector('.lightbox-close').addEventListener('click', () => lightbox.close());
-    lightbox.querySelector('.photo-prev').addEventListener('click', () => show(index - 1));
-    lightbox.querySelector('.photo-next').addEventListener('click', () => show(index + 1));
-    lightbox.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowRight') { event.preventDefault(); show(index + 1); }
-      if (event.key === 'ArrowLeft') { event.preventDefault(); show(index - 1); }
-    });
-    lightbox.addEventListener('click', (event) => {
-      if (event.target !== lightbox) return;
-      const bounds = lightbox.getBoundingClientRect();
-      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) lightbox.close();
-    });
-    lightbox.addEventListener('close', () => {
-      document.body.style.overflow = '';
-      opener?.focus();
-    });
   }
 
   window.addEventListener('load', () => {

@@ -1,0 +1,12 @@
+{
+  "name": "aarav-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npx serve dist",
+    "build": "node -e \"console.log('Static site ready in dist/')\""
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}

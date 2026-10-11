@@ -7,7 +7,7 @@
   <meta name="description" content="What Aarav listens to, reads, plays, and does when the laptop is closed.">
   <meta name="theme-color" content="#10100f">
   <link rel="icon" href="/favicon.svg?v=15" type="image/svg+xml">
-  <link rel="stylesheet" href="/journal.css?v=18">
+  <link rel="stylesheet" href="/journal.css?v=19">
   <script>document.documentElement.classList.add('js')</script>
 </head>
 <body id="top">
@@ -32,8 +32,8 @@
       <p class="eyebrow">03 / THE OTHER HALF</p>
       <h1>Outside <em>work.</em></h1>
       <div class="intro-note">
-        <p>A small field guide to what I play, read, and do away from a screen.</p>
-        <span>Three chapters · one page</span>
+        <p>What I listen to, what I have been reading, and how I spend time away from my laptop.</p>
+        <span>Three things on this page respond when you use them</span>
       </div>
     </section>
 
@@ -43,10 +43,14 @@
       <a href="#outside"><span>03</span> Moving &amp; outside</a>
     </nav>
 
+    <div class="discovery-meter" aria-live="polite">
+      <span>Things found</span><i></i><i></i><i></i><strong>0 / 3</strong>
+    </div>
+
     <section id="music" class="journal-section music-section">
       <header class="section-heading">
         <div><span class="eyebrow">01 / ON ROTATION</span><h2>On repeat<br><em>lately.</em></h2></div>
-        <p>Rock, R&amp;B, pop, and anything that sounds good.</p>
+        <p>Six albums I keep coming back to. Click the turntable to hear what is playing.</p>
       </header>
 
       <div class="listening-room">
@@ -73,6 +77,7 @@
           <figure><a href="https://music.apple.com/us/album/currents/1440838039" target="_blank" rel="noopener"><img src="/covers/currents.jpg" alt="Currents by Tame Impala" width="320" height="320"></a><figcaption>Tame Impala <span>Currents</span></figcaption></figure>
           <figure><a href="https://music.apple.com/us/album/whats-the-story-morning-glory-deluxe-remastered-edition/1525933483" target="_blank" rel="noopener"><img src="/covers/morning-glory.jpg" alt="What's the Story Morning Glory by Oasis" width="320" height="320"></a><figcaption>Oasis <span>(What’s the Story) Morning Glory?</span></figcaption></figure>
           <figure><a href="https://music.apple.com/us/album/rumours/594061854" target="_blank" rel="noopener"><img src="/covers/rumours.jpg" alt="Rumours by Fleetwood Mac" width="320" height="320"></a><figcaption>Fleetwood Mac <span>Rumours</span></figcaption></figure>
+          <figure><a href="https://music.apple.com/us/album/melodrama/1429662346" target="_blank" rel="noopener"><span class="coded-cover melodrama-cover" role="img" aria-label="Melodrama by Lorde"><i>MELODRAMA</i><b>LORDE</b></span></a><figcaption>Lorde <span>Melodrama</span></figcaption></figure>
         </div>
       </div>
     </section>
@@ -80,7 +85,7 @@
     <section id="reading" class="journal-section reading-section">
       <header class="section-heading">
         <div><span class="eyebrow">02 / ON THE SHELF</span><h2>What’s on<br><em>my shelf.</em></h2></div>
-        <p>Technology, history, philosophy, and recommendations from friends.</p>
+        <p>Six books I have read recently or still have a bookmark in.</p>
       </header>
 
       <div class="bookshelf-wrap">
@@ -104,38 +109,27 @@
     <section id="outside" class="journal-section outside-life-section">
       <header class="section-heading">
         <div><span class="eyebrow">03 / OFF SCREEN</span><h2>Moving<br><em>outside.</em></h2></div>
-        <p>Soccer, running, lifting, and any excuse to get outside with friends.</p>
+        <p>Pick a plan. This is usually what a free afternoon turns into.</p>
       </header>
       <div class="life-grid">
         <div><span class="eyebrow">REGULAR</span><h3>Soccer, running,<br>and lifting.</h3></div>
         <div><span class="eyebrow">LEARNING</span><h3>Tennis, golf,<br>and pickleball.</h3></div>
         <div><span class="eyebrow">OUTSIDE</span><h3>Trails, parks,<br>and wildlife.</h3></div>
       </div>
-      <div class="photo-mosaic">
-        <figure class="photo-card photo-feature">
-          <button class="photo-open" data-photo="0" aria-label="Enlarge hiking with friends photo"><img src="/photos/friends-hike.png" alt="Aarav and three friends on a mountain hike" width="643" height="864" loading="lazy"></button>
-          <figcaption><span>01 / Out with friends</span></figcaption>
-        </figure>
-        <figure class="photo-card photo-landscape">
-          <button class="photo-open" data-photo="1" aria-label="Enlarge forest creek photo"><img src="/photos/creek.png" alt="A small waterfall flowing through mossy rock formations" width="643" height="853" loading="lazy"></button>
-          <figcaption><span>02 / Off the trail</span></figcaption>
-        </figure>
-        <figure class="photo-card photo-landscape">
-          <button class="photo-open" data-photo="2" aria-label="Enlarge waterfall photo"><img src="/photos/multnomah-falls.png" alt="Multnomah Falls and its footbridge in a green gorge" width="647" height="871" loading="lazy"></button>
-          <figcaption><span>03 / Oregon</span></figcaption>
-        </figure>
-        <figure class="photo-card photo-sport">
-          <button class="photo-open" data-photo="3" aria-label="Enlarge soccer photo"><img src="/photos/soccer.png" alt="Aarav controlling the ball during a soccer match" width="826" height="813" loading="lazy"></button>
-          <figcaption><span>04 / Match night</span></figcaption>
+      <div class="plan-console">
+        <div class="plan-options" role="list" aria-label="Choose an afternoon plan">
+          <button class="plan-option is-active" data-plan="trail" role="listitem"><span>01</span><strong>Find a trail</strong><small>Friends, a view, no service</small></button>
+          <button class="plan-option" data-plan="match" role="listitem"><span>02</span><strong>Play a match</strong><small>Soccer first, tennis next</small></button>
+          <button class="plan-option" data-plan="run" role="listitem"><span>03</span><strong>Go for a run</strong><small>No route planned</small></button>
+          <button class="plan-option" data-plan="new" role="listitem"><span>04</span><strong>Try something new</strong><small>Golf and pickleball lately</small></button>
+        </div>
+        <figure class="plan-stage">
+          <img src="/photos/friends-hike.png" alt="Aarav hiking with friends" width="643" height="864">
+          <figcaption><span class="plan-label">TRAIL DAY</span><strong class="plan-title">The best plans start early.</strong><p class="plan-copy">Pick a trail, bring friends, and stay out until the light changes.</p></figcaption>
+          <span class="plan-coordinate">38°N / somewhere outside</span>
         </figure>
       </div>
     </section>
-
-    <dialog class="lightbox" aria-label="Personal photographs">
-      <button class="lightbox-close" aria-label="Close photograph">Close ×</button>
-      <img src="/photos/friends-hike.png" alt="Aarav and friends hiking">
-      <div><button class="photo-prev" aria-label="Previous photograph">Previous</button><span class="photo-count" aria-live="polite">1 / 4</span><button class="photo-next" aria-label="Next photograph">Next</button></div>
-    </dialog>
   </main>
 
   <footer>
@@ -143,6 +137,6 @@
     <span>Aarav Mohanty · 2026</span>
     <a href="#top">Back to top</a>
   </footer>
-  <script src="/journal.js?v=18" defer></script>
+  <script src="/journal.js?v=19" defer></script>
 </body>
 </html>
