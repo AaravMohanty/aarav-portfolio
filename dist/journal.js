@@ -7,7 +7,7 @@
   const markFound = (key) => {
     found.add(key);
     meterDots.forEach((dot, index) => dot.classList.toggle('is-found', index < found.size));
-    if (meterCount) meterCount.textContent = `${found.size} / 5`;
+    if (meterCount) meterCount.textContent = `${found.size} / 6`;
   };
 
   window.addEventListener('pointermove', (event) => {
@@ -91,11 +91,43 @@
 
   const kickButton = document.querySelector('.soccer-ball');
   const kickScore = document.querySelector('.kick-score');
+  const kickTime = document.querySelector('.kick-time');
+  const kickBest = document.querySelector('.kick-best');
+  const kickMessage = document.querySelector('.kick-message');
   let kicks = 0;
+  let kickStarted = 0;
+  let kickFrame = 0;
+  let kickRunning = false;
+  let best = 0;
+  try { best = Number(localStorage.getItem('aarav-keepy-best')) || 0; } catch {}
+  if (kickBest) kickBest.textContent = String(best);
+
+  const finishKicks = () => {
+    kickRunning = false;
+    window.cancelAnimationFrame(kickFrame);
+    if (kickButton) kickButton.disabled = true;
+    if (kicks > best) {
+      best = kicks;
+      if (kickBest) kickBest.textContent = String(best);
+      try { localStorage.setItem('aarav-keepy-best', String(best)); } catch {}
+    }
+    if (kickMessage) kickMessage.textContent = kicks >= 23 ? 'Twenty-three. Shirt number matched.' : `${kicks} touches. Go again.`;
+  };
+  const runKickClock = (now) => {
+    const left = Math.max(0, 15 - (now - kickStarted) / 1000);
+    if (kickTime) kickTime.textContent = left.toFixed(1);
+    if (left <= 0) return finishKicks();
+    kickFrame = window.requestAnimationFrame(runKickClock);
+  };
   const resetKicks = () => {
     kicks = 0;
+    kickRunning = false;
+    window.cancelAnimationFrame(kickFrame);
     if (kickScore) kickScore.textContent = '0';
+    if (kickTime) kickTime.textContent = '15.0';
+    if (kickMessage) kickMessage.textContent = 'First touch starts the clock.';
     if (kickButton) {
+      kickButton.disabled = false;
       kickButton.style.setProperty('--ball-x', '0px');
       kickButton.style.setProperty('--ball-y', '0px');
       kickButton.classList.remove('is-kicked', 'is-winner');
@@ -103,10 +135,16 @@
   };
   if (kickButton) {
     kickButton.addEventListener('click', () => {
+      if (!kickRunning) {
+        kickRunning = true;
+        kickStarted = performance.now();
+        kickFrame = window.requestAnimationFrame(runKickClock);
+        if (kickMessage) kickMessage.textContent = 'Keep it moving.';
+      }
       kicks += 1;
       kickScore.textContent = String(kicks);
-      const x = Math.round((Math.random() - .5) * 190);
-      const y = -65 - Math.round(Math.random() * 120);
+      const x = Math.round((Math.random() - .5) * 250);
+      const y = -75 - Math.round(Math.random() * 125);
       kickButton.style.setProperty('--ball-x', `${x}px`);
       kickButton.style.setProperty('--ball-y', `${y}px`);
       kickButton.classList.remove('is-kicked');
@@ -118,21 +156,114 @@
     document.querySelector('.kick-reset')?.addEventListener('click', resetKicks);
   }
 
-  const stops = ['Turkey', 'Peru', 'Olympic', 'Costa Rica', 'The Redwoods', 'Portugal', 'Mt. Rainier', 'Greece', 'Alaska', 'Switzerland', 'Japan', 'New Zealand'];
+  const stops = [
+    { name:'Turkey', image:'/photos/coast.jpg', stamp:'BEEN' },
+    { name:'Peru', image:'/photos/hike.jpg', stamp:'BEEN' },
+    { name:'Olympic', image:'/photos/creek.png', stamp:'BEEN' },
+    { name:'Costa Rica', image:'/photos/creek.png', stamp:'BEEN' },
+    { name:'The Redwoods', image:'/photos/hike.jpg', stamp:'BEEN' },
+    { name:'Portugal', image:'/photos/coast.jpg', stamp:'BEEN' },
+    { name:'Mt. Rainier', image:'/photos/friends-hike.png', stamp:'BEEN' },
+    { name:'Greece', image:'/photos/coast.jpg', stamp:'BEEN' },
+    { name:'Alaska', image:'/photos/hike.jpg', stamp:'BEEN' },
+    { name:'Switzerland', image:'/photos/friends-hike.png', stamp:'BEEN' },
+    { name:'Japan', image:'/photos/multnomah-falls.png', stamp:'NEXT' },
+    { name:'New Zealand', image:'/photos/coast.jpg', stamp:'NEXT' }
+  ];
   const departure = document.querySelector('.departure-board strong');
   const gate = document.querySelector('.departure-board span');
+  const travelImage = document.querySelector('.travel-visual img');
+  const travelStamp = document.querySelector('.travel-stamp');
+  let travelSpin = 0;
   document.querySelector('.travel-spin')?.addEventListener('click', () => {
+    window.clearInterval(travelSpin);
     let ticks = 0;
-    const spin = window.setInterval(() => {
-      departure.textContent = stops[Math.floor(Math.random() * stops.length)];
+    travelSpin = window.setInterval(() => {
+      const stop = stops[Math.floor(Math.random() * stops.length)];
+      departure.textContent = stop.name;
       gate.textContent = `Gate ${String.fromCharCode(65 + Math.floor(Math.random() * 6))}${1 + Math.floor(Math.random() * 24)}`;
+      travelImage.src = stop.image;
+      travelImage.alt = `Travel photograph paired with ${stop.name}`;
+      travelStamp.textContent = stop.stamp;
       ticks += 1;
       if (ticks > 9) {
-        window.clearInterval(spin);
+        window.clearInterval(travelSpin);
         markFound('travel');
       }
-    }, reduced ? 1 : 65);
+    }, reduced ? 1 : 70);
   });
+
+  const trivia = [
+    { category:'GEOGRAPHY', q:'Which country has the most time zones?', a:['Russia','United States','France','Australia'], correct:2, note:'France has 12 because of its overseas territories.' },
+    { category:'HISTORY', q:'The Peace of Westphalia ended which conflict?', a:['Seven Years’ War','Thirty Years’ War','War of Spanish Succession','Crimean War'], correct:1, note:'The treaties ended the Thirty Years’ War in 1648.' },
+    { category:'CULTURE', q:'Kintsugi is the Japanese practice of repairing pottery with what?', a:['Silk thread','Gold lacquer','Bamboo pins','Rice paper'], correct:1, note:'The repair is shown instead of hidden.' },
+    { category:'SPORT', q:'Which country has played in every men’s FIFA World Cup?', a:['Germany','Argentina','Italy','Brazil'], correct:3, note:'Brazil is the only team with a perfect attendance record.' },
+    { category:'HISTORY', q:'Who ruled the Mali Empire during its famous 1324 pilgrimage?', a:['Sundiata Keita','Mansa Musa','Askia Muhammad','Sunni Ali'], correct:1, note:'Mansa Musa’s journey made Mali famous far beyond West Africa.' },
+    { category:'GEOGRAPHY', q:'Which river passes through or borders the most countries?', a:['Nile','Rhine','Danube','Amazon'], correct:2, note:'The Danube touches ten countries.' },
+    { category:'CULTURE', q:'The Epic of Gilgamesh was mainly preserved in which language?', a:['Sumerian','Akkadian','Aramaic','Old Persian'], correct:1, note:'The standard version survives on Akkadian tablets.' },
+    { category:'SPORT', q:'Why is the Tour de France leader’s jersey yellow?', a:['French royal colors','A sponsor’s logo','The organizer’s newspaper paper color','Visibility in fog'], correct:2, note:'L’Auto, the race organizer’s newspaper, was printed on yellow paper.' },
+    { category:'HISTORY', q:'Who captured Constantinople in 1453?', a:['Suleiman I','Bayezid I','Mehmed II','Selim I'], correct:2, note:'Mehmed II was 21 when the city fell.' },
+    { category:'GEOGRAPHY', q:'Which national capital sits highest above sea level?', a:['Quito','Kathmandu','Bogotá','La Paz'], correct:3, note:'La Paz sits around 3,650 meters above sea level.' },
+    { category:'CULTURE', q:'Which city is home to the university often called the world’s oldest still operating?', a:['Bologna','Fez','Oxford','Cairo'], correct:1, note:'Al Quaraouiyine in Fez dates to 859.' },
+    { category:'SPORT', q:'Who designed the five-ring Olympic symbol?', a:['Jules Rimet','Pierre de Coubertin','Henri Delaunay','Avery Brundage'], correct:1, note:'Pierre de Coubertin drew it in 1913.' }
+  ];
+  const triviaCategory = document.querySelector('.trivia-category');
+  const triviaQuestion = document.querySelector('.trivia-question');
+  const triviaAnswers = document.querySelector('.trivia-answers');
+  const triviaNote = document.querySelector('.trivia-note');
+  const triviaScore = document.querySelector('.trivia-score');
+  const triviaNext = document.querySelector('.trivia-next');
+  let triviaOrder = [...trivia].sort(() => Math.random() - .5);
+  let triviaIndex = 0;
+  let correctAnswers = 0;
+  const showTrivia = () => {
+    if (triviaIndex >= 5) {
+      triviaCategory.textContent = 'ROUND OVER';
+      triviaQuestion.textContent = `${correctAnswers} out of 5.`;
+      triviaAnswers.replaceChildren();
+      triviaNote.textContent = correctAnswers >= 4 ? 'Okay, that was strong.' : 'A rematch seems fair.';
+      triviaNext.textContent = 'Play again';
+      triviaNext.hidden = false;
+      return;
+    }
+    const item = triviaOrder[triviaIndex];
+    triviaCategory.textContent = `${item.category} · ${triviaIndex + 1}/5`;
+    triviaQuestion.textContent = item.q;
+    triviaNote.textContent = 'Pick one.';
+    triviaNext.hidden = true;
+    triviaAnswers.replaceChildren(...item.a.map((answer, index) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = answer;
+      button.addEventListener('click', () => {
+        if (triviaAnswers.classList.contains('is-answered')) return;
+        triviaAnswers.classList.add('is-answered');
+        [...triviaAnswers.children].forEach((choice, choiceIndex) => {
+          choice.classList.toggle('is-correct', choiceIndex === item.correct);
+          choice.classList.toggle('is-wrong', choiceIndex === index && index !== item.correct);
+        });
+        if (index === item.correct) correctAnswers += 1;
+        triviaScore.textContent = String(correctAnswers);
+        triviaNote.textContent = item.note;
+        triviaNext.hidden = false;
+        markFound('trivia');
+      });
+      return button;
+    }));
+    triviaAnswers.classList.remove('is-answered');
+  };
+  triviaNext?.addEventListener('click', () => {
+    if (triviaIndex >= 5) {
+      triviaOrder = [...trivia].sort(() => Math.random() - .5);
+      triviaIndex = 0;
+      correctAnswers = 0;
+      triviaScore.textContent = '0';
+    } else {
+      triviaIndex += 1;
+    }
+    showTrivia();
+  });
+  if (triviaQuestion) showTrivia();
 
   const sections = document.querySelectorAll('.journal-section');
   if (reduced || !('IntersectionObserver' in window)) {
