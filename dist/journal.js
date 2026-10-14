@@ -157,18 +157,14 @@
   }
 
   const stops = [
-    { name:'Turkey', image:'/photos/coast.jpg', stamp:'BEEN' },
-    { name:'Peru', image:'/photos/hike.jpg', stamp:'BEEN' },
+    { name:'Turkey', image:'/photos/destinations/turkey.jpg', stamp:'BEEN' },
+    { name:'Peru', image:'/photos/destinations/peru.jpg', stamp:'BEEN' },
     { name:'Olympic', image:'/photos/creek.png', stamp:'BEEN' },
-    { name:'Costa Rica', image:'/photos/creek.png', stamp:'BEEN' },
+    { name:'Oregon Coast', image:'/photos/coast.jpg', stamp:'BEEN' },
     { name:'The Redwoods', image:'/photos/hike.jpg', stamp:'BEEN' },
-    { name:'Portugal', image:'/photos/coast.jpg', stamp:'BEEN' },
+    { name:'Multnomah Falls', image:'/photos/multnomah-falls.png', stamp:'BEEN' },
     { name:'Mt. Rainier', image:'/photos/friends-hike.png', stamp:'BEEN' },
-    { name:'Greece', image:'/photos/coast.jpg', stamp:'BEEN' },
-    { name:'Alaska', image:'/photos/hike.jpg', stamp:'BEEN' },
-    { name:'Switzerland', image:'/photos/friends-hike.png', stamp:'BEEN' },
-    { name:'Japan', image:'/photos/multnomah-falls.png', stamp:'NEXT' },
-    { name:'New Zealand', image:'/photos/coast.jpg', stamp:'NEXT' }
+    { name:'Greece', image:'/photos/destinations/greece.jpg', stamp:'BEEN' }
   ];
   const departure = document.querySelector('.departure-board strong');
   const gate = document.querySelector('.departure-board span');
@@ -213,6 +209,7 @@
   const triviaNote = document.querySelector('.trivia-note');
   const triviaScore = document.querySelector('.trivia-score');
   const triviaNext = document.querySelector('.trivia-next');
+  const triviaRound = [...document.querySelectorAll('.trivia-round i')];
   let triviaOrder = [...trivia].sort(() => Math.random() - .5);
   let triviaIndex = 0;
   let correctAnswers = 0;
@@ -229,12 +226,20 @@
     const item = triviaOrder[triviaIndex];
     triviaCategory.textContent = `${item.category} · ${triviaIndex + 1}/5`;
     triviaQuestion.textContent = item.q;
-    triviaNote.textContent = 'Pick one.';
+    triviaNote.textContent = 'Choose carefully.';
     triviaNext.hidden = true;
+    triviaRound.forEach((dot, index) => {
+      dot.classList.toggle('is-done', index < triviaIndex);
+      dot.classList.toggle('is-current', index === triviaIndex);
+    });
     triviaAnswers.replaceChildren(...item.a.map((answer, index) => {
       const button = document.createElement('button');
       button.type = 'button';
-      button.textContent = answer;
+      const letter = document.createElement('span');
+      letter.textContent = String.fromCharCode(65 + index);
+      const label = document.createElement('b');
+      label.textContent = answer;
+      button.append(letter, label);
       button.addEventListener('click', () => {
         if (triviaAnswers.classList.contains('is-answered')) return;
         triviaAnswers.classList.add('is-answered');
