@@ -7,11 +7,11 @@
   <meta name="description" content="Aarav Mohanty is a Purdue computer science student who builds software and AI systems.">
   <meta name="theme-color" content="#10100f">
   <link rel="icon" href="/favicon.svg?v=15" type="image/svg+xml">
-  <link rel="stylesheet" href="/main.css?v=23">
+  <link rel="stylesheet" href="/main.css?v=28">
   <script>
     document.documentElement.classList.add('js');
     try {
-      if (sessionStorage.getItem('aarav-flight-intro') === 'seen') document.documentElement.classList.add('flight-seen');
+      if (sessionStorage.getItem('aarav-finite-intro') === 'seen') document.documentElement.classList.add('flight-seen');
     } catch (error) {}
   </script>
 </head>
@@ -22,11 +22,12 @@
       <span class="flight-star flight-star-two"></span>
       <span class="flight-star flight-star-three"></span>
       <span class="flight-star flight-star-four"></span>
-      <svg class="flight-route" viewBox="0 0 1000 600" preserveAspectRatio="none">
-        <path id="flight-path" d="M -90 510 C 145 515 215 420 370 405 C 565 385 620 220 785 205 C 875 197 930 142 1090 72" />
+      <svg class="flight-route" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet">
+        <path class="infinity-shadow" d="M 142 310 C 240 120 420 122 500 300 C 580 478 760 480 858 290 C 760 100 580 102 500 280 C 420 458 240 460 142 310" />
+        <path id="flight-path" d="M 142 310 C 240 120 420 122 500 300 C 580 478 760 480 858 290 C 760 100 580 102 500 280 C 420 458 240 460 142 310" />
         <g class="flight-plane">
           <path d="M 1 -8 L 12 -2 L 29 -1 L 31 2 L 12 4 L 2 13 L -3 12 L 2 4 L -13 5 L -19 1 L -13 -3 L 2 -2 L -4 -8 Z" />
-          <animateMotion dur="2.8s" begin="0.15s" fill="freeze" rotate="auto">
+          <animateMotion dur="4.7s" begin="0.25s" fill="freeze" rotate="auto">
             <mpath href="#flight-path" />
           </animateMotion>
         </g>
@@ -34,9 +35,13 @@
       <div class="flight-horizon"></div>
     </div>
     <div class="flight-copy">
-      <p>IND → EVERYWHERE</p>
-      <h1>Welcome aboard.</h1>
-      <span>Next stop: my world.</span>
+      <p class="flight-index">A THOUGHT I KEEP COMING BACK TO</p>
+      <blockquote>
+        <span>We are creatures who can conceive of the infinite,</span>
+        <span>who nonetheless live bound by the finite.</span>
+      </blockquote>
+      <div class="flight-credit"><i></i><a href="https://www.youtube.com/watch?v=NqV3y8eNkQQ" target="_blank" rel="noopener">John Green · Esther Day 2026</a></div>
+      <strong class="flight-thesis">Make the finite count.</strong>
     </div>
     <button class="flight-skip" type="button">Skip intro</button>
   </section>
@@ -45,12 +50,13 @@
     <canvas class="globe-canvas" aria-hidden="true"></canvas>
     <div class="globe-grain" aria-hidden="true"></div>
     <div class="globe-topline">
+      <span>FINITE TIME · INFINITE POSSIBILITY</span>
       <span class="globe-clock"><i aria-hidden="true"></i> WORLD MODE · DRAG ANYWHERE</span>
     </div>
     <div class="globe-copy">
       <p class="globe-kicker">Software engineer · Purdue CS · explorer</p>
       <h1>Hi, I’m Aarav.<br><em>Welcome to my world.</em></h1>
-      <p class="globe-intro-note">I build things people can use and spend the rest of my time looking for somewhere new to go.</p>
+      <p class="globe-intro-note">I build useful things, stay curious, and try to see as much of the world as I can.</p>
       <ol class="globe-locations" aria-label="A few chapters on the map">
         <li class="is-active" data-location="now"><span>01</span><strong>West Lafayette</strong><small>where I am now</small></li>
         <li data-location="world"><span>02</span><strong>Trips so far</strong><small>18 countries &amp; islands</small></li>
@@ -131,6 +137,6 @@
       <a href="#top">Back to top</a>
     </footer>
   </div>
-  <script src="/main.js?v=23" defer></script>
+  <script src="/main.js?v=28" defer></script>
 </body>
 </html>

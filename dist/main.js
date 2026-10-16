@@ -7,7 +7,7 @@
   const finishFlight = (instant = false) => {
     if (!flightIntro || flightFinished) return;
     flightFinished = true;
-    try { sessionStorage.setItem('aarav-flight-intro', 'seen'); } catch (error) {}
+    try { sessionStorage.setItem('aarav-finite-intro', 'seen'); } catch (error) {}
     document.body.classList.remove('flight-pending');
     document.body.classList.add('flight-complete');
     window.dispatchEvent(new Event('flight:intro-complete'));
@@ -25,9 +25,9 @@
 
   if (flightIntro) {
     let flightSeen = false;
-    try { flightSeen = sessionStorage.getItem('aarav-flight-intro') === 'seen'; } catch (error) {}
+    try { flightSeen = sessionStorage.getItem('aarav-finite-intro') === 'seen'; } catch (error) {}
     if (reduceMotion || flightSeen) finishFlight(true);
-    else window.setTimeout(() => finishFlight(false), 3050);
+    else window.setTimeout(() => finishFlight(false), 5850);
     flightSkip?.addEventListener('click', () => finishFlight(false));
   }
 
