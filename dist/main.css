@@ -343,13 +343,13 @@ img { display: block; max-width: 100%; }
 .flight-index { margin: 0 0 1.35rem; color: #9d988f; font-size: .68rem; letter-spacing: .18em; opacity:0; animation:finiteReveal .65s ease .25s forwards; }
 .flight-copy blockquote { margin:0; font-family:Georgia,'Times New Roman',serif; font-size:clamp(2.2rem,5.35vw,6.3rem); line-height:.96; letter-spacing:-.045em; font-weight:400; }
 .flight-copy blockquote span { display:block; opacity:0; transform:translateY(22px); filter:blur(7px); }
-.flight-copy blockquote span:first-child { animation:finiteReveal 1s cubic-bezier(.22,.8,.2,1) .72s forwards; }
-.flight-copy blockquote span:last-child { color:#d8a76d; animation:finiteReveal 1s cubic-bezier(.22,.8,.2,1) 1.72s forwards; }
-.flight-credit { margin:1.45rem auto 0; display:flex; width:max-content; max-width:100%; align-items:center; gap:.7rem; color:#8e8a82; font-size:.68rem; letter-spacing:.13em; text-transform:uppercase; opacity:0; animation:finiteReveal .8s ease 2.6s forwards; }
+.flight-copy blockquote span:first-child { animation:finiteReveal 1s cubic-bezier(.22,.8,.2,1) .9s forwards; }
+.flight-copy blockquote span:last-child { color:#d8a76d; animation:finiteReveal 1s cubic-bezier(.22,.8,.2,1) 2.15s forwards; }
+.flight-credit { margin:1.45rem auto 0; display:flex; width:max-content; max-width:100%; align-items:center; gap:.7rem; color:#8e8a82; font-size:.68rem; letter-spacing:.13em; text-transform:uppercase; opacity:0; animation:finiteReveal .8s ease 3.35s forwards; }
 .flight-credit i { width:34px; height:1px; background:rgba(219,176,121,.6); }
 .flight-credit a { color:inherit; text-decoration:none; }
 .flight-credit a:hover,.flight-credit a:focus-visible { color:var(--paper); }
-.flight-thesis { display:block; margin-top:2.25rem; color:#eee9df; font-size:clamp(.82rem,1.2vw,1rem); font-weight:400; letter-spacing:.18em; text-transform:uppercase; opacity:0; animation:finiteReveal .8s ease 3.65s forwards; }
+.flight-thesis { display:block; margin-top:2.25rem; color:#eee9df; font-size:clamp(.82rem,1.2vw,1rem); font-weight:400; letter-spacing:.18em; text-transform:uppercase; opacity:0; animation:finiteReveal .8s ease 4.7s forwards; }
 .flight-skip {
   position: absolute; z-index: 3; right: var(--pad); bottom: 2rem; padding: .65rem 0;
   color: #aaa59b; background: none; border: 0; border-bottom: 1px solid rgba(238,236,231,.25);
