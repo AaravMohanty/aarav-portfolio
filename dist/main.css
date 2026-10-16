@@ -326,7 +326,7 @@ img { display: block; max-width: 100%; }
 .flight-route > .infinity-shadow { fill:none; stroke:rgba(238,236,231,.055); stroke-width:18; }
 .flight-route > #flight-path {
   fill: none; stroke: rgba(219, 176, 121, .58); stroke-width: 1.4; stroke-linecap: round;
-  stroke-dasharray: 10 11; stroke-dashoffset: 680; animation: flightTrail 4.7s cubic-bezier(.2,.7,.2,1) .2s forwards;
+  stroke-dasharray: 10 11; stroke-dashoffset: 680; animation: flightTrail 5.4s linear .2s infinite;
 }
 .flight-plane { fill: #eee9df; filter: drop-shadow(0 0 12px rgba(224,181,125,.8)); }
 .flight-horizon {
