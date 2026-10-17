@@ -3,20 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Aarav Mohanty | Software Engineer</title>
-  <meta name="description" content="Aarav Mohanty is a Purdue computer science student who builds software and AI systems.">
-  <meta name="theme-color" content="#10100f">
-  <link rel="icon" href="/favicon.svg?v=15" type="image/svg+xml">
-  <link rel="stylesheet" href="/main.css?v=33">
+  <title>Aarav Mohanty · Software Engineer</title>
+  <meta name="description" content="I'm Aarav, a CS student at Purdue. I build retrieval pipelines, agents, and internal tools. Here are the things I've shipped.">
+  <meta name="author" content="Aarav Mohanty">
+  <meta name="theme-color" content="#0e0e0d">
+  <link rel="canonical" href="https://aaravmohanty.com/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Aarav Mohanty · Software Engineer">
+  <meta property="og:description" content="CS student at Purdue. I build retrieval pipelines, agents, and internal tools.">
+  <meta property="og:url" content="https://aaravmohanty.com/">
+  <meta property="og:image" content="https://aaravmohanty.com/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aarav Mohanty · Software Engineer">
+  <meta name="twitter:description" content="CS student at Purdue. I build retrieval pipelines, agents, and internal tools.">
+  <meta name="twitter:image" content="https://aaravmohanty.com/og.jpg">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="stylesheet" href="/base.css?v=40">
+  <link rel="stylesheet" href="/main.css?v=40">
+  <link rel="preload" href="/world.geo.json" as="fetch" crossorigin>
   <script>
     document.documentElement.classList.add('js');
     try {
-      if (sessionStorage.getItem('aarav-finite-intro-v6') === 'seen') document.documentElement.classList.add('flight-seen');
+      if (sessionStorage.getItem('aarav-intro-v7') === 'seen') document.documentElement.classList.add('flight-seen');
     } catch (error) {}
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Aarav Mohanty",
+    "jobTitle": "Software Engineer",
+    "url": "https://aaravmohanty.com/",
+    "email": "mailto:aarav.mohanty23@gmail.com",
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Purdue University" },
+    "knowsAbout": ["Software Engineering", "Machine Learning", "Backend Development", "Retrieval Systems"],
+    "sameAs": ["https://github.com/AaravMohanty", "https://linkedin.com/in/aaravmohanty"]
+  }
+  </script>
 </head>
-<body class="main-theme home-page flight-pending globe-pending" id="top">
-  <section class="flight-intro" aria-label="Welcome animation">
+<body class="home-page flight-pending globe-pending" id="top">
+
+  <!-- the quote that the whole site hangs on -->
+  <section class="flight-intro" aria-label="Intro animation">
     <div class="flight-sky" aria-hidden="true">
       <span class="flight-star flight-star-one"></span>
       <span class="flight-star flight-star-two"></span>
@@ -27,7 +63,7 @@
         <path id="flight-path" d="M 142 310 C 240 120 420 122 500 300 C 580 478 760 480 858 290 C 760 100 580 102 500 280 C 420 458 240 460 142 310" />
         <g class="flight-plane">
           <path d="M 1 -8 L 12 -2 L 29 -1 L 31 2 L 12 4 L 2 13 L -3 12 L 2 4 L -13 5 L -19 1 L -13 -3 L 2 -2 L -4 -8 Z" />
-          <animateMotion dur="5.4s" begin="0.25s" repeatCount="indefinite" rotate="auto">
+          <animateMotion dur="4.2s" begin="0.15s" repeatCount="indefinite" rotate="auto">
             <mpath href="#flight-path" />
           </animateMotion>
         </g>
@@ -40,101 +76,183 @@
         <span>who nonetheless live bound by the finite.</span>
       </blockquote>
       <div class="flight-credit"><i></i><a href="https://www.youtube.com/watch?v=NqV3y8eNkQQ" target="_blank" rel="noopener">John Green</a></div>
-      <strong class="flight-thesis">Welcome to my corner of the infinite.</strong>
+      <strong class="flight-thesis">Seemed like a decent reason to build things while I'm here.</strong>
     </div>
-    <button class="flight-skip" type="button">Skip intro</button>
+    <button class="flight-skip" type="button">Skip <em>esc</em></button>
+    <div class="flight-progress" aria-hidden="true"><i></i></div>
   </section>
 
-  <section class="globe-intro" aria-label="Aarav's world" aria-hidden="true">
+  <!-- the globe: everywhere I've actually been -->
+  <section class="globe-intro" aria-label="A map of where I have been" aria-hidden="true">
     <canvas class="globe-canvas" aria-hidden="true"></canvas>
     <div class="globe-grain" aria-hidden="true"></div>
     <div class="globe-topline">
-      <span class="globe-clock"><i aria-hidden="true"></i> WORLD MODE · DRAG ANYWHERE</span>
+      <span class="globe-clock"><span class="status-pulse" aria-hidden="true"></span> DRAG TO SPIN</span>
     </div>
     <div class="globe-copy">
-      <p class="globe-kicker">Software engineer · Purdue CS · explorer</p>
-      <h1>Hi, I’m Aarav.<br><em>Welcome to my world.</em></h1>
-      <p class="globe-intro-note">I build tools I’d want to use. The rest of my time goes to the outdoors, books, music, and wherever I’m headed next.</p>
-      <ol class="globe-locations" aria-label="A few chapters on the map">
+      <p class="globe-kicker">Software engineer · Purdue CS · Virginia to Indiana</p>
+      <p class="globe-title">Hi, I'm Aarav.<br><em>Here's where I've been.</em></p>
+      <p class="globe-intro-note">Grew up outside D.C., now in West Lafayette. Every dot is somewhere I've actually stood. The circled ones open a photo.</p>
+      <ol class="globe-locations" aria-label="What the map is showing">
         <li class="is-active" data-location="now"><span>01</span><strong>West Lafayette</strong><small>where I am now</small></li>
         <li data-location="world"><span>02</span><strong>Trips so far</strong><small>18 countries &amp; islands</small></li>
-        <li data-location="parks"><span>03</span><strong>National parks</strong><small>35+ around the U.S.</small></li>
+        <li data-location="parks"><span>03</span><strong>National parks</strong><small>35+ and counting</small></li>
       </ol>
     </div>
     <aside class="globe-place-card" hidden aria-live="polite">
-      <button class="place-card-close" type="button">Back to globe</button>
-      <img src="/places/india.jpg" alt="" width="1280" height="853">
+      <button class="place-card-close" type="button">Back to the globe</button>
+      <img src="/places/india.jpg" alt="" width="504" height="750">
       <div>
         <span class="place-card-kicker">A closer look</span>
         <strong class="place-card-title">India</strong>
         <a class="place-card-credit" href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Photo via Wikimedia Commons</a>
       </div>
     </aside>
-    <button class="globe-enter" type="button"><span>Enter site</span></button>
-    <div class="globe-orbit-note">Drag or scroll to orbit · outlined places open a closer view</div>
+    <button class="globe-enter" type="button"><span>Come inside</span><b>&rarr;</b></button>
+    <div class="globe-orbit-note">Drag or scroll to spin</div>
   </section>
 
   <div class="site-shell">
     <a class="skip" href="#main">Skip to content</a>
     <div class="cursor-light" aria-hidden="true"></div>
-    <header class="masthead">
-      <a class="home-orbit magnetic" href="/" aria-label="Return to home"><span aria-hidden="true">◉</span><strong>Origin</strong></a>
-      <nav aria-label="Main navigation">
+
+    <header class="site-header">
+      <a class="home-orbit" href="/" aria-label="Back to the top of the home page"><span aria-hidden="true">&#9673;</span><strong>Origin</strong></a>
+      <nav aria-label="Main">
         <a href="/projects/">Projects</a>
         <a href="/experience/">Experience</a>
         <a href="/outside/">Outside work</a>
       </nav>
-      <a class="resume-link magnetic" href="/resume.pdf" target="_blank" rel="noopener">Résumé</a>
+      <div class="header-end">
+        <button class="palette-key" type="button" data-palette-open aria-label="Open the quick jump menu"><span class="palette-key-mod">Ctrl</span> K</button>
+        <a class="resume-link" href="/resume.pdf" target="_blank" rel="noopener">Résumé</a>
+      </div>
     </header>
 
-    <aside class="contact-dock" aria-label="Contact links">
-      <a href="https://github.com/aaravmohanty" target="_blank" rel="noopener">GitHub</a>
+    <aside class="contact-dock" aria-label="Contact">
+      <a href="https://github.com/AaravMohanty" target="_blank" rel="noopener">GitHub</a>
       <a href="https://linkedin.com/in/aaravmohanty" target="_blank" rel="noopener">LinkedIn</a>
       <a href="mailto:aarav.mohanty23@gmail.com">Email</a>
     </aside>
 
-    <main id="main" class="home-main">
+    <main id="main" class="site-main home-main">
       <section class="hero-shell" aria-labelledby="home-title">
-        <div class="hero-intro reveal">
-          <p class="kicker"><span class="status-pulse"></span> Purdue CS · software engineer</p>
-          <h1 id="home-title">Hello, I’m <span class="hero-name">Aarav</span></h1>
-          <p class="hero-lede">I like building things people can use, from consumer apps to developer tools.</p>
-          <div class="hero-links" aria-label="Social links">
-            <a href="https://github.com/aaravmohanty" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://linkedin.com/in/aaravmohanty" target="_blank" rel="noopener">LinkedIn</a>
+        <div class="hero-intro">
+          <p class="kicker micro-label"><span class="status-pulse" aria-hidden="true"></span> Purdue CS '28 · looking for summer 2027</p>
+          <h1 id="home-title">Aarav <span class="hero-name">Mohanty</span></h1>
+          <p class="hero-lede">I'm a CS student at Purdue. Most of what I build sits between messy data and whoever needs an answer out of it: retrieval pipelines, agents, internal tools, and the occasional hackathon project held together with tape.</p>
+          <div class="hero-links">
+            <a href="https://github.com/AaravMohanty" target="_blank" rel="noopener">GitHub &#8599;</a>
+            <a href="https://linkedin.com/in/aaravmohanty" target="_blank" rel="noopener">LinkedIn &#8599;</a>
             <a href="mailto:aarav.mohanty23@gmail.com">Email</a>
+            <a href="/resume.pdf" target="_blank" rel="noopener">Résumé &#8599;</a>
           </div>
         </div>
 
-        <aside class="now-panel reveal" aria-label="About Aarav">
+        <aside class="now-panel" aria-label="What I'm up to">
           <div class="now-block">
             <span class="micro-label">Right now</span>
-            <p>Studying computer science at Purdue and building cool projects.</p>
+            <p>Junior at Purdue, CS with a math minor. Co-founding <a href="/projects/#amdahl">Amdahl</a> and chipping away at <a href="/projects/#auxo">Auxo</a> between problem sets.</p>
           </div>
           <div class="now-block">
-            <span class="micro-label">Previously</span>
-            <p>Interned at Capital One, Empower AI, Ackuity, and the Kihara Lab.</p>
+            <span class="micro-label">Last summer</span>
+            <p>Capital One, where I built a Slack assistant that about 2,500 people ended up using every week.</p>
           </div>
           <div class="now-block">
-            <span class="micro-label">Usually</span>
-            <p>Running, lifting, hiking, or listening to music.</p>
+            <span class="micro-label">Otherwise</span>
+            <p>Running, lifting, playing soccer, or somewhere with no cell service.</p>
           </div>
         </aside>
+
+        <a class="scroll-cue" href="#work"><i></i> A few things I've built</a>
       </section>
 
-      <nav class="home-index reveal" aria-label="Explore the site">
-        <a href="/projects/" class="index-link magnetic"><span>01</span><strong>Things I’ve built</strong><em>Software and AI projects</em></a>
-        <a href="/experience/" class="index-link magnetic"><span>02</span><strong>Places I’ve worked</strong><em>Internships and research</em></a>
-        <a href="/outside/" class="index-link outside-link"><span>03</span><strong>Everything else</strong><em>Music, books, sports, travel</em></a>
+      <section class="home-section" id="work" aria-labelledby="work-title">
+        <div class="section-top">
+          <div>
+            <span class="micro-label">Selected work</span>
+            <h2 id="work-title">Three I'd show you first.</h2>
+          </div>
+          <a href="/projects/">All ten projects &rarr;</a>
+        </div>
+        <div class="pick-grid">
+          <a class="pick" href="/projects/#amdahl">
+            <span class="pick-top"><b>Amdahl</b><span>Co-founder</span></span>
+            <h3>10,000 pages, one question</h3>
+            <p>Legal records arrive as a mess of scans and formats. I built the ingestion and retrieval side so you can ask a question and get the page it came from.</p>
+            <span>Read the story &rarr;</span>
+          </a>
+          <a class="pick" href="/projects/#atlas">
+            <span class="pick-top"><b>Atlas</b><span>Personal</span></span>
+            <h3>A coding agent that remembers</h3>
+            <p>My own agent, running in the cloud. The interesting part was keeping context coherent across tasks that take hours instead of seconds.</p>
+            <span>Read the story &rarr;</span>
+          </a>
+          <a class="pick" href="/projects/#radius">
+            <span class="pick-top"><b>Radius</b><span>Backend lead</span></span>
+            <h3>Compliance that moves at payment speed</h3>
+            <p>Wallet risk scoring and Travel Rule checks across 30+ jurisdictions, behind an API that has to answer before a transfer goes out.</p>
+            <span>Read the story &rarr;</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="home-section" aria-labelledby="stack-title">
+        <div class="section-top">
+          <div>
+            <span class="micro-label">The toolbox</span>
+            <h2 id="stack-title">What I reach for.</h2>
+          </div>
+        </div>
+        <div class="stack-rows">
+          <div class="stack-row">
+            <span class="micro-label">Languages</span>
+            <div><span>Python</span><span>TypeScript</span><span>Java</span><span>C</span><span>C++</span><span>SQL</span></div>
+          </div>
+          <div class="stack-row">
+            <span class="micro-label">Building</span>
+            <div><span>React</span><span>Next.js</span><span>Node</span><span>FastAPI</span><span>Flask</span><span>LangChain</span></div>
+          </div>
+          <div class="stack-row">
+            <span class="micro-label">Data &amp; ML</span>
+            <div><span>PyTorch</span><span>scikit-learn</span><span>Keras</span><span>Pandas</span><span>NumPy</span><span>Hugging Face</span></div>
+          </div>
+          <div class="stack-row">
+            <span class="micro-label">Running it</span>
+            <div><span>AWS</span><span>Docker</span><span>PostgreSQL</span><span>Supabase</span><span>Linux</span><span>Git</span></div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="home-index" aria-label="The rest of the site">
+        <a href="/projects/" class="index-link"><span>01</span><strong>Projects</strong><em>Ten things I've built</em></a>
+        <a href="/experience/" class="index-link"><span>02</span><strong>Experience</strong><em>Internships, research, school</em></a>
+        <a href="/outside/" class="index-link outside-link"><span>03</span><strong>Outside work</strong><em>Music, books, soccer, maps</em></a>
       </nav>
     </main>
 
-    <footer class="main-footer">
-      <span>© 2026 Aarav Mohanty</span>
-      <span class="local-time" aria-label="Current time in Indianapolis">Indianapolis · --:--</span>
-      <a href="#top">Back to top</a>
+    <footer class="site-footer">
+      <div class="footer-cta">
+        <div>
+          <span class="micro-label">Get in touch</span>
+          <h2><a href="mailto:aarav.mohanty23@gmail.com">aarav.mohanty23@gmail.com</a></h2>
+          <p>If you're building something interesting, or you just want to argue about whether Atlas should have been three smaller agents, I'd like to hear it.</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/AaravMohanty" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://linkedin.com/in/aaravmohanty" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="/resume.pdf" target="_blank" rel="noopener">Résumé</a>
+        </div>
+      </div>
+      <div class="footer-base">
+        <span>&copy; 2026 Aarav Mohanty</span>
+        <span class="local-time" aria-label="Current local time where I am">West Lafayette · --:--</span>
+        <a href="#top">Back to top</a>
+      </div>
     </footer>
   </div>
-  <script src="/main.js?v=33" defer></script>
+
+  <script src="/site.js?v=40" defer></script>
+  <script src="/main.js?v=40" defer></script>
 </body>
 </html>

@@ -1,12 +1,11 @@
 {
   "name": "aarav-portfolio",
   "private": true,
-  "version": "1.0.0",
+  "version": "2.0.0",
+  "description": "Personal site. Plain HTML, CSS and JavaScript in dist/, no build step.",
   "scripts": {
-    "dev": "npx serve dist",
-    "build": "node -e \"console.log('Static site ready in dist/')\""
-  },
-  "devDependencies": {
-    "serve": "^14.2.4"
+    "dev": "npx --yes serve dist -l 4321",
+    "build": "node -e \"console.log('Static site: nothing to build, dist/ is the output.')\"",
+    "check": "node scripts/check-links.mjs"
   }
 }

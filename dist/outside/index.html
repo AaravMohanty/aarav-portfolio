@@ -3,41 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Outside Work | Aarav Mohanty</title>
-  <meta name="description" content="What Aarav listens to, reads, plays, and does when the laptop is closed.">
-  <meta name="theme-color" content="#10100f">
-  <link rel="icon" href="/favicon.svg?v=15" type="image/svg+xml">
-  <link rel="stylesheet" href="/journal.css?v=27">
+  <title>Outside work · Aarav Mohanty</title>
+  <meta name="description" content="What I listen to, what I'm reading, and what I do on a Saturday. Plus three games that serve no purpose.">
+  <meta name="theme-color" content="#0e0e0d">
+  <link rel="canonical" href="https://aaravmohanty.com/outside/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Outside work · Aarav Mohanty">
+  <meta property="og:description" content="Music, books, soccer, and three games that serve no purpose.">
+  <meta property="og:url" content="https://aaravmohanty.com/outside/">
+  <meta property="og:image" content="https://aaravmohanty.com/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://aaravmohanty.com/og.jpg">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="stylesheet" href="/base.css?v=40">
+  <link rel="stylesheet" href="/journal.css?v=40">
   <script>document.documentElement.classList.add('js')</script>
 </head>
-<body id="top">
+<body class="outside-page" id="top">
   <a class="skip" href="#main">Skip to content</a>
+  <div class="cursor-light" aria-hidden="true"></div>
+
   <header class="site-header">
-    <a class="home-orbit" href="/" aria-label="Return to home"><span aria-hidden="true">◉</span><strong>Origin</strong></a>
-    <nav aria-label="Main navigation">
+    <a class="home-orbit" href="/" aria-label="Back to the home page"><span aria-hidden="true">&#9673;</span><strong>Origin</strong></a>
+    <nav aria-label="Main">
       <a href="/projects/">Projects</a>
       <a href="/experience/">Experience</a>
       <a href="/outside/" aria-current="page">Outside work</a>
     </nav>
-    <a class="resume-link" href="/resume.pdf" target="_blank" rel="noopener">Résumé</a>
+    <div class="header-end">
+      <button class="palette-key" type="button" data-palette-open aria-label="Open the quick jump menu"><span class="palette-key-mod">Ctrl</span> K</button>
+      <a class="resume-link" href="/resume.pdf" target="_blank" rel="noopener">Résumé</a>
+    </div>
   </header>
-  <aside class="contact-dock" aria-label="Contact links">
-    <a href="https://github.com/aaravmohanty" target="_blank" rel="noopener">GitHub</a>
+
+  <aside class="contact-dock" aria-label="Contact">
+    <a href="https://github.com/AaravMohanty" target="_blank" rel="noopener">GitHub</a>
     <a href="https://linkedin.com/in/aaravmohanty" target="_blank" rel="noopener">LinkedIn</a>
     <a href="mailto:aarav.mohanty23@gmail.com">Email</a>
   </aside>
 
-  <main id="main">
+  <main id="main" class="site-main">
     <section class="outside-intro">
-      <p class="eyebrow">03 / OFF THE CLOCK</p>
-      <h1>Outside work.</h1>
+      <p class="eyebrow">03 / Off the clock</p>
+      <h1>Outside <em>work.</em></h1>
       <div class="intro-note">
-        <p>A few things I like when work is done.</p>
-        <span>Click around</span>
+        <p>There are six things on this page you can actually poke at. The counter in the corner keeps score, which is the closest thing to a point any of this has.</p>
+        <span>Go on</span>
       </div>
     </section>
 
-    <nav class="section-nav" aria-label="Outside work sections">
+    <nav class="section-nav" aria-label="Sections of this page">
       <a href="#play"><span>01</span> Play</a>
       <a href="#music"><span>02</span> Music</a>
       <a href="#reading"><span>03</span> Books</a>
@@ -50,24 +69,26 @@
 
     <section id="play" class="journal-section play-section">
       <header class="section-heading compact-heading">
-        <div><span class="eyebrow">01 / WARM UP</span><h2>Try something.</h2></div>
-        <p>Games, trivia, and no productive outcome.</p>
+        <div><span class="eyebrow">01 / Warm up</span><h2>Waste a <em>minute.</em></h2></div>
+        <p>Three games, no points that count for anything. The soccer one is harder than it looks.</p>
       </header>
       <div class="arcade-grid">
         <article class="keepy-game">
           <div class="game-top"><span>KEEPY UPPY</span><strong><b class="kick-score">0</b> / 23</strong></div>
           <div class="kick-stats"><span>TIME <b class="kick-time">15.0</b></span><span>BEST <b class="kick-best">0</b></span></div>
-          <button class="soccer-ball" type="button" aria-label="Keep the soccer ball up">⚽</button>
+          <button class="soccer-ball" type="button" aria-label="Tap to keep the ball up">&#9917;</button>
           <p class="kick-message">First touch starts the clock.</p>
           <button class="game-reset kick-reset" type="button">New round</button>
         </article>
+
         <article class="travel-game">
           <div class="game-top"><span>NEXT STOP</span><strong>no itinerary</strong></div>
-          <div class="travel-visual"><img src="/photos/coast.jpg" alt="A view along the coast"><span class="travel-stamp">OPEN TICKET</span></div>
+          <div class="travel-visual"><img src="/photos/coast.jpg" alt="A view along the Oregon coast" width="1080" height="810" loading="lazy"><span class="travel-stamp">OPEN TICKET</span></div>
           <div class="departure-board" aria-live="polite"><small>BOARDING FOR</small><strong>Somewhere new</strong><span>Gate ?</span></div>
           <button class="travel-spin" type="button">Pick a place</button>
-          <p>Half reruns. Half wish list.</p>
+          <p>Every board on here is somewhere I've actually been.</p>
         </article>
+
         <article class="trivia-game">
           <div class="game-top"><span>THE FIVE</span><strong><b class="trivia-score">0</b> / 5</strong></div>
           <div class="trivia-card">
@@ -88,8 +109,8 @@
 
     <section id="music" class="journal-section music-section">
       <header class="section-heading">
-        <div><span class="eyebrow">02 / ON ROTATION</span><h2>Records in reach.</h2></div>
-        <p>Six records. One of them actually spins.</p>
+        <div><span class="eyebrow">02 / On rotation</span><h2>Records in <em>reach.</em></h2></div>
+        <p>Six albums I keep coming back to. One of them actually spins, so hit play.</p>
       </header>
 
       <div class="listening-room">
@@ -102,44 +123,44 @@
             </span>
           </button>
           <div class="now-playing">
-            <span class="eyebrow">PLAYING</span>
+            <span class="eyebrow">Playing</span>
             <strong>Revelry · Kings of Leon</strong>
             <button class="play-state" type="button">Play record</button>
-            <a class="preview-note" href="https://music.apple.com/us/album/revelry/290302885?i=290303022" target="_blank" rel="noopener">30-second Apple Music preview</a>
+            <a class="preview-note" href="https://music.apple.com/us/album/revelry/290302885?i=290303022" target="_blank" rel="noopener">30-second preview, via Apple Music</a>
           </div>
           <audio class="record-audio" preload="none" src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/90/7a/14/907a143d-6621-ee94-3960-d12d4bf68258/mzaf_13004482978685020546.plus.aac.p.m4a"></audio>
         </div>
 
-        <div class="album-stack" aria-label="A few albums in the mix">
-          <figure><a href="https://music.apple.com/us/album/only-by-the-night/290302885" target="_blank" rel="noopener"><img src="/covers/only-by-the-night.jpg" alt="Only by the Night by Kings of Leon" width="320" height="320"></a><figcaption>Kings of Leon <span>Only by the Night</span></figcaption></figure>
-          <figure><a href="https://music.apple.com/us/album/folklore/1524793738" target="_blank" rel="noopener"><img src="/covers/folklore.jpg" alt="folklore by Taylor Swift" width="320" height="320"></a><figcaption>Taylor Swift <span>folklore</span></figcaption></figure>
-          <figure><a href="https://music.apple.com/us/album/currents/1440838039" target="_blank" rel="noopener"><img src="/covers/currents.jpg" alt="Currents by Tame Impala" width="320" height="320"></a><figcaption>Tame Impala <span>Currents</span></figcaption></figure>
-          <figure><a href="https://music.apple.com/us/album/whats-the-story-morning-glory-deluxe-remastered-edition/1525933483" target="_blank" rel="noopener"><img src="/covers/morning-glory.jpg" alt="What's the Story Morning Glory by Oasis" width="320" height="320"></a><figcaption>Oasis <span>(What’s the Story) Morning Glory?</span></figcaption></figure>
-          <figure><a href="https://music.apple.com/us/album/rumours/594061854" target="_blank" rel="noopener"><img src="/covers/rumours.jpg" alt="Rumours by Fleetwood Mac" width="320" height="320"></a><figcaption>Fleetwood Mac <span>Rumours</span></figcaption></figure>
-          <figure><a href="https://music.apple.com/us/album/melodrama/1429662346" target="_blank" rel="noopener"><img src="/covers/melodrama.jpg" alt="Melodrama by Lorde" width="320" height="320"></a><figcaption>Lorde <span>Melodrama</span></figcaption></figure>
+        <div class="album-stack" aria-label="Six albums in heavy rotation">
+          <figure><a href="https://music.apple.com/us/album/only-by-the-night/290302885" target="_blank" rel="noopener"><img src="/covers/only-by-the-night.jpg" alt="Only by the Night by Kings of Leon" width="320" height="320" loading="lazy"></a><figcaption>Kings of Leon <span>Only by the Night</span></figcaption></figure>
+          <figure><a href="https://music.apple.com/us/album/folklore/1524793738" target="_blank" rel="noopener"><img src="/covers/folklore.jpg" alt="folklore by Taylor Swift" width="320" height="320" loading="lazy"></a><figcaption>Taylor Swift <span>folklore</span></figcaption></figure>
+          <figure><a href="https://music.apple.com/us/album/currents/1440838039" target="_blank" rel="noopener"><img src="/covers/currents.jpg" alt="Currents by Tame Impala" width="320" height="320" loading="lazy"></a><figcaption>Tame Impala <span>Currents</span></figcaption></figure>
+          <figure><a href="https://music.apple.com/us/album/whats-the-story-morning-glory-deluxe-remastered-edition/1525933483" target="_blank" rel="noopener"><img src="/covers/morning-glory.jpg" alt="(What's the Story) Morning Glory? by Oasis" width="320" height="320" loading="lazy"></a><figcaption>Oasis <span>(What's the Story) Morning Glory?</span></figcaption></figure>
+          <figure><a href="https://music.apple.com/us/album/rumours/594061854" target="_blank" rel="noopener"><img src="/covers/rumours.jpg" alt="Rumours by Fleetwood Mac" width="320" height="320" loading="lazy"></a><figcaption>Fleetwood Mac <span>Rumours</span></figcaption></figure>
+          <figure><a href="https://music.apple.com/us/album/melodrama/1429662346" target="_blank" rel="noopener"><img src="/covers/melodrama.jpg" alt="Melodrama by Lorde" width="320" height="320" loading="lazy"></a><figcaption>Lorde <span>Melodrama</span></figcaption></figure>
         </div>
       </div>
     </section>
 
     <section id="reading" class="journal-section reading-section">
       <header class="section-heading">
-        <div><span class="eyebrow">03 / ON THE SHELF</span><h2>Shelf check.</h2></div>
-        <p>Some finished. Some still holding a bookmark.</p>
+        <div><span class="eyebrow">03 / On the shelf</span><h2>Shelf <em>check.</em></h2></div>
+        <p>What I've been reading lately. A couple are finished. A couple still have a bookmark somewhere near the middle.</p>
       </header>
 
       <div class="bookshelf-wrap">
-        <div class="bookshelf" aria-label="Aarav's six recent books">
+        <div class="bookshelf">
           <div class="shelf-row">
-            <a class="book" data-title="Mind Over Machine" data-topic="Expertise" href="https://openlibrary.org/search?q=Mind+Over+Machine+Dreyfus" target="_blank" rel="noopener"><img src="/covers/mind-over-machine.jpg" alt="Mind Over Machine book cover" loading="lazy"></a>
-            <a class="book" data-title="The Almanack of Naval Ravikant" data-topic="Decisions and leverage" href="https://openlibrary.org/isbn/9781544514215" target="_blank" rel="noopener"><img src="/covers/naval.jpg" alt="The Almanack of Naval Ravikant book cover" loading="lazy"></a>
-            <a class="book" data-title="The Wisdom of Insecurity" data-topic="Presence" href="https://penguinrandomhouselibrary.com/book/?isbn=9780307741202" target="_blank" rel="noopener"><img src="/covers/wisdom.jpg" alt="The Wisdom of Insecurity book cover" loading="lazy"></a>
-            <a class="book" data-title="Sweetness and Power" data-topic="History" href="https://openlibrary.org/search?q=Sweetness+and+Power+Sidney+Mintz" target="_blank" rel="noopener"><img src="/covers/sweetness-and-power.jpg" alt="Sweetness and Power book cover" loading="lazy"></a>
-            <a class="book" data-title="David and Goliath" data-topic="Competition" href="https://openlibrary.org/search?q=David+and+Goliath+Malcolm+Gladwell" target="_blank" rel="noopener"><img src="/covers/david-and-goliath.jpg" alt="David and Goliath book cover" loading="lazy"></a>
-            <a class="book" data-title="Crime and Punishment" data-topic="Conscience and consequence" href="https://openlibrary.org/isbn/9780140449136" target="_blank" rel="noopener"><img src="/covers/crime-and-punishment.jpg" alt="Crime and Punishment by Fyodor Dostoevsky book cover" loading="lazy"></a>
+            <a class="book" data-title="Mind Over Machine" data-topic="What expertise actually is" href="https://openlibrary.org/search?q=Mind+Over+Machine+Dreyfus" target="_blank" rel="noopener"><img src="/covers/mind-over-machine.jpg" alt="Mind Over Machine" width="320" height="480" loading="lazy"></a>
+            <a class="book" data-title="The Almanack of Naval Ravikant" data-topic="Leverage, and deciding things" href="https://openlibrary.org/isbn/9781544514215" target="_blank" rel="noopener"><img src="/covers/naval.jpg" alt="The Almanack of Naval Ravikant" width="320" height="480" loading="lazy"></a>
+            <a class="book" data-title="The Wisdom of Insecurity" data-topic="Being here for it" href="https://penguinrandomhouselibrary.com/book/?isbn=9780307741202" target="_blank" rel="noopener"><img src="/covers/wisdom.jpg" alt="The Wisdom of Insecurity" width="320" height="480" loading="lazy"></a>
+            <a class="book" data-title="Sweetness and Power" data-topic="How sugar rearranged the world" href="https://openlibrary.org/search?q=Sweetness+and+Power+Sidney+Mintz" target="_blank" rel="noopener"><img src="/covers/sweetness-and-power.jpg" alt="Sweetness and Power" width="320" height="480" loading="lazy"></a>
+            <a class="book" data-title="David and Goliath" data-topic="Why the underdog wins" href="https://openlibrary.org/search?q=David+and+Goliath+Malcolm+Gladwell" target="_blank" rel="noopener"><img src="/covers/david-and-goliath.jpg" alt="David and Goliath" width="320" height="480" loading="lazy"></a>
+            <a class="book" data-title="Crime and Punishment" data-topic="Conscience, and the bill for it" href="https://openlibrary.org/isbn/9780140449136" target="_blank" rel="noopener"><img src="/covers/crime-and-punishment.jpg" alt="Crime and Punishment by Fyodor Dostoevsky" width="320" height="480" loading="lazy"></a>
           </div>
         </div>
         <div class="shelf-caption">
-          <span class="eyebrow">PULL ONE OUT</span>
+          <span class="eyebrow">Pull one out</span>
           <p class="shelf-current" aria-live="polite">Hover over a spine.</p>
         </div>
       </div>
@@ -147,30 +168,46 @@
 
     <section id="outside" class="journal-section outside-life-section">
       <header class="section-heading">
-        <div><span class="eyebrow">04 / GET OUT</span><h2>Pick a Saturday.</h2></div>
-        <p>Choose the plan. I am probably saying yes.</p>
+        <div><span class="eyebrow">04 / Get out</span><h2>Pick a <em>Saturday.</em></h2></div>
+        <p>Choose the plan. I'm almost certainly saying yes to whichever one you pick.</p>
       </header>
       <div class="plan-console">
-        <div class="plan-options" aria-label="Choose an afternoon plan">
-          <button class="plan-option is-active" data-plan="trail"><span>01</span><strong>Find a trail</strong><small>Friends, a view, no service</small></button>
-          <button class="plan-option" data-plan="match"><span>02</span><strong>Play a match</strong><small>Soccer first, tennis next</small></button>
-          <button class="plan-option" data-plan="run"><span>03</span><strong>Go for a run</strong><small>No route planned</small></button>
-          <button class="plan-option" data-plan="new"><span>04</span><strong>Try something new</strong><small>Golf and pickleball lately</small></button>
+        <div class="plan-options" aria-label="Pick a plan for the afternoon">
+          <button class="plan-option is-active" type="button" data-plan="trail"><span>01</span><strong>Find a trail</strong><small>Friends, a view, no service</small></button>
+          <button class="plan-option" type="button" data-plan="match"><span>02</span><strong>Play a match</strong><small>Soccer first, tennis next</small></button>
+          <button class="plan-option" type="button" data-plan="run"><span>03</span><strong>Go for a run</strong><small>No route planned</small></button>
+          <button class="plan-option" type="button" data-plan="new"><span>04</span><strong>Try something new</strong><small>Golf and pickleball lately</small></button>
         </div>
         <figure class="plan-stage">
-          <img src="/photos/friends-hike.png" alt="Aarav hiking with friends" width="643" height="864">
-          <figcaption><span class="plan-label">TRAIL DAY</span><strong class="plan-title">Early start, bad signal.</strong><p class="plan-copy">Usually better with friends.</p></figcaption>
+          <img src="/photos/friends-hike.jpg" alt="Hiking with friends" width="667" height="864" loading="lazy">
+          <figcaption><span class="plan-label">TRAIL DAY</span><strong class="plan-title">Early start, bad signal.</strong><p class="plan-copy">Better with friends. Worse with a map.</p></figcaption>
           <span class="plan-coordinate">phone on 10%</span>
         </figure>
       </div>
     </section>
   </main>
 
-  <footer>
-    <a href="mailto:aarav.mohanty23@gmail.com">Say hello</a>
-    <span>Aarav Mohanty · 2026</span>
-    <a href="#top">Back to top</a>
+  <footer class="site-footer">
+    <div class="footer-cta">
+      <div>
+        <span class="micro-label">Get in touch</span>
+        <h2><a href="mailto:aarav.mohanty23@gmail.com">aarav.mohanty23@gmail.com</a></h2>
+        <p>Book recommendations and trail recommendations are both welcome. So is an argument about the trivia answers.</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/AaravMohanty" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/aaravmohanty" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="/resume.pdf" target="_blank" rel="noopener">Résumé</a>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>&copy; 2026 Aarav Mohanty</span>
+      <span class="local-time">West Lafayette · --:--</span>
+      <a href="#top">Back to top</a>
+    </div>
   </footer>
-  <script src="/journal.js?v=27" defer></script>
+
+  <script src="/site.js?v=40" defer></script>
+  <script src="/journal.js?v=40" defer></script>
 </body>
 </html>

@@ -1,6 +1,5 @@
 (() => {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const root = document.documentElement;
   const found = new Set();
   const meterDots = [...document.querySelectorAll('.discovery-meter i')];
   const meterCount = document.querySelector('.discovery-meter strong');
@@ -9,11 +8,6 @@
     meterDots.forEach((dot, index) => dot.classList.toggle('is-found', index < found.size));
     if (meterCount) meterCount.textContent = `${found.size} / 6`;
   };
-
-  window.addEventListener('pointermove', (event) => {
-    root.style.setProperty('--mx', `${event.clientX}px`);
-    root.style.setProperty('--my', `${event.clientY}px`);
-  }, { passive: true });
 
   const turntable = document.querySelector('.turntable-card');
   const turntableToggle = document.querySelector('.turntable-toggle');
@@ -64,10 +58,10 @@
   });
 
   const plans = {
-    trail: { image:'/photos/friends-hike.png', alt:'Aarav hiking with friends', label:'TRAIL DAY', title:'Early start, bad signal.', copy:'Usually better with friends.', coordinate:'phone on 10%' },
-    match: { image:'/photos/soccer.png', alt:'Aarav playing in a soccer match', label:'MATCH DAY', title:'One more game.', copy:'Soccer is the constant. Tennis is catching up.', coordinate:'next goal wins' },
-    run: { image:'/photos/creek.png', alt:'A creek running through mossy rocks', label:'RUN DAY', title:'No route planned.', copy:'Pick a direction and figure out the way back later.', coordinate:'watch says keep going' },
-    new: { image:'/photos/multnomah-falls.png', alt:'Multnomah Falls in Oregon', label:'OPEN DAY', title:'Try it once.', copy:'Golf and pickleball got onto the list this way.', coordinate:'plans pending' }
+    trail: { image:'/photos/friends-hike.jpg', alt:'Hiking with friends', label:'TRAIL DAY', title:'Early start, bad signal.', copy:'Better with friends. Worse with a map.', coordinate:'phone on 10%' },
+    match: { image:'/photos/soccer.jpg', alt:'Playing in a soccer match', label:'MATCH DAY', title:'One more game.', copy:'Soccer is the constant. Tennis is gaining on it.', coordinate:'next goal wins' },
+    run: { image:'/photos/creek.jpg', alt:'A creek running over mossy rocks', label:'RUN DAY', title:'No route planned.', copy:'Pick a direction, work out the way back later.', coordinate:'watch says keep going' },
+    new: { image:'/photos/multnomah-falls.jpg', alt:'Multnomah Falls in Oregon', label:'OPEN DAY', title:'Try it once.', copy:'Golf and pickleball both got on the list this way.', coordinate:'plans pending' }
   };
   const planStage = document.querySelector('.plan-stage');
   document.querySelectorAll('.plan-option').forEach((button) => {
@@ -111,7 +105,7 @@
       if (kickBest) kickBest.textContent = String(best);
       try { localStorage.setItem('aarav-keepy-best', String(best)); } catch {}
     }
-    if (kickMessage) kickMessage.textContent = kicks >= 23 ? 'Twenty-three. Shirt number matched.' : `${kicks} touches. Go again.`;
+    if (kickMessage) kickMessage.textContent = kicks >= 23 ? 'Twenty-three. That was my number.' : `${kicks} touches. Go again.`;
   };
   const runKickClock = (now) => {
     const left = Math.max(0, 15 - (now - kickStarted) / 1000);
@@ -159,11 +153,11 @@
   const stops = [
     { name:'Turkey', image:'/photos/destinations/turkey.jpg', stamp:'BEEN' },
     { name:'Peru', image:'/photos/destinations/peru.jpg', stamp:'BEEN' },
-    { name:'Olympic', image:'/photos/creek.png', stamp:'BEEN' },
+    { name:'Olympic', image:'/photos/creek.jpg', stamp:'BEEN' },
     { name:'Oregon Coast', image:'/photos/coast.jpg', stamp:'BEEN' },
     { name:'The Redwoods', image:'/photos/hike.jpg', stamp:'BEEN' },
-    { name:'Multnomah Falls', image:'/photos/multnomah-falls.png', stamp:'BEEN' },
-    { name:'Mt. Rainier', image:'/photos/friends-hike.png', stamp:'BEEN' },
+    { name:'Multnomah Falls', image:'/photos/multnomah-falls.jpg', stamp:'BEEN' },
+    { name:'Mt. Rainier', image:'/photos/friends-hike.jpg', stamp:'BEEN' },
     { name:'Greece', image:'/photos/destinations/greece.jpg', stamp:'BEEN' }
   ];
   const departure = document.querySelector('.departure-board strong');
@@ -218,7 +212,7 @@
       triviaCategory.textContent = 'ROUND OVER';
       triviaQuestion.textContent = `${correctAnswers} out of 5.`;
       triviaAnswers.replaceChildren();
-      triviaNote.textContent = correctAnswers >= 4 ? 'Okay, that was strong.' : 'A rematch seems fair.';
+      triviaNote.textContent = correctAnswers >= 4 ? 'Alright, that was good.' : 'Rematch seems fair.';
       triviaNext.textContent = 'Play again';
       triviaNext.hidden = false;
       return;

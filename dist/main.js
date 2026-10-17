@@ -1,16 +1,38 @@
+/* ---------------------------------------------------------------
+   main.js - the home page intro (quote, then globe) and the
+   project filters. Shared behaviour lives in site.js.
+   --------------------------------------------------------------- */
+
 (() => {
+  'use strict';
+
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const INTRO_KEY = 'aarav-intro-v7';
+
+  /* Keep hidden layers out of the tab order as well as out of sight. */
+  const setInert = (node, value) => {
+    if (!node) return;
+    if (value) node.setAttribute('inert', '');
+    else node.removeAttribute('inert');
+  };
+
+  /* ===================== part one: the quote ===================== */
+
   const flightIntro = document.querySelector('.flight-intro');
-  const flightSkip = flightIntro?.querySelector('.flight-skip');
+  const globeIntro = document.querySelector('.globe-intro');
+  const shell = document.querySelector('.site-shell');
   let flightFinished = false;
 
   const finishFlight = (instant = false) => {
     if (!flightIntro || flightFinished) return;
     flightFinished = true;
-    try { sessionStorage.setItem('aarav-finite-intro-v6', 'seen'); } catch (error) {}
+    try { sessionStorage.setItem(INTRO_KEY, 'seen'); } catch (error) {}
     document.body.classList.remove('flight-pending');
     document.body.classList.add('flight-complete');
-    window.dispatchEvent(new Event('flight:intro-complete'));
+    setInert(flightIntro, true);
+    setInert(globeIntro, false);
+    window.dispatchEvent(new Event('intro:quote-done'));
+
     if (instant) {
       document.documentElement.classList.add('flight-seen');
       flightIntro.hidden = true;
@@ -20,37 +42,58 @@
     window.setTimeout(() => {
       flightIntro.hidden = true;
       document.documentElement.classList.add('flight-seen');
-    }, 720);
+    }, 640);
   };
 
   if (flightIntro) {
-    let flightSeen = false;
-    try { flightSeen = sessionStorage.getItem('aarav-finite-intro-v6') === 'seen'; } catch (error) {}
-    if (reduceMotion || flightSeen) finishFlight(true);
-    else window.setTimeout(() => finishFlight(false), 8800);
-    flightSkip?.addEventListener('click', () => finishFlight(false));
+    let seen = false;
+    try { seen = sessionStorage.getItem(INTRO_KEY) === 'seen'; } catch (error) {}
+
+    setInert(globeIntro, true);
+    setInert(shell, true);
+
+    if (reduceMotion || seen) {
+      finishFlight(true);
+    } else {
+      window.setTimeout(() => finishFlight(false), 4800);
+      flightIntro.querySelector('.flight-skip')?.addEventListener('click', () => finishFlight(false));
+      // Any reasonable "get me out of here" gesture should work.
+      const escape = (event) => {
+        if (event.type === 'keydown' && !['Escape', 'Enter', ' ', 'Spacebar'].includes(event.key)) return;
+        finishFlight(false);
+        window.removeEventListener('keydown', escape);
+        flightIntro.removeEventListener('click', escape);
+      };
+      window.addEventListener('keydown', escape);
+      flightIntro.addEventListener('click', escape);
+    }
+  } else {
+    setInert(shell, false);
   }
 
-  const intro = document.querySelector('.globe-intro');
+  /* ===================== part two: the globe ===================== */
+
   const canvas = document.querySelector('.globe-canvas');
   const enterButton = document.querySelector('.globe-enter');
 
-  if (intro) {
+  if (globeIntro) {
     if (document.body.classList.contains('flight-pending')) {
-      window.addEventListener('flight:intro-complete', () => intro.removeAttribute('aria-hidden'), { once: true });
+      window.addEventListener('intro:quote-done', () => globeIntro.removeAttribute('aria-hidden'), { once: true });
     } else {
-      intro.removeAttribute('aria-hidden');
+      globeIntro.removeAttribute('aria-hidden');
+      setInert(globeIntro, false);
     }
   }
 
-  if (intro && canvas) {
+  if (globeIntro && canvas) {
     const context = canvas.getContext('2d');
-    const locationItems = [...intro.querySelectorAll('.globe-locations li')];
-    const placeCard = intro.querySelector('.globe-place-card');
+    const locationItems = [...globeIntro.querySelectorAll('.globe-locations li')];
+    const placeCard = globeIntro.querySelector('.globe-place-card');
     const placeImage = placeCard?.querySelector('img');
     const placeTitle = placeCard?.querySelector('.place-card-title');
     const placeCredit = placeCard?.querySelector('.place-card-credit');
     const placeClose = placeCard?.querySelector('.place-card-close');
+
     const locations = [
       { group: 'now', lat: 40.4259, lon: -86.9081, label: 'WEST LAFAYETTE / NOW', featured: true },
       { group: 'world', lat: 38.8462, lon: -77.3064, label: 'VIRGINIA / HOME', featured: true },
@@ -87,32 +130,23 @@
       { group: 'parks', lat: 25.2866, lon: -80.8987, label: 'EVERGLADES' },
       { group: 'parks', lat: 33.8734, lon: -115.901, label: 'JOSHUA TREE' }
     ];
+
     let countries = [];
-    let width = 0;
-    let height = 0;
-    let baseRadius = 0;
-    let radius = 0;
-    let zoom = 1;
-    let targetZoom = 1;
-    let centerX = 0;
-    let centerY = 0;
-    let centerLon = -77;
-    let targetLon = -77;
-    let centerLat = 22;
-    let targetLat = 22;
-    let pointerDown = false;
-    let pointerX = 0;
-    let pointerY = 0;
-    let pointerStartX = 0;
-    let pointerStartY = 0;
-    let pointerMoved = false;
-    let dragged = false;
-    let finished = false;
+    let width = 0, height = 0;
+    let baseRadius = 0, radius = 0;
+    let zoom = 1, targetZoom = 1;
+    let centerX = 0, centerY = 0;
+    let centerLon = -77, targetLon = -77;
+    let centerLat = 22, targetLat = 22;
+    let pointerDown = false, pointerX = 0, pointerY = 0;
+    let pointerStartX = 0, pointerStartY = 0, pointerMoved = false;
+    let dragged = false, finished = false;
     let activeLocation = null;
     let focusTimer = 0;
     let hitTargets = [];
     let startedAt = performance.now();
-    window.addEventListener('flight:intro-complete', () => { startedAt = performance.now(); });
+
+    window.addEventListener('intro:quote-done', () => { startedAt = performance.now(); });
 
     fetch('/world.geo.json')
       .then((response) => response.json())
@@ -146,10 +180,8 @@
       const lambda = (lon - centerLon) * Math.PI / 180;
       const phi = lat * Math.PI / 180;
       const phi0 = centerLat * Math.PI / 180;
-      const cosPhi = Math.cos(phi);
-      const sinPhi = Math.sin(phi);
-      const cosPhi0 = Math.cos(phi0);
-      const sinPhi0 = Math.sin(phi0);
+      const cosPhi = Math.cos(phi), sinPhi = Math.sin(phi);
+      const cosPhi0 = Math.cos(phi0), sinPhi0 = Math.sin(phi0);
       return {
         x: centerX + radius * cosPhi * Math.sin(lambda),
         y: centerY - radius * (cosPhi0 * sinPhi - sinPhi0 * cosPhi * Math.cos(lambda)),
@@ -206,6 +238,7 @@
     };
 
     const drawArc = (from, to, alpha) => {
+      if (!from || !to) return;
       const a = project(from.lon, from.lat);
       const b = project(to.lon, to.lat);
       if (a.z < .05 || b.z < .05) return;
@@ -247,22 +280,26 @@
       }
       if (emphasis && width > 680) {
         context.fillStyle = 'rgba(238, 236, 231, .76)';
-        context.font = '10px Arial, sans-serif';
-        context.letterSpacing = '1px';
+        context.font = '10px "DM Mono", monospace';
         context.fillText(location.label, point.x + 12, point.y - 8);
       }
       context.restore();
     };
 
+    const virginia = locations.find((location) => location.label.startsWith('VIRGINIA'));
+    const purdue = locations.find((location) => location.group === 'now');
+    const india = locations.find((location) => location.label === 'INDIA');
+    const italy = locations.find((location) => location.label === 'ITALY');
+
     const draw = (time) => {
+      if (finished) return;
+      if (document.hidden) { requestAnimationFrame(draw); return; }
+
       const elapsed = time - startedAt;
       if (!dragged && !reduceMotion) {
         const sequence = [
-          { lon: -87, lat: 28 },
-          { lon: 78, lat: 16 },
-          { lon: -76, lat: 18 },
-          { lon: 12, lat: 38 },
-          { lon: -121, lat: 42 }
+          { lon: -87, lat: 28 }, { lon: 78, lat: 16 }, { lon: -76, lat: 18 },
+          { lon: 12, lat: 38 }, { lon: -121, lat: 42 }
         ];
         const scene = sequence[Math.floor((Math.max(0, elapsed) % 15000) / 3000)];
         targetLon = scene.lon;
@@ -308,19 +345,16 @@
       const sequenceIndex = Math.floor((Math.max(0, elapsed) % 15000) / 3000);
       const activeGroup = activeLocation?.group ?? (sequenceIndex === 0 ? 'now' : sequenceIndex === 4 ? 'parks' : 'world');
       const activeIndex = activeGroup === 'now' ? 0 : activeGroup === 'world' ? 1 : 2;
-      const virginia = locations.find((location) => location.label.startsWith('VIRGINIA'));
-      const purdue = locations.find((location) => location.group === 'now');
-      const india = locations.find((location) => location.label === 'INDIA');
-      const italy = locations.find((location) => location.label === 'ITALY');
+
       if (!activeLocation) {
         drawArc(virginia, purdue, .5);
         drawArc(virginia, india, .24);
         drawArc(virginia, italy, .24);
       }
       locations.forEach((location) => drawMarker(location, activeLocation === location || (location.group === activeGroup && location.featured), time));
-
       locationItems.forEach((item, index) => item.classList.toggle('is-active', index === activeIndex));
-      if (!finished) requestAnimationFrame(draw);
+
+      requestAnimationFrame(draw);
     };
 
     const openPlace = (location) => {
@@ -335,21 +369,24 @@
       placeTitle.textContent = location.label.replace(' / HOME', '');
       placeCredit.textContent = `${location.credit} / Wikimedia Commons`;
       placeCredit.href = location.source;
-      intro.classList.add('is-zoomed');
+      globeIntro.classList.add('is-zoomed');
       window.clearTimeout(focusTimer);
       placeCard.classList.remove('is-open');
       placeCard.hidden = true;
       focusTimer = window.setTimeout(() => {
         placeCard.hidden = false;
-        window.requestAnimationFrame(() => placeCard.classList.add('is-open'));
-      }, reduceMotion ? 0 : 720);
+        window.requestAnimationFrame(() => {
+          placeCard.classList.add('is-open');
+          placeClose?.focus();
+        });
+      }, reduceMotion ? 0 : 700);
     };
 
     const closePlace = () => {
       if (!placeCard) return;
       window.clearTimeout(focusTimer);
       placeCard.classList.remove('is-open');
-      intro.classList.remove('is-zoomed');
+      globeIntro.classList.remove('is-zoomed');
       targetZoom = 1;
       activeLocation = null;
       window.setTimeout(() => { placeCard.hidden = true; }, reduceMotion ? 0 : 320);
@@ -358,25 +395,26 @@
     const finishIntro = () => {
       if (finished) return;
       finished = true;
-      intro.classList.add('is-leaving');
+      globeIntro.classList.add('is-leaving');
       document.body.classList.remove('globe-pending');
       document.body.classList.add('globe-finished');
+      setInert(shell, false);
       window.setTimeout(() => {
-        intro.hidden = true;
+        globeIntro.hidden = true;
+        setInert(globeIntro, true);
         document.querySelectorAll('.reveal').forEach((item) => {
           if (item.getBoundingClientRect().top < window.innerHeight * .95) item.classList.add('is-in');
         });
-      }, 650);
+      }, 620);
     };
 
     resize();
     window.addEventListener('resize', resize, { passive: true });
+
     canvas.addEventListener('pointerdown', (event) => {
       pointerDown = true;
-      pointerX = event.clientX;
-      pointerY = event.clientY;
-      pointerStartX = event.clientX;
-      pointerStartY = event.clientY;
+      pointerX = pointerStartX = event.clientX;
+      pointerY = pointerStartY = event.clientY;
       pointerMoved = false;
       canvas.setPointerCapture(event.pointerId);
     });
@@ -413,57 +451,67 @@
       else if (activeLocation) closePlace();
       else finishIntro();
     });
+
     enterButton?.addEventListener('click', finishIntro);
     placeClose?.addEventListener('click', closePlace);
-    window.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && placeCard && !placeCard.hidden) closePlace();
+
+    // Arrow keys spin the globe for anyone not using a mouse.
+    globeIntro.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && placeCard && !placeCard.hidden) { closePlace(); return; }
+      const step = event.shiftKey ? 18 : 7;
+      if (event.key === 'ArrowLeft') { dragged = true; targetLon -= step; }
+      else if (event.key === 'ArrowRight') { dragged = true; targetLon += step; }
+      else if (event.key === 'ArrowUp') { dragged = true; targetLat = clamp(targetLat + step, -72, 72); }
+      else if (event.key === 'ArrowDown') { dragged = true; targetLat = clamp(targetLat - step, -72, 72); }
+      else return;
+      event.preventDefault();
     });
+
     window.setTimeout(() => enterButton?.classList.add('is-ready'), reduceMotion ? 0 : 180);
     requestAnimationFrame(draw);
-  } else {
+  } else if (document.body.classList.contains('globe-pending')) {
     document.body.classList.remove('globe-pending');
+    setInert(shell, false);
   }
 
-  const reveals = document.querySelectorAll('.reveal');
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    reveals.forEach((item) => item.classList.add('is-in'));
-  } else {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-in');
-          observer.unobserve(entry.target);
+  /* ===================== project filters ===================== */
+
+  const filterBar = document.querySelector('.project-filters');
+  if (filterBar) {
+    const buttons = [...filterBar.querySelectorAll('button[data-filter]')];
+    const cards = [...document.querySelectorAll('.case-study')];
+    const countNode = filterBar.querySelector('.filter-count');
+
+    const apply = (filter, initial = false) => {
+      let shown = 0;
+      cards.forEach((card) => {
+        const tags = (card.dataset.tags || '').split(' ');
+        const visible = filter === 'all' || tags.includes(filter);
+        card.hidden = !visible;
+        if (visible) {
+          // Alternate the copy/visual sides across whatever is on screen.
+          card.classList.toggle('is-flipped', shown % 2 === 1);
+          // On a filter change the reveal observer has already let go of
+          // these, so show them directly instead of leaving them blank.
+          if (!initial) card.classList.add('is-in');
+          shown += 1;
         }
       });
-    }, { threshold: 0.08 });
-    reveals.forEach((item, index) => {
-      item.style.transitionDelay = `${Math.min(index * 80, 240)}ms`;
-      observer.observe(item);
-    });
-  }
+      buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.filter === filter)));
+      if (countNode) {
+        const label = buttons.find((button) => button.dataset.filter === filter)?.firstChild?.textContent.trim();
+        countNode.textContent = filter === 'all' ? `Showing all ${shown}` : `Showing ${shown} in ${label}`;
+      }
+    };
 
-  const root = document.documentElement;
-  window.addEventListener('pointermove', (event) => {
-    root.style.setProperty('--mx', `${event.clientX}px`);
-    root.style.setProperty('--my', `${event.clientY}px`);
-  }, { passive: true });
-
-  const timeNodes = document.querySelectorAll('.local-time');
-  const updateTime = () => {
-    const time = new Intl.DateTimeFormat('en-US', {
-      timeZone: 'America/Indiana/Indianapolis', hour: 'numeric', minute: '2-digit'
-    }).format(new Date());
-    timeNodes.forEach((node) => { node.textContent = `Indianapolis · ${time}`; });
-  };
-  updateTime();
-  window.setInterval(updateTime, 30000);
-
-  const rows = document.querySelectorAll('.project-row');
-  if (rows.length) {
-    rows.forEach((row) => {
-      row.addEventListener('toggle', () => {
-        if (row.open) rows.forEach((other) => { if (other !== row) other.open = false; });
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        apply(button.dataset.filter);
+        const top = filterBar.getBoundingClientRect().top;
+        if (top < 0) filterBar.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
       });
     });
+
+    apply('all', true);
   }
 })();

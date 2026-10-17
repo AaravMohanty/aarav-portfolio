@@ -3,66 +3,171 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Experience | Aarav Mohanty</title>
-  <meta name="description" content="Aarav Mohanty’s software engineering and machine learning experience.">
-  <meta name="theme-color" content="#10100f">
-  <link rel="icon" href="/favicon.svg?v=15" type="image/svg+xml">
-  <link rel="stylesheet" href="/main.css?v=22">
+  <title>Experience · Aarav Mohanty</title>
+  <meta name="description" content="Internships at Capital One, Empower AI, and Ackuity, machine learning research at the Kihara Lab, and what I'm studying at Purdue.">
+  <meta name="theme-color" content="#0e0e0d">
+  <link rel="canonical" href="https://aaravmohanty.com/experience/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Experience · Aarav Mohanty">
+  <meta property="og:description" content="Four internships, one research lab, and the things each one actually taught me.">
+  <meta property="og:url" content="https://aaravmohanty.com/experience/">
+  <meta property="og:image" content="https://aaravmohanty.com/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://aaravmohanty.com/og.jpg">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="stylesheet" href="/base.css?v=40">
+  <link rel="stylesheet" href="/main.css?v=40">
   <script>document.documentElement.classList.add('js')</script>
 </head>
-<body class="main-theme interior-page experience-page" id="top">
+<body class="interior-page experience-page" id="top">
   <a class="skip" href="#main">Skip to content</a>
   <div class="cursor-light" aria-hidden="true"></div>
-  <header class="masthead">
-    <a class="home-orbit magnetic" href="/" aria-label="Return to home"><span aria-hidden="true">◉</span><strong>Origin</strong></a>
-    <nav aria-label="Main navigation">
+
+  <header class="site-header">
+    <a class="home-orbit" href="/" aria-label="Back to the home page"><span aria-hidden="true">&#9673;</span><strong>Origin</strong></a>
+    <nav aria-label="Main">
       <a href="/projects/">Projects</a>
       <a href="/experience/" aria-current="page">Experience</a>
       <a href="/outside/">Outside work</a>
     </nav>
-    <a class="resume-link magnetic" href="/resume.pdf" target="_blank" rel="noopener">Résumé</a>
+    <div class="header-end">
+      <button class="palette-key" type="button" data-palette-open aria-label="Open the quick jump menu"><span class="palette-key-mod">Ctrl</span> K</button>
+      <a class="resume-link" href="/resume.pdf" target="_blank" rel="noopener">Résumé</a>
+    </div>
   </header>
-  <aside class="contact-dock" aria-label="Contact links">
-    <a href="https://github.com/aaravmohanty" target="_blank" rel="noopener">GitHub</a>
+
+  <aside class="contact-dock" aria-label="Contact">
+    <a href="https://github.com/AaravMohanty" target="_blank" rel="noopener">GitHub</a>
     <a href="https://linkedin.com/in/aaravmohanty" target="_blank" rel="noopener">LinkedIn</a>
     <a href="mailto:aarav.mohanty23@gmail.com">Email</a>
   </aside>
 
-  <main id="main" class="interior-main experience-main">
+  <main id="main" class="site-main">
     <header class="page-heading reveal">
-      <span class="micro-label">02 / EXPERIENCE</span>
-      <h1>Work<span>.</span></h1>
-      <p>A few places where I have learned how software gets built with real users and real constraints.</p>
+      <span class="micro-label">02 / Experience</span>
+      <h1>Where I've<br>worked<span>.</span></h1>
+      <p>Four internships in two years. The running lesson has been that the algorithm is almost never the hard part. It's everything standing around it.</p>
     </header>
 
-    <section class="timeline reveal" aria-label="Professional experience">
+    <section class="timeline reveal" aria-label="Work history">
       <article class="role-row">
-        <div class="role-year">2026</div>
-        <div class="role-main"><h2>Capital One</h2><p class="role-title">Software Engineering Intern</p><p>I built a Slack assistant for operations teams. It streamed AI responses, paused for human approval when it needed to, and ran on AWS.</p></div>
-        <ul><li class="role-highlight">Used across 10 teams and 2,500+ users</li><li>Handled 100+ daily queries</li><li>Cut response time by 50%</li></ul>
+        <div class="role-year">Summer 2026</div>
+        <div class="role-main">
+          <h2>Capital One</h2>
+          <p class="role-title">Software Engineering Intern</p>
+          <p>I built a Slack assistant for operations teams. It streams answers token by token, stops and asks a person before doing anything it shouldn't decide alone, and runs on ECS Fargate underneath. By August it was fielding questions for ten different teams.</p>
+        </div>
+        <ul>
+          <li class="role-highlight">2,500+ people across 10 teams ended up using it</li>
+          <li>100+ queries a day, response time cut roughly in half</li>
+          <li>Streaming SSE pipeline with human-in-the-loop interrupts</li>
+          <li>Dockerized on AWS ECS Fargate, conversation state in DynamoDB</li>
+        </ul>
       </article>
+
       <article class="role-row">
-        <div class="role-year">2025 to 2026</div>
-        <div class="role-main"><h2>Empower AI</h2><p class="role-title">Software Engineering Intern</p><p>I worked on graph models and data pipelines that look for fraud, waste, and abuse in healthcare data.</p></div>
-        <ul><li class="role-highlight">Processed 30M+ Medicare and Medicaid records</li><li>Reached 97% accuracy and 98% recall</li><li>Built reproducible model evaluation pipelines</li></ul>
+        <div class="role-year">2025 &ndash; 2026</div>
+        <div class="role-main">
+          <h2>Empower AI</h2>
+          <p class="role-title">Software Engineering Intern</p>
+          <p>Fraud, waste, and abuse detection on federal healthcare data. I built the pipelines that got thirty million records into usable shape, and the evaluation setup that told us whether a model was genuinely better or had just gotten lucky on one split.</p>
+        </div>
+        <ul>
+          <li class="role-highlight">30M+ Medicare and Medicaid records through the pipeline</li>
+          <li>97% accuracy and 98% recall on anomaly detection</li>
+          <li>Isolation Forest, LOF, and one-class SVM, packaged for audit</li>
+          <li>Reproducible evaluation so results survived review</li>
+        </ul>
       </article>
+
       <article class="role-row">
-        <div class="role-year">2025</div>
-        <div class="role-main"><h2>Ackuity</h2><p class="role-title">Software Engineering Intern</p><p>I built a browser extension that catches and redacts sensitive information before it gets pasted into ChatGPT and other AI tools.</p></div>
-        <ul><li class="role-highlight">Detected 40+ sensitive data types</li><li>Covered 3 major LLM platforms</li><li>Trained with 40,000 synthetic examples</li></ul>
+        <div class="role-year">Summer 2025</div>
+        <div class="role-main">
+          <h2>Ackuity</h2>
+          <p class="role-title">Software Engineering Intern</p>
+          <p>A Chrome extension that catches sensitive information on its way into ChatGPT and other AI tools, and redacts it before it ever leaves the browser. It has to happen as you type, which is a much stricter constraint than it sounds.</p>
+        </div>
+        <ul>
+          <li class="role-highlight">40+ kinds of PII and credentials caught in real time</li>
+          <li>Working across 3 major LLM platforms</li>
+          <li>Fine-tuned DistilBERT on 40,000 synthetic examples, exported to ONNX</li>
+          <li>Two-tier confidence thresholds to keep false positives survivable</li>
+        </ul>
       </article>
+
       <article class="role-row">
-        <div class="role-year">2025</div>
-        <div class="role-main"><h2>Kihara Bioinformatics Lab</h2><p class="role-title">Machine Learning Research Intern</p><p>I used reinforcement learning to improve AlphaFold2 predictions for beta-amyloid proteins.</p></div>
-        <ul><li class="role-highlight">Evaluated 100+ protein structures</li><li>Built a PPO training pipeline</li><li>Improved the target metric by 5%</li></ul>
+        <div class="role-year">Spring 2025</div>
+        <div class="role-main">
+          <h2>Kihara Bioinformatics Lab</h2>
+          <p class="role-title">Machine Learning Research Intern</p>
+          <p>My first research job. I wrote a custom reward function and a PPO pipeline to push AlphaFold2 toward better predictions on beta-amyloid structures, then presented what came out of it to the lab. Learning to defend a result is its own skill.</p>
+        </div>
+        <ul>
+          <li class="role-highlight">100+ protein structures evaluated</li>
+          <li>5% lift on the target structural metric</li>
+          <li>PPO training pipeline in Python and PyTorch</li>
+          <li>PyRosetta and PyMol for preprocessing and simulation</li>
+        </ul>
       </article>
     </section>
 
+    <div class="side-grid reveal">
+      <section class="side-card" aria-labelledby="education-title">
+        <span class="micro-label">School</span>
+        <h2 id="education-title">Purdue University</h2>
+        <p>West Lafayette, Indiana.</p>
+        <dl>
+          <dt>Degree</dt><dd><b>BS Computer Science</b>, minor in Mathematics</dd>
+          <dt>Graduating</dt><dd>May 2028</dd>
+          <dt>GPA</dt><dd>3.7 / 4.0</dd>
+          <dt>Coursework</dt><dd>Data Structures, Discrete Math, Computer Architecture, Systems Programming, Algorithms Analysis</dd>
+        </dl>
+      </section>
+
+      <section class="side-card" aria-labelledby="clubs-title">
+        <span class="micro-label">On campus</span>
+        <h2 id="clubs-title">Where my other hours go</h2>
+        <ul class="club-list">
+          <li>
+            <strong>PurdueTHINK Consulting</strong>
+            <span>Technical Lead</span>
+            <p>Student consulting group. I run the technical side, which lately has meant building <a href="/projects/#thinkedin">the alumni network</a> the club now runs on.</p>
+          </li>
+          <li>
+            <strong>Boiler Quant</strong>
+            <span>Quantitative Trading Analyst</span>
+            <p>Defining KPIs and maintaining <a href="/projects/#boiler-quant">the streaming data pipeline</a> behind the group's crypto strategies.</p>
+          </li>
+        </ul>
+      </section>
+    </div>
   </main>
 
-  <footer class="main-footer">
-    <span>© 2026 Aarav Mohanty</span><span class="local-time">Indianapolis · --:--</span><a href="#top">Back to top</a>
+  <footer class="site-footer">
+    <div class="footer-cta">
+      <div>
+        <span class="micro-label">Get in touch</span>
+        <h2><a href="mailto:aarav.mohanty23@gmail.com">aarav.mohanty23@gmail.com</a></h2>
+        <p>Looking for a summer 2027 internship. If you're hiring, or just want to compare notes, email is the fastest way to reach me.</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/AaravMohanty" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/aaravmohanty" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="/resume.pdf" target="_blank" rel="noopener">Résumé</a>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>&copy; 2026 Aarav Mohanty</span>
+      <span class="local-time">West Lafayette · --:--</span>
+      <a href="#top">Back to top</a>
+    </div>
   </footer>
-  <script src="/main.js?v=22" defer></script>
+
+  <script src="/site.js?v=40" defer></script>
+  <script src="/main.js?v=40" defer></script>
 </body>
 </html>
