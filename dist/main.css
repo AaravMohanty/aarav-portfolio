@@ -68,11 +68,9 @@
 
 .site-main { padding-top: clamp(3.5rem, 7vw, 6rem); padding-bottom: clamp(4rem, 8vw, 7rem); }
 
-.page-heading { display: grid; grid-template-columns: minmax(220px, .8fr) 1.2fr; align-items: end; gap: 1.5rem 3rem; padding-bottom: clamp(3rem, 6vw, 5rem); }
-.page-heading .micro-label { grid-column: 1 / -1; }
+.page-heading { padding-bottom: clamp(2.2rem, 4.5vw, 3.5rem); }
 .page-heading h1 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(3.6rem, 9vw, 7.6rem); line-height: .85; letter-spacing: -.04em; }
 .page-heading h1 span { color: var(--accent); }
-.page-heading > p { max-width: 50ch; margin: 0; color: var(--text-2); font-size: clamp(1rem, 1.7vw, 1.25rem); line-height: 1.6; letter-spacing: -.01em; }
 
 /* ========================= PROJECTS ========================= */
 
@@ -450,8 +448,6 @@
   .case-visual { min-height: 230px; border-left: 0; border-top: 1px solid var(--line); }
   .case-study.is-flipped .case-copy { grid-column: 1; grid-row: 1; padding-left: 0; }
   .case-study.is-flipped .case-visual { grid-column: 1; grid-row: 2; border-right: 0; border-top: 1px solid var(--line); }
-  .page-heading { grid-template-columns: 1fr; gap: 1.6rem; }
-  .page-heading .micro-label { grid-column: auto; }
   .role-row { grid-template-columns: .3fr 1fr; }
   .role-row ul { grid-column: 2; }
 }
