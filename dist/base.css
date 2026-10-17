@@ -157,16 +157,7 @@ figure { margin: 0; }
   padding-block: clamp(2.2rem, 4vw, 3.2rem) 2rem;
   border-top: 1px solid var(--line-strong);
 }
-.footer-cta { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 1rem 2rem; }
-.footer-email {
-  font-family: var(--serif); font-size: clamp(1.5rem, 3.2vw, 2.4rem); letter-spacing: -.015em;
-  text-decoration: none;
-  background-image: linear-gradient(var(--accent), var(--accent));
-  background-size: 100% 1px; background-repeat: no-repeat; background-position: 0 100%;
-  transition: color .25s ease;
-}
-.footer-email:hover, .footer-email:focus-visible { color: var(--accent); }
-.footer-links { display: flex; flex-wrap: wrap; gap: 1.4rem; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 1rem 1.8rem; }
 .footer-links a { color: var(--text-3); font-family: var(--mono); font-size: .76rem; text-decoration: none; transition: color .2s ease; }
 .footer-links a:hover, .footer-links a:focus-visible { color: var(--accent); }
 

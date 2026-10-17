@@ -43,7 +43,6 @@
   <aside class="contact-dock" aria-label="Contact">
     <a href="https://github.com/AaravMohanty" target="_blank" rel="noopener">GitHub</a>
     <a href="https://linkedin.com/in/aaravmohanty" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="mailto:aarav.mohanty23@gmail.com">Email</a>
   </aside>
 
   <main id="main" class="site-main">
@@ -74,23 +73,30 @@
       </header>
       <div class="arcade-grid">
         <article class="keepy-game">
-          <div class="game-top"><span>KEEPY UPPY</span><strong><b class="kick-score">0</b> / 23</strong></div>
-          <div class="kick-stats"><span>TIME <b class="kick-time">15.0</b></span><span>BEST <b class="kick-best">0</b></span></div>
-          <button class="soccer-ball" type="button" aria-label="Tap to keep the ball up">&#9917;</button>
-          <p class="kick-message">First touch starts the clock.</p>
+          <div class="game-top"><span>KEEPY UPPY</span><strong><b class="kick-score">0</b> touches</strong></div>
+          <div class="kick-stats"><span>BEST <b class="kick-best">0</b></span><span>SPEED <b class="kick-level">1.0x</b></span></div>
+          <div class="kick-stage">
+            <button class="soccer-ball" type="button" aria-label="Tap the ball to keep it up">&#9917;</button>
+          </div>
+          <div class="kick-window" aria-hidden="true"><i></i></div>
+          <p class="kick-message">Tap the ball to start.</p>
           <button class="game-reset kick-reset" type="button">New round</button>
         </article>
 
         <article class="travel-game">
-          <div class="game-top"><span>NEXT STOP</span><strong>no itinerary</strong></div>
+          <div class="game-top"><span>NEXT STOP</span><strong class="travel-count">0 / 8 stops</strong></div>
           <div class="travel-visual"><img src="/photos/coast.jpg" alt="A view along the Oregon coast" width="1080" height="810" loading="lazy"><span class="travel-stamp">OPEN TICKET</span></div>
-          <div class="departure-board" aria-live="polite"><small>BOARDING FOR</small><strong>Somewhere new</strong><span>Gate ?</span></div>
+          <div class="departure-board" aria-live="polite">
+            <small>BOARDING FOR</small>
+            <strong>Somewhere new</strong>
+            <span class="gate">Gate ?</span>
+            <p class="stop-note">Everything on this board is somewhere I've been.</p>
+          </div>
           <button class="travel-spin" type="button">Pick a place</button>
-          <p>Everything on the board is somewhere I've been.</p>
         </article>
 
         <article class="trivia-game">
-          <div class="game-top"><span>THE FIVE</span><strong><b class="trivia-score">0</b> / 5</strong></div>
+          <div class="game-top"><span>THE FIVE</span><strong><b class="trivia-score">0</b> / 5 &nbsp;·&nbsp; BEST <b class="trivia-best">0</b></strong></div>
           <div class="trivia-card">
             <div class="trivia-prompt">
               <span class="trivia-category">GEOGRAPHY</span>
@@ -110,7 +116,7 @@
     <section id="music" class="journal-section music-section">
       <header class="section-heading">
         <div><span class="eyebrow">02 / On rotation</span><h2>Records in <em>reach.</em></h2></div>
-        <p>Six albums I keep coming back to. One of them plays.</p>
+        <p>Six albums I keep coming back to. Click one to put it on.</p>
       </header>
 
       <div class="listening-room">
@@ -124,20 +130,56 @@
           </button>
           <div class="now-playing">
             <span class="eyebrow">Playing</span>
-            <strong>Revelry · Kings of Leon</strong>
-            <button class="play-state" type="button">Play record</button>
-            <a class="preview-note" href="https://music.apple.com/us/album/revelry/290302885?i=290303022" target="_blank" rel="noopener">30-second preview, via Apple Music</a>
+            <strong class="now-track">Revelry · Kings of Leon</strong>
+            <button class="play-state" type="button">Play</button>
+            <a class="preview-note" href="https://music.apple.com/us/album/revelry/290302885?i=290303022" target="_blank" rel="noopener">Only by the Night, on Apple Music</a>
           </div>
           <audio class="record-audio" preload="none" src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/90/7a/14/907a143d-6621-ee94-3960-d12d4bf68258/mzaf_13004482978685020546.plus.aac.p.m4a"></audio>
         </div>
 
-        <div class="album-stack" aria-label="Six albums in heavy rotation">
-          <figure><a href="https://music.apple.com/us/album/only-by-the-night/290302885" target="_blank" rel="noopener"><img src="/covers/only-by-the-night.jpg" alt="Only by the Night by Kings of Leon" width="320" height="320" loading="lazy"></a><figcaption>Kings of Leon <span>Only by the Night</span></figcaption></figure>
-          <figure><a href="https://music.apple.com/us/album/folklore/1524793738" target="_blank" rel="noopener"><img src="/covers/folklore.jpg" alt="folklore by Taylor Swift" width="320" height="320" loading="lazy"></a><figcaption>Taylor Swift <span>folklore</span></figcaption></figure>
-          <figure><a href="https://music.apple.com/us/album/currents/1440838039" target="_blank" rel="noopener"><img src="/covers/currents.jpg" alt="Currents by Tame Impala" width="320" height="320" loading="lazy"></a><figcaption>Tame Impala <span>Currents</span></figcaption></figure>
-          <figure><a href="https://music.apple.com/us/album/whats-the-story-morning-glory-deluxe-remastered-edition/1525933483" target="_blank" rel="noopener"><img src="/covers/morning-glory.jpg" alt="(What's the Story) Morning Glory? by Oasis" width="320" height="320" loading="lazy"></a><figcaption>Oasis <span>(What's the Story) Morning Glory?</span></figcaption></figure>
-          <figure><a href="https://music.apple.com/us/album/rumours/594061854" target="_blank" rel="noopener"><img src="/covers/rumours.jpg" alt="Rumours by Fleetwood Mac" width="320" height="320" loading="lazy"></a><figcaption>Fleetwood Mac <span>Rumours</span></figcaption></figure>
-          <figure><a href="https://music.apple.com/us/album/melodrama/1429662346" target="_blank" rel="noopener"><img src="/covers/melodrama.jpg" alt="Melodrama by Lorde" width="320" height="320" loading="lazy"></a><figcaption>Lorde <span>Melodrama</span></figcaption></figure>
+        <div class="album-stack" aria-label="Six albums. Click one to put it on.">
+          <figure>
+            <button class="album-pick" type="button" aria-pressed="false">
+              <img src="/covers/only-by-the-night.jpg" alt="Only by the Night by Kings of Leon" width="320" height="320" loading="lazy">
+              <span class="album-play" aria-hidden="true">&#9654;</span>
+            </button>
+            <figcaption>Kings of Leon <span>Only by the Night</span></figcaption>
+          </figure>
+          <figure>
+            <button class="album-pick" type="button" aria-pressed="false">
+              <img src="/covers/folklore.jpg" alt="folklore by Taylor Swift" width="320" height="320" loading="lazy">
+              <span class="album-play" aria-hidden="true">&#9654;</span>
+            </button>
+            <figcaption>Taylor Swift <span>folklore</span></figcaption>
+          </figure>
+          <figure>
+            <button class="album-pick" type="button" aria-pressed="false">
+              <img src="/covers/currents.jpg" alt="Currents by Tame Impala" width="320" height="320" loading="lazy">
+              <span class="album-play" aria-hidden="true">&#9654;</span>
+            </button>
+            <figcaption>Tame Impala <span>Currents</span></figcaption>
+          </figure>
+          <figure>
+            <button class="album-pick" type="button" aria-pressed="false">
+              <img src="/covers/morning-glory.jpg" alt="(What's the Story) Morning Glory? by Oasis" width="320" height="320" loading="lazy">
+              <span class="album-play" aria-hidden="true">&#9654;</span>
+            </button>
+            <figcaption>Oasis <span>(What's the Story) Morning Glory?</span></figcaption>
+          </figure>
+          <figure>
+            <button class="album-pick" type="button" aria-pressed="false">
+              <img src="/covers/rumours.jpg" alt="Rumours by Fleetwood Mac" width="320" height="320" loading="lazy">
+              <span class="album-play" aria-hidden="true">&#9654;</span>
+            </button>
+            <figcaption>Fleetwood Mac <span>Rumours</span></figcaption>
+          </figure>
+          <figure>
+            <button class="album-pick" type="button" aria-pressed="false">
+              <img src="/covers/melodrama.jpg" alt="Melodrama by Lorde" width="320" height="320" loading="lazy">
+              <span class="album-play" aria-hidden="true">&#9654;</span>
+            </button>
+            <figcaption>Lorde <span>Melodrama</span></figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -188,13 +230,11 @@
   </main>
 
   <footer class="site-footer">
-    <div class="footer-cta">
-      <a class="footer-email" href="mailto:aarav.mohanty23@gmail.com">aarav.mohanty23@gmail.com</a>
-      <div class="footer-links">
+    <div class="footer-links">
         <a href="https://github.com/AaravMohanty" target="_blank" rel="noopener">GitHub</a>
         <a href="https://linkedin.com/in/aaravmohanty" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="/resume.pdf" target="_blank" rel="noopener">Résumé</a>
-      </div>
+      <a href="/resume.pdf" target="_blank" rel="noopener">Résumé</a>
+      <a href="mailto:aarav.mohanty23@gmail.com">Email</a>
     </div>
     <div class="footer-base">
       <span>&copy; 2026 Aarav Mohanty</span>
