@@ -19,8 +19,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Libre+Caslon+Display&display=swap">
-  <link rel="stylesheet" href="/base.css?v=41">
-  <link rel="stylesheet" href="/main.css?v=41">
+  <link rel="stylesheet" href="/base.css?v=42">
+  <link rel="stylesheet" href="/main.css?v=42">
   <script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="interior-page projects-page" id="top">
@@ -28,7 +28,7 @@
   <div class="cursor-light" aria-hidden="true"></div>
 
   <header class="site-header">
-    <a class="home-orbit" href="/" aria-label="Back to the home page"><span aria-hidden="true">&#9673;</span><strong>Origin</strong></a>
+    <a class="home-orbit" href="/" aria-label="Back to the home page"><span aria-hidden="true">&#8734;</span><strong>Origin</strong></a>
     <nav aria-label="Main">
       <a href="/projects/" aria-current="page">Projects</a>
       <a href="/experience/">Experience</a>
@@ -49,7 +49,7 @@
     <header class="page-heading reveal">
       <span class="micro-label">01 / Projects</span>
       <h1>Projects<span>.</span></h1>
-      <p>Ten of them. Some are companies, some were weekends.</p>
+      <p>Ten of them, roughly in order of how much they mattered. Some are companies, some were weekends.</p>
     </header>
 
     <nav class="project-filters" aria-label="Filter projects">
@@ -82,9 +82,58 @@
         </div>
       </article>
 
+      <article id="radius" class="case-study reveal" data-tags="backend">
+        <div class="case-copy">
+          <div class="case-topline"><span>02</span><span>Co-founder &amp; backend lead · 2026</span></div>
+          <h2>Radius</h2>
+          <p>A stablecoin payment platform has to prove a transfer is legitimate before it settles. I owned the compliance engine: wallet risk scoring, cryptographic verification, and Travel Rule automation across 30+ jurisdictions.</p>
+          <p class="case-note"><b>Hard part.</b> Every jurisdiction sets its own thresholds. Encoding that without a thousand if-statements took three rewrites.</p>
+          <div class="case-facts"><strong>15+ endpoints</strong><strong>30+ jurisdictions</strong></div>
+          <div class="case-tags"><span>FastAPI</span><span>PostgreSQL</span><span>SQLAlchemy</span></div>
+          <div class="case-links"><a href="https://github.com/shriatluri/sc-compliance" target="_blank" rel="noopener">GitHub &#8599;</a></div>
+        </div>
+        <div class="case-visual radius-visual" aria-label="Mock console: a wallet risk score of 18 with identity, sanctions, and Travel Rule checks passing">
+          <span class="visual-label">PAYMENT RISK CHECK</span>
+          <div class="risk-console" aria-hidden="true"><div><small>WALLET SCORE</small><strong>18</strong><span>LOW RISK</span></div><ul><li><b></b>Identity checked</li><li><b></b>Sanctions clear</li><li><b></b>Travel Rule ready</li></ul></div>
+        </div>
+      </article>
+
+      <article id="aristalkle" class="case-study reveal" data-tags="ai fullstack">
+        <div class="case-copy">
+          <div class="case-topline"><span>03</span><span>BoilerMake XI · 2025</span></div>
+          <h2>ArisTalkle</h2>
+          <p>Upload a video of yourself making an argument and it argues back, with a generated counterargument, voice, and synced video. Built in 24 hours. We won.</p>
+          <p class="case-note"><b>Hard part.</b> Not the AI. Merging four people's branches at 4am with a demo due at 9.</p>
+          <div class="case-facts"><strong>BoilerMake XI winner</strong><strong>24 hours, team of 4</strong></div>
+          <div class="case-tags"><span>Next.js</span><span>Flask</span><span>MongoDB</span></div>
+          <div class="case-links"><a href="https://github.com/AaravMohanty/ArisTalkle" target="_blank" rel="noopener">GitHub &#8599;</a></div>
+        </div>
+        <div class="case-visual" aria-label="Diagram: a debate video becomes a counterargument, then voice and video">
+          <span class="visual-label">24 HOUR BUILD</span>
+          <div class="flow"><strong>Debate video</strong><i>&rarr;</i><strong>Counterargument</strong><i>&rarr;</i><strong>Voice + video</strong></div>
+          <div class="waveform" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </article>
+
+      <article id="gnn" class="case-study reveal" data-tags="ai backend">
+        <div class="case-copy">
+          <div class="case-topline"><span>04</span><span>Healthcare ML · 2026</span></div>
+          <h2>GNN Anomaly Detection</h2>
+          <p>Fraud in Medicare data rarely looks wrong on a single claim. It looks wrong in the relationships around it, so I modeled providers, patients, and claims as one graph and trained a network on it.</p>
+          <p class="case-note"><b>Hard part.</b> 30 million records and almost no labels. Recall matters more than precision here.</p>
+          <div class="case-facts"><strong>30M+ records</strong><strong>98% recall</strong></div>
+          <div class="case-tags"><span>Python</span><span>Graph learning</span><span>scikit-learn</span></div>
+          <div class="case-links"><a href="https://github.com/AaravMohanty/GNN-Anomaly-Detection" target="_blank" rel="noopener">GitHub &#8599;</a></div>
+        </div>
+        <div class="case-visual gnn-visual" aria-label="Diagram: a network of nodes with one highlighted anomaly">
+          <span class="visual-label">ANOMALY FOUND</span>
+          <div class="graph-field" aria-hidden="true"><svg viewBox="0 0 500 260"><path d="M68 71L182 49L257 128L396 61M68 71L105 205L257 128L347 213L396 61M182 49L105 205M257 128L455 155"/></svg><i class="g1"></i><i class="g2"></i><i class="g3"></i><i class="g4"></i><i class="g5 alert"></i><i class="g6"></i><i class="g7"></i></div>
+        </div>
+      </article>
+
       <article id="atlas" class="case-study reveal" data-tags="ai">
         <div class="case-copy">
-          <div class="case-topline"><span>02</span><span>Personal agent · 2026</span></div>
+          <div class="case-topline"><span>05</span><span>Personal agent · 2026</span></div>
           <h2>Atlas</h2>
           <p>My own coding agent. It runs in the cloud, so I can hand it something long and pick it back up later.</p>
           <p class="case-note"><b>Hard part.</b> Context. An hour-long task blows past any window you give it, so most of the design is deciding what to keep and what to drop.</p>
@@ -105,55 +154,6 @@
         </div>
       </article>
 
-      <article id="radius" class="case-study reveal" data-tags="backend">
-        <div class="case-copy">
-          <div class="case-topline"><span>03</span><span>Co-founder &amp; backend lead · 2026</span></div>
-          <h2>Radius</h2>
-          <p>A stablecoin payment platform has to prove a transfer is legitimate before it settles. I owned the compliance engine: wallet risk scoring, cryptographic verification, and Travel Rule automation across 30+ jurisdictions.</p>
-          <p class="case-note"><b>Hard part.</b> Every jurisdiction sets its own thresholds. Encoding that without a thousand if-statements took three rewrites.</p>
-          <div class="case-facts"><strong>15+ endpoints</strong><strong>30+ jurisdictions</strong></div>
-          <div class="case-tags"><span>FastAPI</span><span>PostgreSQL</span><span>SQLAlchemy</span></div>
-          <div class="case-links"><a href="https://github.com/shriatluri/sc-compliance" target="_blank" rel="noopener">GitHub &#8599;</a></div>
-        </div>
-        <div class="case-visual radius-visual" aria-label="Mock console: a wallet risk score of 18 with identity, sanctions, and Travel Rule checks passing">
-          <span class="visual-label">PAYMENT RISK CHECK</span>
-          <div class="risk-console" aria-hidden="true"><div><small>WALLET SCORE</small><strong>18</strong><span>LOW RISK</span></div><ul><li><b></b>Identity checked</li><li><b></b>Sanctions clear</li><li><b></b>Travel Rule ready</li></ul></div>
-        </div>
-      </article>
-
-      <article id="aristalkle" class="case-study reveal" data-tags="ai fullstack">
-        <div class="case-copy">
-          <div class="case-topline"><span>04</span><span>BoilerMake XI · 2025</span></div>
-          <h2>ArisTalkle</h2>
-          <p>Upload a video of yourself making an argument and it argues back, with a generated counterargument, voice, and synced video. Built in 24 hours. We won.</p>
-          <p class="case-note"><b>Hard part.</b> Not the AI. Merging four people's branches at 4am with a demo due at 9.</p>
-          <div class="case-facts"><strong>BoilerMake XI winner</strong><strong>24 hours, team of 4</strong></div>
-          <div class="case-tags"><span>Next.js</span><span>Flask</span><span>MongoDB</span></div>
-          <div class="case-links"><a href="https://github.com/AaravMohanty/ArisTalkle" target="_blank" rel="noopener">GitHub &#8599;</a></div>
-        </div>
-        <div class="case-visual" aria-label="Diagram: a debate video becomes a counterargument, then voice and video">
-          <span class="visual-label">24 HOUR BUILD</span>
-          <div class="flow"><strong>Debate video</strong><i>&rarr;</i><strong>Counterargument</strong><i>&rarr;</i><strong>Voice + video</strong></div>
-          <div class="waveform" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        </div>
-      </article>
-
-      <article id="auxo" class="case-study reveal" data-tags="backend fullstack">
-        <div class="case-copy">
-          <div class="case-topline"><span>05</span><span>Building now · 2026</span></div>
-          <h2>Auxo</h2>
-          <p>A browser extension and a backend that share one decision contract. Before an action goes through, the extension asks the API whether policy allows it.</p>
-          <p class="case-note"><b>Hard part.</b> Keeping two runtimes honest about one schema. You find out they've drifted in production.</p>
-          <div class="case-facts"><strong>Shared contracts</strong><strong>Policy evaluation</strong></div>
-          <div class="case-tags"><span>TypeScript</span><span>Supabase</span><span>pnpm</span></div>
-          <div class="case-links"><a href="https://github.com/rakeers9/Auxo" target="_blank" rel="noopener">GitHub &#8599;</a></div>
-        </div>
-        <div class="case-visual auxo-visual" aria-label="Mock browser: a checkout request is evaluated against policy and allowed in 42 milliseconds">
-          <span class="visual-label">CHECK BEFORE ACTION</span>
-          <div class="browser-check" aria-hidden="true"><div class="browser-bar"><i></i><i></i><i></i><span>checkout</span></div><div class="decision-row"><span>request</span><b>&rarr;</b><span>policy</span><b>&rarr;</b><strong>ALLOW</strong></div><small>contract matched · 42 ms</small></div>
-        </div>
-      </article>
-
       <article id="thinkedin" class="case-study reveal" data-tags="ai fullstack">
         <div class="case-copy">
           <div class="case-topline"><span>06</span><span>PurdueTHINK · 2026</span></div>
@@ -170,19 +170,19 @@
         </div>
       </article>
 
-      <article id="gnn" class="case-study reveal" data-tags="ai backend">
+      <article id="auxo" class="case-study reveal" data-tags="backend fullstack">
         <div class="case-copy">
-          <div class="case-topline"><span>07</span><span>Healthcare ML · 2026</span></div>
-          <h2>GNN Anomaly Detection</h2>
-          <p>Fraud in Medicare data rarely looks wrong on a single claim. It looks wrong in the relationships around it, so I modeled providers, patients, and claims as one graph and trained a network on it.</p>
-          <p class="case-note"><b>Hard part.</b> 30 million records and almost no labels. Recall matters more than precision here.</p>
-          <div class="case-facts"><strong>30M+ records</strong><strong>98% recall</strong></div>
-          <div class="case-tags"><span>Python</span><span>Graph learning</span><span>scikit-learn</span></div>
-          <div class="case-links"><a href="https://github.com/AaravMohanty/GNN-Anomaly-Detection" target="_blank" rel="noopener">GitHub &#8599;</a></div>
+          <div class="case-topline"><span>07</span><span>Building now · 2026</span></div>
+          <h2>Auxo</h2>
+          <p>A browser extension and a backend that share one decision contract. Before an action goes through, the extension asks the API whether policy allows it.</p>
+          <p class="case-note"><b>Hard part.</b> Keeping two runtimes honest about one schema. You find out they've drifted in production.</p>
+          <div class="case-facts"><strong>Shared contracts</strong><strong>Policy evaluation</strong></div>
+          <div class="case-tags"><span>TypeScript</span><span>Supabase</span><span>pnpm</span></div>
+          <div class="case-links"><a href="https://github.com/rakeers9/Auxo" target="_blank" rel="noopener">GitHub &#8599;</a></div>
         </div>
-        <div class="case-visual gnn-visual" aria-label="Diagram: a network of nodes with one highlighted anomaly">
-          <span class="visual-label">ANOMALY FOUND</span>
-          <div class="graph-field" aria-hidden="true"><svg viewBox="0 0 500 260"><path d="M68 71L182 49L257 128L396 61M68 71L105 205L257 128L347 213L396 61M182 49L105 205M257 128L455 155"/></svg><i class="g1"></i><i class="g2"></i><i class="g3"></i><i class="g4"></i><i class="g5 alert"></i><i class="g6"></i><i class="g7"></i></div>
+        <div class="case-visual auxo-visual" aria-label="Mock browser: a checkout request is evaluated against policy and allowed in 42 milliseconds">
+          <span class="visual-label">CHECK BEFORE ACTION</span>
+          <div class="browser-check" aria-hidden="true"><div class="browser-bar"><i></i><i></i><i></i><span>checkout</span></div><div class="decision-row"><span>request</span><b>&rarr;</b><span>policy</span><b>&rarr;</b><strong>ALLOW</strong></div><small>contract matched · 42 ms</small></div>
         </div>
       </article>
 
@@ -245,6 +245,10 @@
   </main>
 
   <footer class="site-footer">
+    <div class="footer-rule">
+      <span class="footer-mark" aria-hidden="true">&#8734;</span>
+      <p>Still a lot left on the list.</p>
+    </div>
     <div class="footer-links">
         <a href="https://github.com/AaravMohanty" target="_blank" rel="noopener">GitHub</a>
         <a href="https://linkedin.com/in/aaravmohanty" target="_blank" rel="noopener">LinkedIn</a>
@@ -258,7 +262,7 @@
     </div>
   </footer>
 
-  <script src="/site.js?v=41" defer></script>
-  <script src="/main.js?v=41" defer></script>
+  <script src="/site.js?v=42" defer></script>
+  <script src="/main.js?v=42" defer></script>
 </body>
 </html>

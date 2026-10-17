@@ -1,6 +1,6 @@
 /* ---------------------------------------------------------------
    journal.js - the toys on the Outside work page.
-   Record player, bookshelf, keepy uppy, departure board, trivia.
+   Record player, bookshelf, keepy uppy, the loop, trivia.
    --------------------------------------------------------------- */
 
 (() => {
@@ -37,21 +37,21 @@
     { track: 'Revelry', artist: 'Kings of Leon', album: 'Only by the Night',
       link: 'https://music.apple.com/us/album/revelry/290302885?i=290303022',
       audio: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/90/7a/14/907a143d-6621-ee94-3960-d12d4bf68258/mzaf_13004482978685020546.plus.aac.p.m4a' },
-    { track: 'cardigan', artist: 'Taylor Swift', album: 'folklore',
+    { track: 'the last great american dynasty', artist: 'Taylor Swift', album: 'folklore',
       link: 'https://music.apple.com/us/album/folklore/1524793738',
-      audio: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/6a/cd/00/6acd00e6-a733-7a98-07eb-0a889b2b35ab/mzaf_424591521405406197.plus.aac.p.m4a' },
+      audio: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/4a/3c/21/4a3c2133-be44-9ce2-862b-6ff47e94f3cb/mzaf_5902596401825034325.plus.aac.p.m4a' },
     { track: 'Let It Happen', artist: 'Tame Impala', album: 'Currents',
       link: 'https://music.apple.com/us/album/currents/1440838039',
       audio: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/77/68/1f/77681ffc-56e6-813c-e1bc-d94a9b5893c1/mzaf_570579359857462588.plus.aac.p.m4a' },
-    { track: 'Wonderwall', artist: 'Oasis', album: '(What’s the Story) Morning Glory?',
+    { track: 'Champagne Supernova', artist: 'Oasis', album: '(What’s the Story) Morning Glory?',
       link: 'https://music.apple.com/us/album/whats-the-story-morning-glory-deluxe-remastered-edition/1525933483',
-      audio: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/86/3c/97/863c9741-2dbd-7ca2-3c88-67e87d504343/mzaf_13259566290948941960.plus.aac.p.m4a' },
+      audio: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d4/26/87/d42687f0-ba51-2f85-5fa1-5ade873b7c28/mzaf_10904749887391821267.plus.aac.p.m4a' },
     { track: 'Dreams', artist: 'Fleetwood Mac', album: 'Rumours',
       link: 'https://music.apple.com/us/album/rumours/594061854',
       audio: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d4/37/e7/d437e72a-c41b-332c-f196-bee295a9d673/mzaf_11574904347171701919.plus.aac.p.m4a' },
-    { track: 'Green Light', artist: 'Lorde', album: 'Melodrama',
+    { track: 'Supercut', artist: 'Lorde', album: 'Melodrama',
       link: 'https://music.apple.com/us/album/melodrama/1429662346',
-      audio: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/52/98/aa/5298aa77-f5d0-e6b7-7f24-5d06409abfc8/mzaf_4826261660034311199.plus.aac.p.m4a' }
+      audio: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/fb/10/93/fb1093b0-ebdd-41ea-7412-6195b868bc18/mzaf_16686823053102149553.plus.aac.p.m4a' }
   ];
 
   const turntable = document.querySelector('.turntable-card');
@@ -265,87 +265,161 @@
     reset();
   }
 
-  /* ========================== departure board ==========================
-     A split-flap board that works through every stop before repeating. */
+  /* ============================= the loop =============================
+     Trace the infinity path without leaving it. Every completed lap
+     narrows the line. Same shape the plane flies in the intro. */
 
-  const STOPS = [
-    { name: 'Turkey', note: 'Istanbul · Hagia Sophia', image: '/photos/destinations/turkey.jpg' },
-    { name: 'Peru', note: 'Machu Picchu · 2,430 m', image: '/photos/destinations/peru.jpg' },
-    { name: 'Greece', note: 'Santorini · the Cyclades', image: '/photos/destinations/greece.jpg' },
-    { name: 'Olympic', note: 'Washington · temperate rainforest', image: '/photos/creek.jpg' },
-    { name: 'Oregon Coast', note: 'Highway 101, most of it', image: '/photos/coast.jpg' },
-    { name: 'Redwoods', note: 'California · tallest trees on earth', image: '/photos/hike.jpg' },
-    { name: 'Multnomah', note: 'Oregon · 620 ft of waterfall', image: '/photos/multnomah-falls.jpg' },
-    { name: 'Mt. Rainier', note: 'Washington · 14,411 ft', image: '/photos/friends-hike.jpg' }
-  ];
+  const loopSvg = document.querySelector('.loop-stage svg');
+  const loopGuide = document.querySelector('.loop-guide');
+  const loopTrail = document.querySelector('.loop-trail');
+  const loopHead = document.querySelector('.loop-head');
+  const loopStart = document.querySelector('.loop-start');
+  const loopLaps = document.querySelector('.loop-laps');
+  const loopBest = document.querySelector('.loop-best');
+  const loopDrift = document.querySelector('.loop-drift');
+  const loopMessage = document.querySelector('.loop-message');
+  const loopReset = document.querySelector('.loop-reset');
 
-  const flapTarget = document.querySelector('.departure-board strong');
-  const gateNode = document.querySelector('.departure-board .gate');
-  const stopNote = document.querySelector('.stop-note');
-  const travelImage = document.querySelector('.travel-visual img');
-  const travelStamp = document.querySelector('.travel-stamp');
-  const travelCount = document.querySelector('.travel-count');
-  const travelSpin = document.querySelector('.travel-spin');
+  if (loopSvg && loopGuide && loopTrail) {
+    const SAMPLES = 600;
+    const LOOK_AHEAD = 36;
+    const total = loopGuide.getTotalLength();
+    const points = Array.from({ length: SAMPLES }, (_, i) => {
+      const point = loopGuide.getPointAtLength((i / SAMPLES) * total);
+      return { x: point.x, y: point.y };
+    });
 
-  if (flapTarget && travelSpin) {
-    const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ .';
-    const seen = new Set();
-    let bag = shuffle(STOPS);
-    let flapping = false;
+    let laps = 0;
+    let index = 0;
+    let tracing = false;
+    let driftSum = 0;
+    let driftCount = 0;
+    let best = store.get('aarav-loop-best');
+    if (loopBest) loopBest.textContent = String(best);
 
-    const flapTo = (text) => {
-      if (reduced) { flapTarget.textContent = text; return Promise.resolve(); }
-      return new Promise((resolve) => {
-        const upper = text.toUpperCase();
-        let settled = 0;
-        const tick = window.setInterval(() => {
-          let output = '';
-          for (let i = 0; i < upper.length; i += 1) {
-            output += i < settled ? upper[i] : GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
-          }
-          flapTarget.textContent = output;
-          settled += 1;
-          if (settled > upper.length) {
-            window.clearInterval(tick);
-            flapTarget.textContent = text;
-            resolve();
-          }
-        }, 55);
-      });
+    loopTrail.style.strokeDasharray = String(total);
+    loopTrail.style.strokeDashoffset = String(total);
+
+    const tolerance = () => Math.max(9, 17 - laps * 1.5);
+
+    // screen pixels -> svg user units, which is where the sampled path lives
+    const probe = loopSvg.createSVGPoint();
+    const toUserSpace = (event) => {
+      probe.x = event.clientX;
+      probe.y = event.clientY;
+      const matrix = loopSvg.getScreenCTM();
+      return matrix ? probe.matrixTransform(matrix.inverse()) : { x: -1e4, y: -1e4 };
     };
 
-    travelSpin.addEventListener('click', async () => {
-      if (flapping) return;
-      flapping = true;
-      travelSpin.disabled = true;
+    const paintTrail = () => {
+      const progress = index / SAMPLES;
+      loopTrail.style.strokeDashoffset = String(total * (1 - progress));
+    };
 
-      if (!bag.length) bag = shuffle(STOPS);
-      const stop = bag.pop();
+    const moveHead = (point) => {
+      if (!loopHead) return;
+      loopHead.setAttribute('cx', String(point.x));
+      loopHead.setAttribute('cy', String(point.y));
+    };
 
-      if (gateNode) gateNode.textContent = `Gate ${String.fromCharCode(65 + Math.floor(Math.random() * 6))}${1 + Math.floor(Math.random() * 24)}`;
-      if (stopNote) stopNote.textContent = '';
-      if (travelStamp) travelStamp.textContent = 'BEEN';
+    const setMessage = (text) => { if (loopMessage) loopMessage.textContent = text; };
 
-      await flapTo(stop.name);
-
-      if (travelImage) {
-        travelImage.classList.add('is-swapping');
-        window.setTimeout(() => {
-          travelImage.src = stop.image;
-          travelImage.alt = `A photo from ${stop.name}`;
-          travelImage.classList.remove('is-swapping');
-        }, reduced ? 0 : 160);
+    const stop = (reason) => {
+      if (!tracing) return;
+      tracing = false;
+      loopSvg.classList.remove('is-tracing');
+      loopSvg.classList.add('is-broken');
+      if (laps > best) {
+        best = laps;
+        store.set('aarav-loop-best', best);
+        if (loopBest) loopBest.textContent = String(best);
       }
-      if (stopNote) stopNote.textContent = stop.note;
+      setMessage(laps === 0
+        ? `${reason} No laps yet.`
+        : `${reason} ${laps} ${laps === 1 ? 'lap' : 'laps'}.`);
+    };
 
-      seen.add(stop.name);
-      if (travelCount) travelCount.textContent = `${seen.size} / ${STOPS.length} stops`;
+    const reset = () => {
+      tracing = false;
+      laps = 0;
+      index = 0;
+      driftSum = 0;
+      driftCount = 0;
+      loopSvg.classList.remove('is-tracing', 'is-broken');
+      loopTrail.style.strokeDashoffset = String(total);
+      moveHead(points[0]);
+      if (loopLaps) loopLaps.textContent = '0';
+      if (loopDrift) loopDrift.textContent = '100%';
+      setMessage('Press the dot, then follow the line.');
+    };
 
-      travelSpin.disabled = false;
-      travelSpin.textContent = 'Next stop';
-      flapping = false;
-      markFound('travel');
+    loopSvg.addEventListener('pointerdown', (event) => {
+      const here = toUserSpace(event);
+      const gap = Math.hypot(here.x - points[index].x, here.y - points[index].y);
+      if (gap > tolerance() * 2.2) {
+        setMessage(laps || index ? 'Pick it up where you left off.' : 'Start on the dot.');
+        return;
+      }
+      event.preventDefault();
+      tracing = true;
+      loopSvg.classList.add('is-tracing');
+      loopSvg.classList.remove('is-broken');
+      loopSvg.setPointerCapture(event.pointerId);
+      setMessage('Keep going.');
+      markFound('loop');
     });
+
+    loopSvg.addEventListener('pointermove', (event) => {
+      if (!tracing) return;
+      event.preventDefault();
+      const here = toUserSpace(event);
+
+      // only look forward, so you cannot scrub backwards for free
+      let bestGap = Infinity;
+      let bestStep = 0;
+      for (let step = 0; step <= LOOK_AHEAD; step += 1) {
+        const candidate = points[(index + step) % SAMPLES];
+        const gap = Math.hypot(here.x - candidate.x, here.y - candidate.y);
+        if (gap < bestGap) { bestGap = gap; bestStep = step; }
+      }
+
+      if (bestGap > tolerance()) { stop('Off the line.'); return; }
+
+      driftSum += bestGap;
+      driftCount += 1;
+      if (loopDrift && driftCount % 6 === 0) {
+        const accuracy = Math.max(0, Math.round(100 - (driftSum / driftCount) * 5));
+        loopDrift.textContent = `${accuracy}%`;
+      }
+
+      if (bestStep > 0) {
+        const wrapped = index + bestStep >= SAMPLES;
+        index = (index + bestStep) % SAMPLES;
+        moveHead(points[index]);
+        if (wrapped) {
+          laps += 1;
+          if (loopLaps) loopLaps.textContent = String(laps);
+          loopTrail.style.strokeDashoffset = String(total);
+          loopSvg.classList.add('is-lap');
+          window.setTimeout(() => loopSvg.classList.remove('is-lap'), 420);
+          setMessage(laps === 1 ? 'One lap. The line just got thinner.' : `${laps} laps. Thinner again.`);
+        } else {
+          paintTrail();
+        }
+      }
+    });
+
+    const release = () => { if (tracing) stop('Lifted off.'); };
+    loopSvg.addEventListener('pointerup', release);
+    loopSvg.addEventListener('pointercancel', release);
+    loopSvg.addEventListener('pointerleave', release);
+    loopReset?.addEventListener('click', reset);
+
+    if (loopStart) {
+      loopStart.setAttribute('cx', String(points[0].x));
+      loopStart.setAttribute('cy', String(points[0].y));
+    }
+    reset();
   }
 
   /* ============================== trivia ============================== */
