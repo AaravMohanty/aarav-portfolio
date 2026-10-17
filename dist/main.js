@@ -8,6 +8,10 @@
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const INTRO_KEY = 'aarav-intro-v7';
+  const ENTERED_KEY = 'aarav-entered-v1';
+
+  let alreadyEntered = false;
+  try { alreadyEntered = sessionStorage.getItem(ENTERED_KEY) === 'yes'; } catch (error) {}
 
   /* Keep hidden layers out of the tab order as well as out of sight. */
   const setInert = (node, value) => {
@@ -45,7 +49,17 @@
     }, 640);
   };
 
-  if (flightIntro) {
+  if (alreadyEntered) {
+    // Straight to the page. Both gates stay closed for the rest of the session.
+    document.body.classList.remove('flight-pending', 'globe-pending');
+    document.body.classList.add('flight-complete', 'globe-finished');
+    if (flightIntro) flightIntro.hidden = true;
+    if (globeIntro) globeIntro.hidden = true;
+    setInert(flightIntro, true);
+    setInert(globeIntro, true);
+    setInert(shell, false);
+    document.documentElement.classList.add('flight-seen', 'site-entered');
+  } else if (flightIntro) {
     let seen = false;
     try { seen = sessionStorage.getItem(INTRO_KEY) === 'seen'; } catch (error) {}
 
@@ -76,7 +90,7 @@
   const canvas = document.querySelector('.globe-canvas');
   const enterButton = document.querySelector('.globe-enter');
 
-  if (globeIntro) {
+  if (globeIntro && !alreadyEntered) {
     if (document.body.classList.contains('flight-pending')) {
       window.addEventListener('intro:quote-done', () => globeIntro.removeAttribute('aria-hidden'), { once: true });
     } else {
@@ -85,7 +99,7 @@
     }
   }
 
-  if (globeIntro && canvas) {
+  if (globeIntro && canvas && !alreadyEntered) {
     const context = canvas.getContext('2d');
     const locationItems = [...globeIntro.querySelectorAll('.globe-locations li')];
     const placeCard = globeIntro.querySelector('.globe-place-card');
@@ -395,6 +409,7 @@
     const finishIntro = () => {
       if (finished) return;
       finished = true;
+      try { sessionStorage.setItem(ENTERED_KEY, 'yes'); } catch (error) {}
       globeIntro.classList.add('is-leaving');
       document.body.classList.remove('globe-pending');
       document.body.classList.add('globe-finished');
@@ -471,6 +486,7 @@
     requestAnimationFrame(draw);
   } else if (document.body.classList.contains('globe-pending')) {
     document.body.classList.remove('globe-pending');
+    document.body.classList.add('globe-finished');
     setInert(shell, false);
   }
 

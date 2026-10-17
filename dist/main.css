@@ -353,6 +353,13 @@
 /* ======================== GLOBE INTRO ======================== */
 
 .site-shell { transition: opacity .55s ease .08s, transform .65s var(--ease) .08s; }
+
+/* Coming back to / after you have entered once should not replay the gate.
+   Keyed off <html> so there is no flash before the scripts run. */
+.site-entered .flight-intro, .site-entered .globe-intro { display: none !important; }
+.site-entered .globe-pending { overflow: visible; }
+.site-entered .globe-pending .site-shell { opacity: 1; transform: none; pointer-events: auto; }
+
 .globe-pending { overflow: hidden; }
 .globe-pending .site-shell { opacity: 0; transform: translateY(10px); pointer-events: none; }
 .globe-finished .site-shell { opacity: 1; transform: none; }
