@@ -8,8 +8,7 @@
 .home-main { padding-top: 0; }
 
 .hero-shell {
-  min-height: calc(100svh - 86px);
-  padding-block: clamp(3rem, 9vh, 6rem) 2rem;
+  padding-block: clamp(3rem, 9vh, 6rem) clamp(2.5rem, 6vh, 5rem);
   display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(250px, .6fr);
   gap: clamp(2.5rem, 8vw, 8rem); align-items: center;
 }
@@ -34,50 +33,6 @@
 .now-block { padding: 1.1rem 0 1.2rem; border-bottom: 1px solid var(--line); }
 .now-block p { margin: .6rem 0 0; color: var(--text-2); font-size: .93rem; line-height: 1.55; }
 .now-block a { color: var(--paper); text-decoration-color: var(--accent); text-underline-offset: .22em; }
-
-.scroll-cue {
-  grid-column: 1 / -1; align-self: end;
-  display: inline-flex; align-items: center; gap: .6rem;
-  color: var(--muted); font-family: var(--mono); font-size: .68rem; letter-spacing: .14em;
-  text-transform: uppercase; text-decoration: none;
-}
-.scroll-cue i { display: block; width: 1px; height: 26px; background: linear-gradient(var(--accent), transparent); }
-.scroll-cue:hover, .scroll-cue:focus-visible { color: var(--paper); }
-
-/* selected work on the home page */
-.home-section { padding-block: clamp(4rem, 8vw, 7rem); border-top: 1px solid var(--line-strong); }
-.section-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: clamp(2rem, 4vw, 3rem); }
-.section-top h2 { margin: .5rem 0 0; font-family: var(--serif); font-weight: 400; font-size: clamp(2.2rem, 4.6vw, 3.8rem); line-height: .95; letter-spacing: -.03em; }
-.section-top > a { color: var(--text-3); font-family: var(--mono); font-size: .74rem; letter-spacing: .06em; text-decoration: none; transition: color .2s ease; }
-.section-top > a:hover, .section-top > a:focus-visible { color: var(--accent); }
-
-.pick-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
-.pick {
-  min-height: 230px; padding: 1.6rem 1.4rem 1.4rem 0;
-  display: flex; flex-direction: column; color: var(--paper); text-decoration: none;
-  border-right: 1px solid var(--line);
-  transition: background .35s ease, padding .35s var(--ease);
-}
-.pick:nth-child(n+2) { padding-left: 1.4rem; }
-.pick:last-child { border-right: 0; }
-.pick:hover, .pick:focus-visible { background: rgba(255, 255, 255, .03); }
-.pick-top { display: flex; justify-content: space-between; gap: 1rem; color: var(--muted); font-family: var(--mono); font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; }
-.pick-top b { color: var(--accent); font-weight: 400; }
-.pick h3 { margin: 1.8rem 0 .6rem; font-family: var(--serif); font-weight: 400; font-size: clamp(1.7rem, 2.6vw, 2.4rem); line-height: 1; letter-spacing: -.025em; }
-.pick p { margin: 0 0 1.4rem; color: var(--text-3); font-size: .88rem; line-height: 1.6; }
-.pick span { margin-top: auto; color: var(--text-3); font-family: var(--mono); font-size: .68rem; letter-spacing: .06em; }
-.pick:hover span, .pick:focus-visible span { color: var(--accent); }
-
-/* what I work with */
-.stack-rows { border-top: 1px solid var(--line); }
-.stack-row { padding: 1.15rem 0; display: grid; grid-template-columns: minmax(130px, .22fr) 1fr; gap: 1rem 2rem; align-items: baseline; border-bottom: 1px solid var(--line); }
-.stack-row > div { display: flex; flex-wrap: wrap; gap: .5rem .55rem; }
-.stack-row span {
-  padding: .4rem .7rem; color: var(--text-2); border: 1px solid var(--line); border-radius: 999px;
-  font-family: var(--mono); font-size: .72rem;
-  transition: color .2s ease, border-color .2s ease, transform .2s ease;
-}
-.stack-row span:hover { color: var(--paper); border-color: rgba(209, 154, 97, .55); transform: translateY(-2px); }
 
 /* the three big doors */
 .home-index { border-top: 1px solid var(--line-strong); display: grid; grid-template-columns: repeat(3, 1fr); }
@@ -430,13 +385,13 @@
 
 /* ========================= RESPONSIVE ========================= */
 
+/* on a real screen the home is exactly one viewport:
+   header, hero, the three doors, footer */
 @media (min-width: 901px) {
-  .home-page .site-shell { min-height: 100svh; }
-}
-
-@media (max-width: 1000px) {
-  .pick-grid { grid-template-columns: 1fr 1fr; }
-  .pick:nth-child(3) { grid-column: 1 / -1; border-right: 0; padding-left: 0; border-top: 1px solid var(--line); }
+  .home-page .site-shell { min-height: 100svh; display: flex; flex-direction: column; }
+  .home-page .home-main { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: clamp(2rem, 5vh, 4rem); }
+  .home-page .hero-shell { flex: 1; align-content: center; padding-block: clamp(1.5rem, 4vh, 3rem); }
+  .home-page .home-index { flex: none; }
 }
 
 @media (max-width: 900px) {
@@ -445,7 +400,6 @@
   .now-block { padding-right: 1rem; border-top: 1px solid var(--line); }
   .now-block:not(:last-child) { border-right: 1px solid var(--line); }
   .now-block:not(:first-child) { padding-left: 1rem; }
-  .scroll-cue { display: none; }
   .case-study { grid-template-columns: 1fr; }
   .case-copy { padding-right: 0; }
   .case-visual { min-height: 250px; border-left: 0; border-top: 1px solid var(--line); }
@@ -456,7 +410,6 @@
   .role-row { grid-template-columns: .3fr 1fr; }
   .role-row ul { grid-column: 2; }
   .side-grid { grid-template-columns: 1fr; }
-  .stack-row { grid-template-columns: 1fr; gap: .8rem; }
 }
 
 @media (max-width: 650px) {
@@ -465,9 +418,7 @@
   .now-panel { grid-template-columns: 1fr; }
   .now-block:not(:last-child) { border-right: 0; }
   .now-block:not(:first-child) { padding-left: 0; }
-  .pick-grid, .home-index { grid-template-columns: 1fr; }
-  .pick, .pick:nth-child(n+2), .pick:nth-child(3) { min-height: 0; padding: 1.5rem 0; border-right: 0; border-top: 1px solid var(--line); }
-  .pick-grid .pick:first-child { border-top: 0; }
+  .home-index { grid-template-columns: 1fr; }
   .index-link, .index-link:nth-child(n+2) { min-height: 88px; padding-left: 0; border-right: 0; border-bottom: 1px solid var(--line); }
   .project-filters { gap: .4rem; padding: .7rem 0; }
   .project-filters button { padding: .45rem .7rem; font-size: .66rem; }

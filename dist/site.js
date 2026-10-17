@@ -73,7 +73,7 @@
     { group: 'Elsewhere', icon: '↗', label: 'LinkedIn', hint: 'aaravmohanty', href: 'https://linkedin.com/in/aaravmohanty', external: true },
     { group: 'Elsewhere', icon: '↗', label: 'Résumé', hint: 'pdf', href: '/resume.pdf', external: true },
     { group: 'Elsewhere', icon: '✉', label: 'Email me', hint: 'aarav.mohanty23@gmail.com', href: 'mailto:aarav.mohanty23@gmail.com' },
-    { group: 'Elsewhere', icon: '⧉', label: 'Copy my email address', hint: 'to clipboard', action: 'copy-email' }
+    { group: 'Elsewhere', icon: '⧉', label: 'Copy email address', hint: 'to clipboard', action: 'copy-email' }
   ];
 
   const palette = document.createElement('div');
@@ -86,7 +86,7 @@
     <div class="palette-panel">
       <div class="palette-search">
         <span aria-hidden="true">&gt;</span>
-        <input type="text" placeholder="Jump to a page, a project, or my inbox" aria-label="Search" autocomplete="off" spellcheck="false"
+        <input type="text" placeholder="Jump to a page or a project" aria-label="Search" autocomplete="off" spellcheck="false"
                role="combobox" aria-expanded="true" aria-controls="palette-results" aria-autocomplete="list">
       </div>
       <ul class="palette-list" id="palette-results" role="listbox" aria-label="Results"></ul>
@@ -125,7 +125,7 @@
       const empty = document.createElement('li');
       empty.className = 'palette-empty';
       empty.setAttribute('role', 'presentation');
-      empty.textContent = 'Nothing here. Try "projects" or "email".';
+      empty.textContent = 'No matches.';
       list.appendChild(empty);
       return;
     }
@@ -187,7 +187,7 @@
     const address = 'aarav.mohanty23@gmail.com';
     const done = () => {
       if (!labelNode) return;
-      labelNode.textContent = 'Copied. Say something good.';
+      labelNode.textContent = 'Copied.';
       window.setTimeout(closePalette, 650);
     };
     if (navigator.clipboard?.writeText) {

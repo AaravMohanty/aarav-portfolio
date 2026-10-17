@@ -18,9 +18,9 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Instrument+Serif:ital@0;1&display=swap">
-  <link rel="stylesheet" href="/base.css?v=40">
-  <link rel="stylesheet" href="/main.css?v=40">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Libre+Caslon+Display&display=swap">
+  <link rel="stylesheet" href="/base.css?v=41">
+  <link rel="stylesheet" href="/main.css?v=41">
   <script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="interior-page experience-page" id="top">
@@ -49,8 +49,8 @@
   <main id="main" class="site-main">
     <header class="page-heading reveal">
       <span class="micro-label">02 / Experience</span>
-      <h1>Where I've<br>worked<span>.</span></h1>
-      <p>Four internships in two years. The running lesson has been that the algorithm is almost never the hard part. It's everything standing around it.</p>
+      <h1>Experience<span>.</span></h1>
+      <p>Four internships and a research lab.</p>
     </header>
 
     <section class="timeline reveal" aria-label="Work history">
@@ -59,13 +59,12 @@
         <div class="role-main">
           <h2>Capital One</h2>
           <p class="role-title">Software Engineering Intern</p>
-          <p>I built a Slack assistant for operations teams. It streams answers token by token, stops and asks a person before doing anything it shouldn't decide alone, and runs on ECS Fargate underneath. By August it was fielding questions for ten different teams.</p>
+          <p>A Slack assistant for operations teams. It streams answers token by token and pauses for human approval before anything consequential.</p>
         </div>
         <ul>
-          <li class="role-highlight">2,500+ people across 10 teams ended up using it</li>
-          <li>100+ queries a day, response time cut roughly in half</li>
-          <li>Streaming SSE pipeline with human-in-the-loop interrupts</li>
-          <li>Dockerized on AWS ECS Fargate, conversation state in DynamoDB</li>
+          <li class="role-highlight">2,500+ users across 10 teams</li>
+          <li>100+ queries a day, response time cut in half</li>
+          <li>SSE streaming, DynamoDB state, Dockerized on AWS ECS Fargate</li>
         </ul>
       </article>
 
@@ -74,13 +73,12 @@
         <div class="role-main">
           <h2>Empower AI</h2>
           <p class="role-title">Software Engineering Intern</p>
-          <p>Fraud, waste, and abuse detection on federal healthcare data. I built the pipelines that got thirty million records into usable shape, and the evaluation setup that told us whether a model was genuinely better or had just gotten lucky on one split.</p>
+          <p>Fraud, waste, and abuse detection on federal healthcare data. I built the data pipelines and the model evaluation setup.</p>
         </div>
         <ul>
-          <li class="role-highlight">30M+ Medicare and Medicaid records through the pipeline</li>
-          <li>97% accuracy and 98% recall on anomaly detection</li>
+          <li class="role-highlight">30M+ Medicare and Medicaid records</li>
+          <li>97% accuracy, 98% recall</li>
           <li>Isolation Forest, LOF, and one-class SVM, packaged for audit</li>
-          <li>Reproducible evaluation so results survived review</li>
         </ul>
       </article>
 
@@ -89,13 +87,12 @@
         <div class="role-main">
           <h2>Ackuity</h2>
           <p class="role-title">Software Engineering Intern</p>
-          <p>A Chrome extension that catches sensitive information on its way into ChatGPT and other AI tools, and redacts it before it ever leaves the browser. It has to happen as you type, which is a much stricter constraint than it sounds.</p>
+          <p>A Chrome extension that catches sensitive data on its way into ChatGPT and redacts it before it leaves the browser. It has to run as you type.</p>
         </div>
         <ul>
-          <li class="role-highlight">40+ kinds of PII and credentials caught in real time</li>
-          <li>Working across 3 major LLM platforms</li>
-          <li>Fine-tuned DistilBERT on 40,000 synthetic examples, exported to ONNX</li>
-          <li>Two-tier confidence thresholds to keep false positives survivable</li>
+          <li class="role-highlight">40+ types of PII and credentials, in real time</li>
+          <li>Across 3 LLM platforms</li>
+          <li>DistilBERT fine-tuned on 40,000 synthetic examples, exported to ONNX</li>
         </ul>
       </article>
 
@@ -104,13 +101,12 @@
         <div class="role-main">
           <h2>Kihara Bioinformatics Lab</h2>
           <p class="role-title">Machine Learning Research Intern</p>
-          <p>My first research job. I wrote a custom reward function and a PPO pipeline to push AlphaFold2 toward better predictions on beta-amyloid structures, then presented what came out of it to the lab. Learning to defend a result is its own skill.</p>
+          <p>Reinforcement learning on protein structure prediction. I wrote a custom reward function and a PPO pipeline to improve AlphaFold2 output on beta-amyloid.</p>
         </div>
         <ul>
           <li class="role-highlight">100+ protein structures evaluated</li>
-          <li>5% lift on the target structural metric</li>
-          <li>PPO training pipeline in Python and PyTorch</li>
-          <li>PyRosetta and PyMol for preprocessing and simulation</li>
+          <li>5% lift on the target metric</li>
+          <li>PPO in Python and PyTorch, PyRosetta and PyMol for preprocessing</li>
         </ul>
       </article>
     </section>
@@ -119,7 +115,6 @@
       <section class="side-card" aria-labelledby="education-title">
         <span class="micro-label">School</span>
         <h2 id="education-title">Purdue University</h2>
-        <p>West Lafayette, Indiana.</p>
         <dl>
           <dt>Degree</dt><dd><b>BS Computer Science</b>, minor in Mathematics</dd>
           <dt>Graduating</dt><dd>May 2028</dd>
@@ -130,17 +125,17 @@
 
       <section class="side-card" aria-labelledby="clubs-title">
         <span class="micro-label">On campus</span>
-        <h2 id="clubs-title">Where my other hours go</h2>
+        <h2 id="clubs-title">Clubs</h2>
         <ul class="club-list">
           <li>
             <strong>PurdueTHINK Consulting</strong>
             <span>Technical Lead</span>
-            <p>Student consulting group. I run the technical side, which lately has meant building <a href="/projects/#thinkedin">the alumni network</a> the club now runs on.</p>
+            <p>I run the technical side. Most recently, <a href="/projects/#thinkedin">the alumni network</a> the club uses.</p>
           </li>
           <li>
             <strong>Boiler Quant</strong>
             <span>Quantitative Trading Analyst</span>
-            <p>Defining KPIs and maintaining <a href="/projects/#boiler-quant">the streaming data pipeline</a> behind the group's crypto strategies.</p>
+            <p>KPIs and <a href="/projects/#boiler-quant">the streaming data pipeline</a> behind the group's crypto strategies.</p>
           </li>
         </ul>
       </section>
@@ -149,11 +144,7 @@
 
   <footer class="site-footer">
     <div class="footer-cta">
-      <div>
-        <span class="micro-label">Get in touch</span>
-        <h2><a href="mailto:aarav.mohanty23@gmail.com">aarav.mohanty23@gmail.com</a></h2>
-        <p>Looking for a summer 2027 internship. If you're hiring, or just want to compare notes, email is the fastest way to reach me.</p>
-      </div>
+      <a class="footer-email" href="mailto:aarav.mohanty23@gmail.com">aarav.mohanty23@gmail.com</a>
       <div class="footer-links">
         <a href="https://github.com/AaravMohanty" target="_blank" rel="noopener">GitHub</a>
         <a href="https://linkedin.com/in/aaravmohanty" target="_blank" rel="noopener">LinkedIn</a>
@@ -167,7 +158,7 @@
     </div>
   </footer>
 
-  <script src="/site.js?v=40" defer></script>
-  <script src="/main.js?v=40" defer></script>
+  <script src="/site.js?v=41" defer></script>
+  <script src="/main.js?v=41" defer></script>
 </body>
 </html>

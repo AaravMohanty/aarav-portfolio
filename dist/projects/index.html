@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Projects · Aarav Mohanty</title>
-  <meta name="description" content="Ten things I've built: retrieval pipelines, agents, compliance backends, a hackathon winner, and a couple of games.">
+  <meta name="description" content="Ten projects: retrieval pipelines, agents, compliance backends, a hackathon winner, and a couple of games.">
   <meta name="theme-color" content="#0e0e0d">
   <link rel="canonical" href="https://aaravmohanty.com/projects/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Projects · Aarav Mohanty">
-  <meta property="og:description" content="Ten things I've built, and the part of each one that was actually hard.">
+  <meta property="og:description" content="Ten projects, and the part of each one that was hard.">
   <meta property="og:url" content="https://aaravmohanty.com/projects/">
   <meta property="og:image" content="https://aaravmohanty.com/og.jpg">
   <meta name="twitter:card" content="summary_large_image">
@@ -18,9 +18,9 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Instrument+Serif:ital@0;1&display=swap">
-  <link rel="stylesheet" href="/base.css?v=40">
-  <link rel="stylesheet" href="/main.css?v=40">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Libre+Caslon+Display&display=swap">
+  <link rel="stylesheet" href="/base.css?v=41">
+  <link rel="stylesheet" href="/main.css?v=41">
   <script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="interior-page projects-page" id="top">
@@ -49,8 +49,8 @@
   <main id="main" class="site-main">
     <header class="page-heading reveal">
       <span class="micro-label">01 / Projects</span>
-      <h1>Things I've<br>built<span>.</span></h1>
-      <p>Some of these are companies, some were weekends. For each one I've tried to write down the part that was actually hard, because that's the part worth reading.</p>
+      <h1>Projects<span>.</span></h1>
+      <p>Ten of them. Some are companies, some were weekends.</p>
     </header>
 
     <nav class="project-filters" aria-label="Filter projects">
@@ -67,11 +67,11 @@
         <div class="case-copy">
           <div class="case-topline"><span>01</span><span>Co-founder · 2025 to now</span></div>
           <h2>Amdahl</h2>
-          <p>Two of us started Amdahl around a problem that sounds boring until you watch someone live it: government legal teams sitting on tens of thousands of pages of records with no real way to search them. I own ingestion and retrieval, from parsing whatever format a document shows up in to handing back the exact page an answer came from.</p>
-          <p class="case-note"><b>The hard part.</b> The documents aren't consistent. Same form, twelve layouts, half of them scanned crooked. Almost all of the work was normalizing before any of the retrieval was worth doing.</p>
+          <p>Government legal teams sit on tens of thousands of pages of records with no way to search them. I own ingestion and retrieval: parsing whatever format a document arrives in, and returning the page an answer came from.</p>
+          <p class="case-note"><b>Hard part.</b> The records aren't consistent. Same form, twelve layouts, half of them scanned crooked. Most of the work was normalizing before retrieval was worth doing.</p>
           <div class="case-facts"><strong>10,000+ pages</strong><strong>85% less manual review</strong></div>
           <div class="case-tags"><span>Python</span><span>LangChain</span><span>ChromaDB</span><span>AWS GovCloud</span></div>
-          <div class="case-links"><a href="https://github.com/AaravMohanty/Amdahl" target="_blank" rel="noopener">View on GitHub &#8599;</a></div>
+          <div class="case-links"><a href="https://github.com/AaravMohanty/Amdahl" target="_blank" rel="noopener">GitHub &#8599;</a></div>
         </div>
         <div class="case-visual amdahl-visual" aria-label="Diagram: raw records are cleaned, indexed, then answered with a cited source">
           <span class="visual-label">FROM FILES TO ANSWERS</span>
@@ -87,11 +87,11 @@
         <div class="case-copy">
           <div class="case-topline"><span>02</span><span>Personal agent · 2026</span></div>
           <h2>Atlas</h2>
-          <p>Atlas is my own coding agent. It runs in the cloud so I can hand it something long, go to class, and find it still working when I get back. The goal was never to replace me typing. It was to stop losing the thread on anything that takes more than one sitting.</p>
-          <p class="case-note"><b>The hard part.</b> Context. A task that runs for an hour will blow past any window you give it, so most of the design turned into decisions about what to keep, what to summarize, and what to let go.</p>
+          <p>My own coding agent. It runs in the cloud, so I can hand it something long and pick it back up later.</p>
+          <p class="case-note"><b>Hard part.</b> Context. An hour-long task blows past any window you give it, so most of the design is deciding what to keep and what to drop.</p>
           <div class="case-facts"><strong>Always-on runner</strong><strong>Long-horizon tasks</strong></div>
           <div class="case-tags"><span>TypeScript</span><span>Agent tooling</span></div>
-          <div class="case-links"><a href="https://github.com/AaravMohanty/atlas-personal-agent" target="_blank" rel="noopener">View on GitHub &#8599;</a></div>
+          <div class="case-links"><a href="https://github.com/AaravMohanty/atlas-personal-agent" target="_blank" rel="noopener">GitHub &#8599;</a></div>
         </div>
         <div class="case-visual atlas-visual" aria-label="Diagram: one agent core connected to task, code, tools, and memory">
           <span class="visual-label">ONE AGENT, CONTINUOUS CONTEXT</span>
@@ -110,11 +110,11 @@
         <div class="case-copy">
           <div class="case-topline"><span>03</span><span>Co-founder &amp; backend lead · 2026</span></div>
           <h2>Radius</h2>
-          <p>A stablecoin payment platform has to prove a transfer is legitimate before it settles, not after. I owned the compliance engine: wallet risk scoring, cryptographic wallet verification, and Travel Rule automation across more than thirty jurisdictions, behind an API that answers while someone is waiting.</p>
-          <p class="case-note"><b>The hard part.</b> Every jurisdiction has its own thresholds and its own idea of what counts as a verified counterparty. Encoding that without the whole thing collapsing into a thousand if-statements took three rewrites.</p>
+          <p>A stablecoin payment platform has to prove a transfer is legitimate before it settles. I owned the compliance engine: wallet risk scoring, cryptographic verification, and Travel Rule automation across 30+ jurisdictions.</p>
+          <p class="case-note"><b>Hard part.</b> Every jurisdiction sets its own thresholds. Encoding that without a thousand if-statements took three rewrites.</p>
           <div class="case-facts"><strong>15+ endpoints</strong><strong>30+ jurisdictions</strong></div>
           <div class="case-tags"><span>FastAPI</span><span>PostgreSQL</span><span>SQLAlchemy</span></div>
-          <div class="case-links"><a href="https://github.com/shriatluri/sc-compliance" target="_blank" rel="noopener">View on GitHub &#8599;</a></div>
+          <div class="case-links"><a href="https://github.com/shriatluri/sc-compliance" target="_blank" rel="noopener">GitHub &#8599;</a></div>
         </div>
         <div class="case-visual radius-visual" aria-label="Mock console: a wallet risk score of 18 with identity, sanctions, and Travel Rule checks passing">
           <span class="visual-label">PAYMENT RISK CHECK</span>
@@ -126,11 +126,11 @@
         <div class="case-copy">
           <div class="case-topline"><span>04</span><span>BoilerMake XI · 2025</span></div>
           <h2>ArisTalkle</h2>
-          <p>Upload a video of yourself making an argument and it argues back, with a generated counterargument, a generated voice, and video synced to match. We built it in twenty-four hours at BoilerMake and won.</p>
-          <p class="case-note"><b>The hard part.</b> Honestly, not the AI. It was getting four people's branches to merge at 4am with a demo due at 9. I led the team and spent most of the night on the video sync.</p>
+          <p>Upload a video of yourself making an argument and it argues back, with a generated counterargument, voice, and synced video. Built in 24 hours. We won.</p>
+          <p class="case-note"><b>Hard part.</b> Not the AI. Merging four people's branches at 4am with a demo due at 9.</p>
           <div class="case-facts"><strong>BoilerMake XI winner</strong><strong>24 hours, team of 4</strong></div>
           <div class="case-tags"><span>Next.js</span><span>Flask</span><span>MongoDB</span></div>
-          <div class="case-links"><a href="https://github.com/AaravMohanty/ArisTalkle" target="_blank" rel="noopener">View on GitHub &#8599;</a></div>
+          <div class="case-links"><a href="https://github.com/AaravMohanty/ArisTalkle" target="_blank" rel="noopener">GitHub &#8599;</a></div>
         </div>
         <div class="case-visual" aria-label="Diagram: a debate video becomes a counterargument, then voice and video">
           <span class="visual-label">24 HOUR BUILD</span>
@@ -143,11 +143,11 @@
         <div class="case-copy">
           <div class="case-topline"><span>05</span><span>Building now · 2026</span></div>
           <h2>Auxo</h2>
-          <p>A browser extension and a backend that agree on exactly one thing: a decision contract. Before an action goes through, the extension asks the API whether policy allows it and gets back a structured answer instead of a guess.</p>
-          <p class="case-note"><b>The hard part.</b> Keeping two runtimes honest about one schema. The extension and the server have to stay in lockstep, and there is no good way to find out they've drifted except in production.</p>
+          <p>A browser extension and a backend that share one decision contract. Before an action goes through, the extension asks the API whether policy allows it.</p>
+          <p class="case-note"><b>Hard part.</b> Keeping two runtimes honest about one schema. You find out they've drifted in production.</p>
           <div class="case-facts"><strong>Shared contracts</strong><strong>Policy evaluation</strong></div>
           <div class="case-tags"><span>TypeScript</span><span>Supabase</span><span>pnpm</span></div>
-          <div class="case-links"><a href="https://github.com/rakeers9/Auxo" target="_blank" rel="noopener">View on GitHub &#8599;</a></div>
+          <div class="case-links"><a href="https://github.com/rakeers9/Auxo" target="_blank" rel="noopener">GitHub &#8599;</a></div>
         </div>
         <div class="case-visual auxo-visual" aria-label="Mock browser: a checkout request is evaluated against policy and allowed in 42 milliseconds">
           <span class="visual-label">CHECK BEFORE ACTION</span>
@@ -159,11 +159,11 @@
         <div class="case-copy">
           <div class="case-topline"><span>06</span><span>PurdueTHINK · 2026</span></div>
           <h2>THINKedIn</h2>
-          <p>PurdueTHINK had an alumni list and no way to use it. I built the internal network around it: scraped and cleaned the records, added matching so a member looking for a product role gets pointed at the right alum, and put outreach drafting on top so nobody has to write the first message from scratch.</p>
-          <p class="case-note"><b>The hard part.</b> Six and a half thousand records pulled from everywhere means six and a half thousand chances for a duplicate, a dead profile, or a job title from four years ago. The matching is only as good as the cleanup under it.</p>
+          <p>PurdueTHINK had an alumni list and no way to use it. I scraped and cleaned the records, then built matching and outreach drafting on top.</p>
+          <p class="case-note"><b>Hard part.</b> 6,500 records pulled from everywhere means 6,500 chances for a duplicate or a four-year-old job title. The matching is only as good as the cleanup.</p>
           <div class="case-facts"><strong>6,500+ records</strong><strong>Used across the club</strong></div>
           <div class="case-tags"><span>React</span><span>Flask</span><span>Supabase</span></div>
-          <div class="case-links"><a href="https://github.com/AaravMohanty/thinkinternalproject" target="_blank" rel="noopener">View on GitHub &#8599;</a></div>
+          <div class="case-links"><a href="https://github.com/AaravMohanty/thinkinternalproject" target="_blank" rel="noopener">GitHub &#8599;</a></div>
         </div>
         <div class="case-visual think-visual" aria-label="Diagram: two member profiles matched at 92 percent">
           <span class="visual-label">FIND THE RIGHT ALUM</span>
@@ -175,11 +175,11 @@
         <div class="case-copy">
           <div class="case-topline"><span>07</span><span>Healthcare ML · 2026</span></div>
           <h2>GNN Anomaly Detection</h2>
-          <p>Fraud in Medicare and Medicaid data usually doesn't look wrong on any single claim. It looks wrong in the shape of the relationships around it. So I modeled providers, patients, and claims as one graph and trained a network to find the neighborhoods that don't belong.</p>
-          <p class="case-note"><b>The hard part.</b> Thirty million records and almost no labels. Recall matters more than precision here, because a missed case costs far more than a flagged one that turns out to be fine.</p>
+          <p>Fraud in Medicare data rarely looks wrong on a single claim. It looks wrong in the relationships around it, so I modeled providers, patients, and claims as one graph and trained a network on it.</p>
+          <p class="case-note"><b>Hard part.</b> 30 million records and almost no labels. Recall matters more than precision here.</p>
           <div class="case-facts"><strong>30M+ records</strong><strong>98% recall</strong></div>
           <div class="case-tags"><span>Python</span><span>Graph learning</span><span>scikit-learn</span></div>
-          <div class="case-links"><a href="https://github.com/AaravMohanty/GNN-Anomaly-Detection" target="_blank" rel="noopener">View on GitHub &#8599;</a></div>
+          <div class="case-links"><a href="https://github.com/AaravMohanty/GNN-Anomaly-Detection" target="_blank" rel="noopener">GitHub &#8599;</a></div>
         </div>
         <div class="case-visual gnn-visual" aria-label="Diagram: a network of nodes with one highlighted anomaly">
           <span class="visual-label">ANOMALY FOUND</span>
@@ -191,8 +191,8 @@
         <div class="case-copy">
           <div class="case-topline"><span>08</span><span>Boiler Quant · 2025</span></div>
           <h2>Signal pipeline</h2>
-          <p>Boiler Quant runs on data nobody has cleaned yet. I built the async pipeline that streams and normalizes WebSocket feeds for twenty-plus crypto pairs, then layered RSI, Bollinger Bands, and moving averages on top and backtested the whole thing against real history.</p>
-          <p class="case-note"><b>The hard part.</b> Live feeds lie. Gaps, duplicates, and out-of-order ticks will quietly wreck a backtest, and you won't notice until the numbers look suspiciously good.</p>
+          <p>The async pipeline behind the group's crypto strategies. It streams and normalizes WebSocket feeds for 20+ pairs, then runs RSI, Bollinger Bands, and moving averages over them.</p>
+          <p class="case-note"><b>Hard part.</b> Live feeds lie. Gaps and out-of-order ticks wreck a backtest, and you only notice when the numbers look too good.</p>
           <div class="case-facts"><strong>20+ pairs</strong><strong>2.5% projected return</strong></div>
           <div class="case-tags"><span>Python</span><span>WebSockets</span><span>yFinance</span></div>
         </div>
@@ -214,11 +214,11 @@
         <div class="case-copy">
           <div class="case-topline"><span>09</span><span>Network programming · 2025</span></div>
           <h2>Clarity</h2>
-          <p>A social messaging app written from the socket layer up, with no framework doing the hard part for me. Accounts, profiles, friends, blocking, saved conversations, and a server that holds several clients at once without dropping anyone.</p>
-          <p class="case-note"><b>The hard part.</b> Concurrency. Two clients writing to the same conversation at the same moment is where all the interesting bugs live, and where most of my JUnit tests ended up pointing.</p>
+          <p>A social messaging app written from the socket layer up. Accounts, friends, blocking, saved conversations, and a server that holds several clients at once.</p>
+          <p class="case-note"><b>Hard part.</b> Concurrency. Two clients writing to one conversation is where the bugs are, and where most of the tests ended up.</p>
           <div class="case-facts"><strong>Concurrent clients</strong><strong>Persistent state</strong></div>
           <div class="case-tags"><span>Java</span><span>Sockets</span><span>JUnit</span></div>
-          <div class="case-links"><a href="https://github.com/AaravMohanty/Clarity-Social-Messaging" target="_blank" rel="noopener">View on GitHub &#8599;</a></div>
+          <div class="case-links"><a href="https://github.com/AaravMohanty/Clarity-Social-Messaging" target="_blank" rel="noopener">GitHub &#8599;</a></div>
         </div>
         <div class="case-visual clarity-visual" aria-label="Mock chat window with two messages and three connected clients">
           <span class="visual-label">SOCKET TO SOCKET</span>
@@ -230,11 +230,11 @@
         <div class="case-copy">
           <div class="case-topline"><span>10</span><span>Market game · 2025</span></div>
           <h2>StockGuessr</h2>
-          <p>Hide the ticker, show the chart, guess the company. It's Wordle for people who look at markets too much, built on real price history instead of made-up curves.</p>
-          <p class="case-note"><b>The hard part.</b> Making it fair. Too many hints and it's trivial, too few and it's a coin flip. Most of the tuning went into what to reveal and when.</p>
+          <p>Hide the ticker, show the chart, guess the company. Built on real price history.</p>
+          <p class="case-note"><b>Hard part.</b> Making it fair. Too many hints and it's trivial, too few and it's a coin flip.</p>
           <div class="case-facts"><strong>Real market data</strong><strong>Daily rounds</strong></div>
           <div class="case-tags"><span>TypeScript</span></div>
-          <div class="case-links"><a href="https://github.com/pradyumchitlu/StockGuessr" target="_blank" rel="noopener">View on GitHub &#8599;</a></div>
+          <div class="case-links"><a href="https://github.com/pradyumchitlu/StockGuessr" target="_blank" rel="noopener">GitHub &#8599;</a></div>
         </div>
         <div class="case-visual stock-visual" aria-label="Mock game card: an unnamed stock chart up 24.8 percent">
           <span class="visual-label">GUESS THE COMPANY</span>
@@ -247,11 +247,7 @@
 
   <footer class="site-footer">
     <div class="footer-cta">
-      <div>
-        <span class="micro-label">Get in touch</span>
-        <h2><a href="mailto:aarav.mohanty23@gmail.com">aarav.mohanty23@gmail.com</a></h2>
-        <p>Happy to go deeper on any of these. The write-ups leave out a lot of the ugly parts.</p>
-      </div>
+      <a class="footer-email" href="mailto:aarav.mohanty23@gmail.com">aarav.mohanty23@gmail.com</a>
       <div class="footer-links">
         <a href="https://github.com/AaravMohanty" target="_blank" rel="noopener">GitHub</a>
         <a href="https://linkedin.com/in/aaravmohanty" target="_blank" rel="noopener">LinkedIn</a>
@@ -265,7 +261,7 @@
     </div>
   </footer>
 
-  <script src="/site.js?v=40" defer></script>
-  <script src="/main.js?v=40" defer></script>
+  <script src="/site.js?v=41" defer></script>
+  <script src="/main.js?v=41" defer></script>
 </body>
 </html>
