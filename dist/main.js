@@ -482,6 +482,17 @@
     const cards = [...document.querySelectorAll('.case-study')];
     const countNode = filterBar.querySelector('.filter-count');
 
+    // counts come from the cards themselves, so they can never drift
+    buttons.forEach((button) => {
+      const key = button.dataset.filter;
+      const n = key === 'all'
+        ? cards.length
+        : cards.filter((card) => (card.dataset.tags || '').split(' ').includes(key)).length;
+      const tally = document.createElement('b');
+      tally.textContent = ` ${n}`;
+      button.appendChild(tally);
+    });
+
     const apply = (filter, initial = false) => {
       let shown = 0;
       cards.forEach((card) => {
@@ -500,7 +511,7 @@
       buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.filter === filter)));
       if (countNode) {
         const label = buttons.find((button) => button.dataset.filter === filter)?.firstChild?.textContent.trim();
-        countNode.textContent = filter === 'all' ? `Showing all ${shown}` : `Showing ${shown} in ${label}`;
+        countNode.textContent = filter === 'all' ? `All ${shown}` : `${shown} in ${label}`;
       }
     };
 
