@@ -1,6 +1,6 @@
 /* ---------------------------------------------------------------
    journal.js - the toys on the Outside work page.
-   Record player, bookshelf, keepy uppy, the loop, trivia.
+   Record player, bookshelf, keepy uppy, the loop, trivia, photo guessing.
    --------------------------------------------------------------- */
 
 (() => {
@@ -14,7 +14,7 @@
     if (found.has(key)) return;
     found.add(key);
     meterDots.forEach((dot, index) => dot.classList.toggle('is-found', index < found.size));
-    if (meterCount) meterCount.textContent = `${found.size} / 5`;
+    if (meterCount) meterCount.textContent = `${found.size} / 6`;
   };
 
   const store = {
@@ -544,6 +544,89 @@
     triviaNext.addEventListener('click', () => {
       if (index >= ROUND) { newRound(); return; }
       index += 1;
+      show();
+    });
+
+    newRound();
+  }
+
+  /* ============================ where was I ============================
+     Eight photos I actually took, four options each. The mapping comes
+     from the old departure board, so the answers are the real places. */
+
+  const PLACES = [
+    { image: '/photos/destinations/turkey.jpg', answer: 'Turkey', others: ['Greece', 'Morocco', 'Spain'] },
+    { image: '/photos/destinations/peru.jpg', answer: 'Peru', others: ['Bolivia', 'Ecuador', 'Chile'] },
+    { image: '/photos/destinations/greece.jpg', answer: 'Greece', others: ['Italy', 'Croatia', 'Portugal'] },
+    { image: '/photos/coast.jpg', answer: 'Oregon Coast', others: ['Big Sur, California', 'Acadia, Maine', 'Outer Banks'] },
+    { image: '/photos/creek.jpg', answer: 'Olympic National Park', others: ['Great Smoky Mountains', 'Shenandoah', 'Acadia'] },
+    { image: '/photos/hike.jpg', answer: 'The Redwoods', others: ['Yosemite', 'Sequoia', 'Muir Woods'] },
+    { image: '/photos/multnomah-falls.jpg', answer: 'Multnomah Falls', others: ['Yosemite Falls', 'Shoshone Falls', 'Havasu Falls'] },
+    { image: '/photos/friends-hike.jpg', answer: 'Mt. Rainier', others: ['Glacier', 'Denali', 'Rocky Mountain'] }
+  ];
+
+  const placeImage = document.querySelector('.place-image');
+  const placeAnswers = document.querySelector('.place-answers');
+  const placeReveal = document.querySelector('.place-reveal');
+  const placeIndex = document.querySelector('.place-index');
+  const placeScore = document.querySelector('.place-score');
+  const placeNext = document.querySelector('.place-next');
+
+  if (placeImage && placeAnswers && placeNext) {
+    let order = [];
+    let at = 0;
+    let right = 0;
+
+    const show = () => {
+      if (at >= PLACES.length) {
+        placeReveal.textContent = `${right} out of ${PLACES.length}.`;
+        placeAnswers.replaceChildren();
+        placeNext.textContent = 'Play again';
+        placeNext.hidden = false;
+        return;
+      }
+      const item = order[at];
+      placeImage.src = item.image;
+      placeImage.alt = 'A photo from one of my trips. Guess where.';
+      placeIndex.textContent = String(at + 1);
+      placeReveal.textContent = '';
+      placeNext.hidden = true;
+      placeAnswers.classList.remove('is-answered');
+
+      placeAnswers.replaceChildren(...shuffle([item.answer, ...item.others]).map((option) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = option;
+        button.addEventListener('click', () => {
+          if (placeAnswers.classList.contains('is-answered')) return;
+          placeAnswers.classList.add('is-answered');
+          const correct = option === item.answer;
+          [...placeAnswers.children].forEach((node) => {
+            if (node.textContent === item.answer) node.classList.add('is-correct');
+            else if (node === button) node.classList.add('is-wrong');
+          });
+          if (correct) right += 1;
+          placeScore.textContent = String(right);
+          placeReveal.textContent = correct ? item.answer : `Nope. ${item.answer}.`;
+          placeNext.hidden = false;
+          markFound('places');
+        });
+        return button;
+      }));
+    };
+
+    const newRound = () => {
+      order = shuffle(PLACES);
+      at = 0;
+      right = 0;
+      placeScore.textContent = '0';
+      placeNext.textContent = 'Next photo';
+      show();
+    };
+
+    placeNext.addEventListener('click', () => {
+      if (at >= PLACES.length) { newRound(); return; }
+      at += 1;
       show();
     });
 

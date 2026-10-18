@@ -99,7 +99,9 @@
     }
   }
 
-  if (globeIntro && canvas && !alreadyEntered) {
+  let openGlobe = null;
+
+  if (globeIntro && canvas) {
     const context = canvas.getContext('2d');
     const locationItems = [...globeIntro.querySelectorAll('.globe-locations li')];
     const placeCard = globeIntro.querySelector('.globe-place-card');
@@ -162,10 +164,15 @@
 
     window.addEventListener('intro:quote-done', () => { startedAt = performance.now(); });
 
-    fetch('/world.geo.json')
-      .then((response) => response.json())
-      .then((data) => { countries = data.features || []; })
-      .catch(() => { countries = []; });
+    let geoRequested = false;
+    const loadCountries = () => {
+      if (geoRequested) return;
+      geoRequested = true;
+      fetch('/world.geo.json')
+        .then((response) => response.json())
+        .then((data) => { countries = data.features || []; })
+        .catch(() => { countries = []; });
+    };
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -423,6 +430,32 @@
       }, 620);
     };
 
+    // Reopening after you have already entered: reset the view and restart
+    // the loop. Listeners were bound once at setup and still hold.
+    openGlobe = () => {
+      if (!finished && document.body.classList.contains('globe-pending')) return;
+      finished = false;
+      activeLocation = null;
+      dragged = false;
+      zoom = 1;
+      targetZoom = 1;
+      if (placeCard) { placeCard.classList.remove('is-open'); placeCard.hidden = true; }
+      globeIntro.hidden = false;
+      globeIntro.classList.remove('is-leaving', 'is-zoomed');
+      globeIntro.removeAttribute('aria-hidden');
+      document.documentElement.classList.remove('site-entered');
+      document.body.classList.remove('globe-finished');
+      document.body.classList.add('globe-pending');
+      setInert(globeIntro, false);
+      setInert(shell, true);
+      try { sessionStorage.removeItem(ENTERED_KEY); } catch (error) {}
+      loadCountries();
+      resize();
+      startedAt = performance.now();
+      enterButton?.classList.add('is-ready');
+      requestAnimationFrame(draw);
+    };
+
     resize();
     window.addEventListener('resize', resize, { passive: true });
 
@@ -482,12 +515,30 @@
       event.preventDefault();
     });
 
-    window.setTimeout(() => enterButton?.classList.add('is-ready'), reduceMotion ? 0 : 180);
-    requestAnimationFrame(draw);
+    if (!alreadyEntered) {
+      loadCountries();
+      window.setTimeout(() => enterButton?.classList.add('is-ready'), reduceMotion ? 0 : 180);
+      requestAnimationFrame(draw);
+    }
   } else if (document.body.classList.contains('globe-pending')) {
     document.body.classList.remove('globe-pending');
     document.body.classList.add('globe-finished');
     setInert(shell, false);
+  }
+
+  /* ---- getting back to the globe after you have entered ---- */
+
+  document.querySelectorAll('[data-open-globe]').forEach((button) => {
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      openGlobe?.();
+    });
+  });
+
+  // /?globe lets the command palette reach it from any page
+  if (openGlobe && new URLSearchParams(window.location.search).has('globe')) {
+    window.history.replaceState(null, '', window.location.pathname);
+    openGlobe();
   }
 
   /* ===================== project filters ===================== */

@@ -28,7 +28,7 @@ body::before {
 
 .section-nav {
   position: sticky; top: 0; z-index: 20;
-  display: grid; grid-template-columns: repeat(3, 1fr);
+  display: grid; grid-template-columns: repeat(4, 1fr);
   background: rgba(14, 14, 13, .92); backdrop-filter: blur(18px);
   border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line);
 }
@@ -224,6 +224,35 @@ body::before {
 .shelf-caption { padding: 1.3rem clamp(1rem, 3vw, 3rem); display: flex; justify-content: space-between; gap: 1.5rem; color: var(--text-2); }
 .shelf-caption p { margin: 0; font-size: .85rem; }
 
+/* ------------------------- where was I ------------------------- */
+
+.place-game { display: grid; grid-template-columns: 1.25fr .75fr; gap: clamp(1.2rem, 3vw, 2.5rem); align-items: stretch; }
+.place-shot { position: relative; min-height: 320px; overflow: hidden; background: #0b0b0a; border: 1px solid var(--line-strong); }
+.place-shot img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.86) contrast(1.04); }
+.place-shot::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10, 10, 9, .85), transparent 45%); pointer-events: none; }
+.place-reveal {
+  position: absolute; z-index: 1; left: 0; right: 0; bottom: 0;
+  min-height: 1.4em; padding: 1.1rem 1.2rem;
+  color: var(--paper); font-family: var(--serif); font-size: clamp(1.3rem, 2.4vw, 2rem); letter-spacing: -.02em;
+}
+.place-panel { display: grid; grid-template-rows: auto 1fr auto; gap: 1rem; padding: 1.2rem; border: 1px solid var(--line-strong); background: #151513; }
+.place-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-family: var(--mono); font-size: .66rem; letter-spacing: .08em; color: var(--accent); }
+.place-top strong { color: var(--text-3); font-weight: 400; }
+.place-top b { color: var(--paper); font-weight: 400; }
+.place-answers { display: grid; align-content: center; gap: .55rem; }
+.place-answers button {
+  min-height: 54px; padding: .7rem .9rem; color: var(--text-2); text-align: left;
+  background: #1b1a17; border: 1px solid var(--line); cursor: pointer; font-size: .82rem;
+  transition: .18s ease;
+}
+.place-answers button:hover, .place-answers button:focus-visible { color: var(--paper); border-color: var(--accent); transform: translateX(3px); }
+.place-answers.is-answered button { cursor: default; opacity: .5; }
+.place-answers.is-answered .is-correct { color: #c9e0c4; background: #1a2a1b; border-color: #517450; opacity: 1; }
+.place-answers.is-answered .is-wrong { color: #e3bbb3; background: #301d19; border-color: #7b4d44; opacity: 1; }
+.place-next { justify-self: end; padding: .65rem .9rem; color: var(--text-2); background: none; border: 1px solid var(--line-strong); cursor: pointer; font-family: var(--mono); font-size: .68rem; text-transform: uppercase; transition: .2s ease; }
+.place-next:hover, .place-next:focus-visible { color: var(--ink); background: var(--accent); border-color: var(--accent); }
+.place-next[hidden] { display: none; }
+
 /* --------------------------- reveal + sizes --------------------------- */
 
 .js .journal-section { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s var(--ease); }
@@ -261,6 +290,8 @@ body::before {
   .discovery-meter { left: .75rem; bottom: .75rem; }
   .discovery-meter > span { display: none; }
   .arcade-grid { grid-template-columns: 1fr; }
+  .place-game { grid-template-columns: 1fr; }
+  .place-shot { min-height: 240px; }
   .trivia-game { grid-column: auto; min-height: 610px !important; }
   .trivia-game > .game-top { grid-column: auto; }
   .trivia-card { grid-template-columns: 1fr; gap: 1.3rem; padding-top: 1rem; }

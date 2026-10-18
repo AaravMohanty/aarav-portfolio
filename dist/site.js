@@ -57,6 +57,7 @@
     { group: 'Pages', icon: '◉', label: 'Projects', hint: '/projects', href: '/projects/' },
     { group: 'Pages', icon: '◉', label: 'Experience', hint: '/experience', href: '/experience/' },
     { group: 'Pages', icon: '◉', label: 'Outside work', hint: '/outside', href: '/outside/' },
+    { group: 'Pages', icon: '◍', label: 'The globe', hint: 'where I have been', href: '/?globe' },
 
     { group: 'Projects', icon: '→', label: 'Amdahl', hint: 'legal search', href: '/projects/#amdahl' },
     { group: 'Projects', icon: '→', label: 'Atlas', hint: 'coding agent', href: '/projects/#atlas' },

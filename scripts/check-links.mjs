@@ -50,7 +50,8 @@ for (const file of htmlFiles) {
 
 // Anchors the command palette jumps to, which live only in site.js.
 const paletteTargets = [...readFileSync(join(ROOT, 'site.js'), 'utf8').matchAll(/href: '(\/[^']+)'/g)].map((m) => m[1]);
-for (const target of paletteTargets) {
+for (const raw of paletteTargets) {
+  const target = raw.replace(/\?[^#]*/, '');   // /?globe resolves to /
   const [path, hash] = target.split('#');
   const resolved = path.endsWith('/') ? join(ROOT, path, 'index.html') : join(ROOT, path);
   if (!existsSync(resolved)) {
