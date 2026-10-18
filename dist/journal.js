@@ -1,6 +1,6 @@
 /* ---------------------------------------------------------------
    journal.js - the toys on the Outside work page.
-   Record player, bookshelf, keepy uppy, the loop, trivia, photo guessing.
+   Record player, bookshelf, keepy uppy, the loop, trivia, step sequencer.
    --------------------------------------------------------------- */
 
 (() => {
@@ -550,87 +550,213 @@
     newRound();
   }
 
-  /* ============================ where was I ============================
-     Eight photos I actually took, four options each. The mapping comes
-     from the old departure board, so the answers are the real places. */
+  /* ============================== four bars ==============================
+     A step sequencer. Nothing is sampled: every voice is built out of
+     oscillators and a noise buffer, and steps are scheduled against the
+     audio clock rather than setInterval, which is what keeps it in time. */
 
-  const PLACES = [
-    { image: '/photos/destinations/turkey.jpg', answer: 'Turkey', others: ['Greece', 'Morocco', 'Spain'] },
-    { image: '/photos/destinations/peru.jpg', answer: 'Peru', others: ['Bolivia', 'Ecuador', 'Chile'] },
-    { image: '/photos/destinations/greece.jpg', answer: 'Greece', others: ['Italy', 'Croatia', 'Portugal'] },
-    { image: '/photos/coast.jpg', answer: 'Oregon Coast', others: ['Big Sur, California', 'Acadia, Maine', 'Outer Banks'] },
-    { image: '/photos/creek.jpg', answer: 'Olympic National Park', others: ['Great Smoky Mountains', 'Shenandoah', 'Acadia'] },
-    { image: '/photos/hike.jpg', answer: 'The Redwoods', others: ['Yosemite', 'Sequoia', 'Muir Woods'] },
-    { image: '/photos/multnomah-falls.jpg', answer: 'Multnomah Falls', others: ['Yosemite Falls', 'Shoshone Falls', 'Havasu Falls'] },
-    { image: '/photos/friends-hike.jpg', answer: 'Mt. Rainier', others: ['Glacier', 'Denali', 'Rocky Mountain'] }
+  const VOICES = [
+    { id: 'kick',  label: 'KICK'  },
+    { id: 'snare', label: 'SNARE' },
+    { id: 'hat',   label: 'HAT'   },
+    { id: 'bass',  label: 'BASS'  },
+    { id: 'blip',  label: 'BLIP'  }
   ];
+  const STEPS = 16;
 
-  const placeImage = document.querySelector('.place-image');
-  const placeAnswers = document.querySelector('.place-answers');
-  const placeReveal = document.querySelector('.place-reveal');
-  const placeIndex = document.querySelector('.place-index');
-  const placeScore = document.querySelector('.place-score');
-  const placeNext = document.querySelector('.place-next');
+  // something playable on arrival, so nobody meets a blank grid
+  const SEED = {
+    kick:  [0, 6, 8, 14],
+    snare: [4, 12],
+    hat:   [0, 2, 4, 6, 8, 10, 12, 14],
+    bass:  [0, 3, 8, 11],
+    blip:  [7, 15]
+  };
 
-  if (placeImage && placeAnswers && placeNext) {
-    let order = [];
-    let at = 0;
-    let right = 0;
+  const machineGrid = document.querySelector('.machine-grid');
+  const playButton = document.querySelector('.machine-play');
+  const tempoInput = document.querySelector('.machine-tempo input');
+  const tempoLabel = document.querySelector('.machine-tempo b');
 
-    const show = () => {
-      if (at >= PLACES.length) {
-        placeReveal.textContent = `${right} out of ${PLACES.length}.`;
-        placeAnswers.replaceChildren();
-        placeNext.textContent = 'Play again';
-        placeNext.hidden = false;
-        return;
-      }
-      const item = order[at];
-      placeImage.src = item.image;
-      placeImage.alt = 'A photo from one of my trips. Guess where.';
-      placeIndex.textContent = String(at + 1);
-      placeReveal.textContent = '';
-      placeNext.hidden = true;
-      placeAnswers.classList.remove('is-answered');
+  if (machineGrid && playButton && tempoInput) {
+    const pattern = {};
+    const cells = {};
+    let audio = null;
+    let noise = null;
+    let master = null;
+    let playing = false;
+    let step = 0;
+    let nextStepTime = 0;
+    let ticker = 0;
+    let frame = 0;
+    let queue = [];
 
-      placeAnswers.replaceChildren(...shuffle([item.answer, ...item.others]).map((option) => {
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.textContent = option;
-        button.addEventListener('click', () => {
-          if (placeAnswers.classList.contains('is-answered')) return;
-          placeAnswers.classList.add('is-answered');
-          const correct = option === item.answer;
-          [...placeAnswers.children].forEach((node) => {
-            if (node.textContent === item.answer) node.classList.add('is-correct');
-            else if (node === button) node.classList.add('is-wrong');
-          });
-          if (correct) right += 1;
-          placeScore.textContent = String(right);
-          placeReveal.textContent = correct ? item.answer : `Nope. ${item.answer}.`;
-          placeNext.hidden = false;
-          markFound('places');
+    VOICES.forEach((voice) => {
+      pattern[voice.id] = new Array(STEPS).fill(false);
+      (SEED[voice.id] || []).forEach((index) => { pattern[voice.id][index] = true; });
+
+      const row = document.createElement('div');
+      row.className = 'machine-row';
+      const name = document.createElement('span');
+      name.className = 'machine-name';
+      name.textContent = voice.label;
+      row.appendChild(name);
+
+      cells[voice.id] = [];
+      for (let i = 0; i < STEPS; i += 1) {
+        const cell = document.createElement('button');
+        cell.type = 'button';
+        cell.className = 'machine-cell';
+        if (i % 4 === 0) cell.classList.add('is-downbeat');
+        cell.setAttribute('aria-label', voice.label + ' step ' + (i + 1));
+        cell.setAttribute('aria-pressed', String(pattern[voice.id][i]));
+        cell.classList.toggle('is-on', pattern[voice.id][i]);
+        cell.addEventListener('click', () => {
+          pattern[voice.id][i] = !pattern[voice.id][i];
+          cell.classList.toggle('is-on', pattern[voice.id][i]);
+          cell.setAttribute('aria-pressed', String(pattern[voice.id][i]));
+          markFound('beat');
         });
-        return button;
-      }));
-    };
-
-    const newRound = () => {
-      order = shuffle(PLACES);
-      at = 0;
-      right = 0;
-      placeScore.textContent = '0';
-      placeNext.textContent = 'Next photo';
-      show();
-    };
-
-    placeNext.addEventListener('click', () => {
-      if (at >= PLACES.length) { newRound(); return; }
-      at += 1;
-      show();
+        cells[voice.id].push(cell);
+        row.appendChild(cell);
+      }
+      machineGrid.appendChild(row);
     });
 
-    newRound();
+    const buildAudio = () => {
+      if (audio) return;
+      const Ctor = window.AudioContext || window.webkitAudioContext;
+      audio = new Ctor();
+      master = audio.createGain();
+      master.gain.value = .55;
+      master.connect(audio.destination);
+
+      // one second of white noise, reused by the snare and the hat
+      noise = audio.createBuffer(1, audio.sampleRate, audio.sampleRate);
+      const data = noise.getChannelData(0);
+      for (let i = 0; i < data.length; i += 1) data[i] = Math.random() * 2 - 1;
+    };
+
+    const envelope = (peak, at, decay) => {
+      const gain = audio.createGain();
+      gain.gain.setValueAtTime(0.0001, at);
+      gain.gain.exponentialRampToValueAtTime(peak, at + .004);
+      gain.gain.exponentialRampToValueAtTime(0.0001, at + decay);
+      gain.connect(master);
+      return gain;
+    };
+
+    const fromNoise = (at, decay, filter, frequency, peak) => {
+      const source = audio.createBufferSource();
+      source.buffer = noise;
+      const band = audio.createBiquadFilter();
+      band.type = filter;
+      band.frequency.value = frequency;
+      source.connect(band);
+      band.connect(envelope(peak, at, decay));
+      source.start(at);
+      source.stop(at + decay + .02);
+    };
+
+    const tone = (at, decay, type, from, to, peak) => {
+      const osc = audio.createOscillator();
+      osc.type = type;
+      osc.frequency.setValueAtTime(from, at);
+      if (to !== from) osc.frequency.exponentialRampToValueAtTime(to, at + decay * .7);
+      osc.connect(envelope(peak, at, decay));
+      osc.start(at);
+      osc.stop(at + decay + .02);
+    };
+
+    const hit = {
+      kick:  (at) => tone(at, .34, 'sine', 150, 46, .95),
+      snare: (at) => { fromNoise(at, .18, 'bandpass', 1750, .5); tone(at, .09, 'triangle', 240, 170, .25); },
+      hat:   (at) => fromNoise(at, .045, 'highpass', 7800, .22),
+      bass:  (at) => tone(at, .3, 'triangle', 82, 82, .42),
+      blip:  (at) => tone(at, .1, 'square', 880, 880, .12)
+    };
+
+    const stepSeconds = () => (60 / Number(tempoInput.value)) / 4;
+
+    const schedule = () => {
+      while (nextStepTime < audio.currentTime + .12) {
+        VOICES.forEach((voice) => {
+          if (pattern[voice.id][step]) hit[voice.id](nextStepTime);
+        });
+        queue.push({ step: step, time: nextStepTime });
+        nextStepTime += stepSeconds();
+        step = (step + 1) % STEPS;
+      }
+    };
+
+    const paint = () => {
+      if (!playing) return;
+      while (queue.length && queue[0].time <= audio.currentTime) {
+        const current = queue.shift().step;
+        machineGrid.querySelectorAll('.is-playing').forEach((node) => node.classList.remove('is-playing'));
+        VOICES.forEach((voice) => cells[voice.id][current].classList.add('is-playing'));
+      }
+      frame = window.requestAnimationFrame(paint);
+    };
+
+    const start = () => {
+      buildAudio();
+      audio.resume();
+      playing = true;
+      step = 0;
+      queue = [];
+      nextStepTime = audio.currentTime + .06;
+      playButton.textContent = 'Stop';
+      playButton.setAttribute('aria-pressed', 'true');
+      ticker = window.setInterval(schedule, 25);
+      frame = window.requestAnimationFrame(paint);
+      markFound('beat');
+    };
+
+    const stop = () => {
+      playing = false;
+      window.clearInterval(ticker);
+      window.cancelAnimationFrame(frame);
+      queue = [];
+      playButton.textContent = 'Play';
+      playButton.setAttribute('aria-pressed', 'false');
+      machineGrid.querySelectorAll('.is-playing').forEach((node) => node.classList.remove('is-playing'));
+    };
+
+    playButton.addEventListener('click', () => (playing ? stop() : start()));
+
+    tempoInput.addEventListener('input', () => {
+      if (tempoLabel) tempoLabel.textContent = tempoInput.value;
+    });
+
+    const repaintCells = () => {
+      VOICES.forEach((voice) => {
+        cells[voice.id].forEach((cell, i) => {
+          cell.classList.toggle('is-on', pattern[voice.id][i]);
+          cell.setAttribute('aria-pressed', String(pattern[voice.id][i]));
+        });
+      });
+    };
+
+    document.querySelector('.machine-clear')?.addEventListener('click', () => {
+      VOICES.forEach((voice) => pattern[voice.id].fill(false));
+      repaintCells();
+    });
+
+    document.querySelector('.machine-shuffle')?.addEventListener('click', () => {
+      const density = { kick: .28, snare: .14, hat: .5, bass: .24, blip: .12 };
+      VOICES.forEach((voice) => {
+        for (let i = 0; i < STEPS; i += 1) {
+          pattern[voice.id][i] = Math.random() < density[voice.id];
+        }
+      });
+      pattern.kick[0] = true;   // always leave a downbeat
+      repaintCells();
+      markFound('beat');
+    });
+
+    // do not keep making noise into a tab nobody is looking at
+    document.addEventListener('visibilitychange', () => { if (document.hidden && playing) stop(); });
   }
 
   /* ===================== reveals and section spy ===================== */

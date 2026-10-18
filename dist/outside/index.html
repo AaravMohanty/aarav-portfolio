@@ -19,8 +19,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Libre+Caslon+Display&display=swap">
-  <link rel="stylesheet" href="/base.css?v=48">
-  <link rel="stylesheet" href="/journal.css?v=48">
+  <link rel="stylesheet" href="/base.css?v=49">
+  <link rel="stylesheet" href="/journal.css?v=49">
   <script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="outside-page" id="top">
@@ -60,7 +60,7 @@
       <a href="#play"><span>01</span> Play</a>
       <a href="#music"><span>02</span> Music</a>
       <a href="#reading"><span>03</span> Books</a>
-      <a href="#places"><span>04</span> Where</a>
+      <a href="#machine"><span>04</span> Make</a>
     </nav>
 
     <div class="discovery-meter" aria-live="polite">
@@ -212,21 +212,25 @@
       </div>
     </section>
 
-    <section id="places" class="journal-section places-section">
+    <section id="machine" class="journal-section machine-section">
       <header class="section-heading">
-        <div><span class="eyebrow">04 / Where was I</span><h2>Guess the <em>photo.</em></h2></div>
-        <p>Eight photos from my camera roll. Name the place.</p>
+        <div><span class="eyebrow">04 / Make some noise</span><h2>Four <em>bars.</em></h2></div>
+        <p>Click the grid, hit play. No samples, no library. Every sound is built from oscillators in your browser.</p>
       </header>
-      <div class="place-game">
-        <figure class="place-shot">
-          <img class="place-image" src="/photos/destinations/turkey.jpg" alt="A photo from one of my trips" width="1400" height="787">
-          <figcaption class="place-reveal" aria-live="polite"></figcaption>
-        </figure>
-        <div class="place-panel">
-          <div class="place-top"><span>PHOTO <b class="place-index">1</b> / 8</span><strong><b class="place-score">0</b> right</strong></div>
-          <div class="place-answers"></div>
-          <button class="place-next" type="button" hidden>Next photo</button>
+
+      <div class="machine">
+        <div class="machine-bar">
+          <button class="machine-play" type="button" aria-pressed="false">Play</button>
+          <label class="machine-tempo">Tempo <input type="range" min="70" max="160" value="104" step="1" aria-label="Tempo in beats per minute"> <b>104</b></label>
+          <div class="machine-actions">
+            <button class="machine-shuffle" type="button">Surprise me</button>
+            <button class="machine-clear" type="button">Clear</button>
+          </div>
         </div>
+        <div class="machine-grid-wrap">
+          <div class="machine-grid" role="group" aria-label="Step sequencer grid"></div>
+        </div>
+        <p class="machine-note">Sixteen steps, five voices. Kick and bass do the work, hat keeps time.</p>
       </div>
     </section>
   </main>
@@ -249,7 +253,7 @@
     </div>
   </footer>
 
-  <script src="/site.js?v=48" defer></script>
-  <script src="/journal.js?v=48" defer></script>
+  <script src="/site.js?v=49" defer></script>
+  <script src="/journal.js?v=49" defer></script>
 </body>
 </html>
