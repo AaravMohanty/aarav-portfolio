@@ -14,7 +14,7 @@
     if (found.has(key)) return;
     found.add(key);
     meterDots.forEach((dot, index) => dot.classList.toggle('is-found', index < found.size));
-    if (meterCount) meterCount.textContent = `${found.size} / 6`;
+    if (meterCount) meterCount.textContent = `${found.size} / 5`;
   };
 
   const store = {
@@ -139,35 +139,6 @@
     book.addEventListener('pointerenter', showTitle);
     book.addEventListener('focus', showTitle);
     book.addEventListener('click', () => markFound('book'));
-  });
-
-  /* ========================== saturday plan ========================== */
-
-  const plans = {
-    trail: { image: '/photos/friends-hike.jpg', alt: 'Hiking with friends', label: 'TRAIL DAY', title: 'Early start, bad signal.', copy: 'Usually with friends.', coordinate: 'phone on 10%' },
-    match: { image: '/photos/soccer.jpg', alt: 'Playing in a soccer match', label: 'MATCH DAY', title: 'One more game.', copy: 'Soccer mostly. Tennis lately.', coordinate: 'next goal wins' },
-    run: { image: '/photos/creek.jpg', alt: 'A creek running over mossy rocks', label: 'RUN DAY', title: 'No route planned.', copy: 'Pick a direction, figure out the way back later.', coordinate: 'watch says keep going' },
-    new: { image: '/photos/multnomah-falls.jpg', alt: 'Multnomah Falls in Oregon', label: 'OPEN DAY', title: 'Try it once.', copy: 'Golf and pickleball got on the list this way.', coordinate: 'plans pending' }
-  };
-  const planStage = document.querySelector('.plan-stage');
-  document.querySelectorAll('.plan-option').forEach((button) => {
-    button.addEventListener('click', () => {
-      const plan = plans[button.dataset.plan];
-      if (!plan || !planStage) return;
-      document.querySelectorAll('.plan-option').forEach((item) => item.classList.toggle('is-active', item === button));
-      planStage.classList.add('is-changing');
-      window.setTimeout(() => {
-        const image = planStage.querySelector('img');
-        image.src = plan.image;
-        image.alt = plan.alt;
-        planStage.querySelector('.plan-label').textContent = plan.label;
-        planStage.querySelector('.plan-title').textContent = plan.title;
-        planStage.querySelector('.plan-copy').textContent = plan.copy;
-        planStage.querySelector('.plan-coordinate').textContent = plan.coordinate;
-        planStage.classList.remove('is-changing');
-      }, reduced ? 0 : 220);
-      markFound('plan');
-    });
   });
 
   /* =========================== keepy uppy ===========================
