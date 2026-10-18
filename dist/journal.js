@@ -251,7 +251,10 @@
   const loopMessage = document.querySelector('.loop-message');
   const loopReset = document.querySelector('.loop-reset');
 
-  if (loopSvg && loopGuide && loopTrail) {
+  // getTotalLength is the one API here that isn't universal. Without this
+  // guard a throw would abort the whole file and take the sequencer,
+  // the trivia and the scroll spy down with it.
+  if (loopSvg && loopGuide && loopTrail && typeof loopGuide.getTotalLength === 'function') {
     const SAMPLES = 600;
     const LOOK_AHEAD = 36;
     const total = loopGuide.getTotalLength();
