@@ -9,7 +9,7 @@
 
 .hero-shell {
   padding-block: clamp(3rem, 9vh, 6rem) clamp(2.5rem, 6vh, 5rem);
-  display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(250px, .6fr);
+  display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(215px, .6fr);
   gap: clamp(2.5rem, 8vw, 8rem); align-items: center;
 }
 .hero-shell { position: relative; }
@@ -103,7 +103,7 @@
 .project-catalog { border-top: 0; }
 .case-study {
   position: relative; min-height: 300px;
-  display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(300px, .92fr);
+  display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(275px, .92fr);
   border-bottom: 1px solid var(--line-strong); scroll-margin-top: 68px;
   transition: background .4s ease;
 }

@@ -102,7 +102,7 @@ h1, h2, h3, blockquote { text-wrap: balance; }
   border-bottom: 1px solid var(--line);
 }
 .wordmark {
-  justify-self: start; display: inline-flex; align-items: center; gap: .6rem;
+  display: inline-flex; align-items: center; gap: .6rem;
   color: var(--paper); text-decoration: none;
 }
 .wordmark span {
@@ -126,9 +126,16 @@ h1, h2, h3, blockquote { text-wrap: balance; }
 .site-header nav a:hover::after, .site-header nav a:focus-visible::after, .site-header nav a[aria-current="page"]::after { right: 0; }
 .site-header nav a:hover, .site-header nav a:focus-visible, .site-header nav a[aria-current="page"] { color: var(--paper); }
 
-.site-header nav .nav-globe { display: inline-flex; align-items: center; gap: .42rem; }
-.site-header nav .nav-globe span { color: var(--accent); font-size: 1rem; line-height: 1; transition: transform .45s var(--ease); }
-.site-header nav .nav-globe:hover span, .site-header nav .nav-globe:focus-visible span { transform: rotate(180deg); }
+.header-start { justify-self: start; display: flex; align-items: center; gap: clamp(.9rem, 2vw, 1.6rem); min-width: 0; }
+.nav-globe {
+  display: inline-flex; align-items: center; gap: .42rem;
+  color: var(--text-2); text-decoration: none; white-space: nowrap;
+  transition: color .2s ease;
+}
+.nav-globe span { color: var(--accent); font-size: 1rem; line-height: 1; transition: transform .45s var(--ease); }
+.nav-globe b { font-size: .875rem; font-weight: 400; }
+.nav-globe:hover, .nav-globe:focus-visible { color: var(--paper); }
+.nav-globe:hover span, .nav-globe:focus-visible span { transform: rotate(180deg); }
 
 .header-end { justify-self: end; display: flex; align-items: center; gap: .9rem; }
 .resume-link { color: var(--text-2); font-size: .875rem; text-decoration: none; transition: color .2s ease; }
@@ -344,6 +351,18 @@ h1, h2, h3, blockquote { text-wrap: balance; }
   .header-end { grid-column: 2; grid-row: 1; }
   .footer-base { grid-template-columns: 1fr auto; }
   .local-time { display: none; }
+}
+
+/* the wordmark, Globe and Resume share one row below 900px, so the
+   Globe label steps aside before anything has to wrap */
+@media (max-width: 560px) {
+  .nav-globe b { display: none; }
+  .header-start { gap: .85rem; }
+}
+
+@media (max-width: 400px) {
+  .wordmark strong { font-size: .84rem; }
+  .site-header, .site-main, .site-footer { padding-inline: 1rem; }
 }
 
 @media (max-width: 650px) {

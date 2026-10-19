@@ -126,7 +126,7 @@ body::before {
 /* the five */
 .trivia-game { grid-column: 1 / -1; min-height: 410px !important; display: grid; grid-template-rows: auto 1fr; gap: 1rem; background: linear-gradient(120deg, #171611, var(--ink)) !important; }
 .trivia-game > .game-top { grid-column: 1 / -1; }
-.trivia-card { align-self: stretch; display: grid; grid-template-columns: minmax(250px, .8fr) minmax(340px, 1.2fr); gap: clamp(1.5rem, 5vw, 5rem); align-items: center; padding: 1.5rem clamp(.2rem, 2vw, 1.4rem) 1rem; }
+.trivia-card { align-self: stretch; display: grid; grid-template-columns: minmax(215px, .8fr) minmax(300px, 1.2fr); gap: clamp(1.5rem, 5vw, 5rem); align-items: center; padding: 1.5rem clamp(.2rem, 2vw, 1.4rem) 1rem; }
 .trivia-prompt { position: relative; padding-left: 1rem; border-left: 2px solid var(--accent); }
 .trivia-category { color: var(--accent); font-family: var(--mono); font-size: .68rem; letter-spacing: .11em; }
 .trivia-question { margin: .8rem 0 0; max-width: 16ch; font-family: var(--serif); font-weight: 400; font-size: clamp(1.7rem, 3.2vw, 2.9rem); line-height: 1.06; letter-spacing: -.03em; }
@@ -159,7 +159,7 @@ body::before {
 
 /* --------------------------- record player --------------------------- */
 
-.listening-room { display: grid; grid-template-columns: minmax(300px, .72fr) minmax(0, 1.28fr); gap: clamp(1.5rem, 3vw, 3rem); align-items: start; }
+.listening-room { display: grid; grid-template-columns: minmax(255px, .72fr) minmax(0, 1.28fr); gap: clamp(1.5rem, 3vw, 3rem); align-items: start; }
 .turntable-card {
   position: sticky; top: 78px; padding: clamp(1rem, 2.5vw, 2rem);
   background: linear-gradient(135deg, #4f3725 0, #251a12 42%, #15120f 100%);
@@ -276,7 +276,7 @@ body::before {
 .machine-actions button:hover, .machine-actions button:focus-visible { color: var(--paper); }
 
 .machine-grid-wrap { overflow-x: auto; padding: 1.2rem; }
-.machine-grid { display: grid; gap: .3rem; min-width: 520px; }
+.machine-grid { display: grid; gap: .3rem; min-width: 560px; }
 .machine-row { display: grid; grid-template-columns: 3.6rem repeat(16, minmax(0, 1fr)); gap: .3rem; align-items: center; }
 .machine-name { color: var(--muted); font-family: var(--mono); font-size: .62rem; letter-spacing: .1em; }
 .machine-cell {
