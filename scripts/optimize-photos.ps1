@@ -43,6 +43,19 @@ foreach ($file in $files) {
     continue
   }
 
+  # Phones record rotation in EXIF rather than rotating the pixels. Apply it,
+  # otherwise portrait shots come out on their side.
+  try {
+    if ($img.PropertyIdList -contains 274) {
+      $o = $img.GetPropertyItem(274).Value[0]
+      switch ($o) {
+        3 { $img.RotateFlip([System.Drawing.RotateFlipType]::Rotate180FlipNone) }
+        6 { $img.RotateFlip([System.Drawing.RotateFlipType]::Rotate90FlipNone) }
+        8 { $img.RotateFlip([System.Drawing.RotateFlipType]::Rotate270FlipNone) }
+      }
+    }
+  } catch {}
+
   $scale = [Math]::Min(1.0, $MaxEdge / [double][Math]::Max($img.Width, $img.Height))
   $w = [int][Math]::Round($img.Width * $scale)
   $h = [int][Math]::Round($img.Height * $scale)

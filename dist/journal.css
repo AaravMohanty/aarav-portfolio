@@ -24,6 +24,12 @@ body::before {
 .intro-note p { margin: 0 0 1rem; color: var(--text-2); font-size: clamp(.98rem, 1.5vw, 1.15rem); line-height: 1.6; letter-spacing: -.01em; }
 .intro-note span { color: var(--muted); font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
 
+/* a band of my own photography under the intro */
+.frames { grid-column: 1 / -1; margin-top: clamp(1.6rem, 3vw, 2.6rem); display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(.6rem, 1.4vw, 1rem); }
+.frames figure { overflow: hidden; border: 1px solid var(--line); background: #0b0b0a; }
+.frames img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; filter: saturate(.9) contrast(1.02); transition: transform .6s var(--ease), filter .4s ease; }
+.frames figure:hover img { transform: scale(1.04); filter: saturate(1) contrast(1.04); }
+
 /* --------------------------- section nav --------------------------- */
 
 .section-nav {
@@ -285,6 +291,8 @@ body::before {
 
 @media (max-width: 650px) {
   .outside-intro { min-height: 280px; padding-top: 2.4rem; }
+  .frames { grid-template-columns: 1fr 1fr; }
+  .frames figure:last-child { display: none; }
   .intro-note { padding-left: 0; border-left: 0; }
   .outside-intro h1 { font-size: clamp(3.2rem, 16vw, 5.2rem); }
   .section-nav a { min-height: 54px; padding: 0 .32rem; justify-content: center; font-size: .72rem; }
