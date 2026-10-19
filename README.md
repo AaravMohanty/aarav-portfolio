@@ -58,6 +58,10 @@ To replace one:
    location. Without them the card stops showing a Wikimedia line, which
    is what you want for a photo you took. Update `alt:` while you're there.
 
+4. Bump `PHOTO_V` in `dist/main.js`. Photos keep their filenames when they
+   are replaced and `_headers` marks `/places/*` immutable for a year, so
+   without that bump browsers keep showing the old picture.
+
 `incoming/` is gitignored, so the originals never get committed.
 
 ## Running it

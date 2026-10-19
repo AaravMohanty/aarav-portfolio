@@ -8,6 +8,10 @@
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const INTRO_KEY = 'aarav-intro-v7';
+  // Place photos keep their filenames when they are replaced, and _headers
+  // marks /places/* immutable for a year. Without this the old picture stays
+  // cached forever. Bump it whenever a photo in dist/places/ changes.
+  const PHOTO_V = '2';
   const ENTERED_KEY = 'aarav-entered-v1';
 
   let alreadyEntered = false;
@@ -386,7 +390,7 @@
       targetLon = location.lon;
       targetLat = clamp(location.lat, -68, 68);
       targetZoom = width < 720 ? 2.05 : 2.45;
-      placeImage.src = location.image;
+      placeImage.src = `${location.image}?v=${PHOTO_V}`;
       placeImage.alt = location.alt;
       placeTitle.textContent = location.label.replace(' / HOME', '');
       // Only borrowed photos carry a credit. Mine have none, so the line goes.
