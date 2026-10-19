@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aaravmohanty.com/sitemap.xml
+Sitemap: https://aarav-portfolio-one.vercel.app/sitemap.xml
