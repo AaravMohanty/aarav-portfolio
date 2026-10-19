@@ -177,6 +177,12 @@ h1, h2, h3, blockquote { text-wrap: balance; }
 }
 .glass > * { position: relative; z-index: 1; }
 
+/* a lighter drop for small controls, where the full shadow is too heavy */
+.glass-sm { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 4px 13px rgba(0, 0, 0, .32); }
+.glass-sm.glass-interactive:hover, .glass-sm.glass-interactive:focus-visible {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .24), 0 7px 20px rgba(0, 0, 0, .4);
+}
+
 /* glass that reacts to being touched */
 .glass-interactive { transition: background .3s ease, box-shadow .3s ease; }
 .glass-interactive:hover, .glass-interactive:focus-within {

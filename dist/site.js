@@ -72,6 +72,7 @@
 
     { group: 'Elsewhere', icon: '↗', label: 'GitHub', hint: 'AaravMohanty', href: 'https://github.com/AaravMohanty', external: true },
     { group: 'Elsewhere', icon: '↗', label: 'LinkedIn', hint: 'aaravmohanty', href: 'https://linkedin.com/in/aaravmohanty', external: true },
+    { group: 'Elsewhere', icon: '↗', label: 'X', hint: '@aarav_mohanty', href: 'https://x.com/aarav_mohanty', external: true },
     { group: 'Elsewhere', icon: '↗', label: 'Résumé', hint: 'pdf', href: '/resume.pdf', external: true },
     { group: 'Elsewhere', icon: '✉', label: 'Email me', hint: 'aarav.mohanty23@gmail.com', href: 'mailto:aarav.mohanty23@gmail.com' },
     { group: 'Elsewhere', icon: '⧉', label: 'Copy email address', hint: 'to clipboard', action: 'copy-email' }

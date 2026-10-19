@@ -78,9 +78,9 @@ body::before {
 .game-top strong b { color: var(--paper); font-weight: 400; }
 
 .game-reset, .travel-spin, .trivia-next {
-  color: var(--text-2); background: none; border: 1px solid var(--line-strong); cursor: pointer;
+  color: var(--text-2); cursor: pointer; border: 0; border-radius: 999px;
   font-family: var(--mono); font-size: .68rem; text-transform: uppercase;
-  transition: color .2s ease, background .2s ease, border-color .2s ease;
+  transition: color .2s ease;
 }
 .game-reset:hover, .game-reset:focus-visible,
 .travel-spin:hover, .travel-spin:focus-visible,
@@ -148,12 +148,15 @@ body::before {
 .trivia-answers button {
   min-height: 66px; padding: .7rem .9rem; display: grid; grid-template-columns: 28px 1fr;
   align-items: center; gap: .65rem; color: var(--text-2); text-align: left;
-  background: #1b1a17; border: 1px solid var(--line); cursor: pointer; font-size: .78rem;
+  background: linear-gradient(165deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .015));
+  -webkit-backdrop-filter: blur(14px) saturate(1.5); backdrop-filter: blur(14px) saturate(1.5);
+  border: 0; border-radius: 7px; cursor: pointer; font-size: .78rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .13), 0 4px 13px rgba(0, 0, 0, .3);
   transition: .18s ease;
 }
 .trivia-answers button span { display: grid; place-items: center; width: 26px; height: 26px; color: var(--muted); border: 1px solid #44413a; border-radius: 50%; font-family: var(--mono); font-size: .65rem; transition: .18s ease; }
 .trivia-answers button b { font-weight: 400; }
-.trivia-answers button:hover, .trivia-answers button:focus-visible { color: var(--paper); border-color: var(--accent); transform: translateY(-2px); }
+.trivia-answers button:hover, .trivia-answers button:focus-visible { color: var(--paper); background: linear-gradient(165deg, rgba(255, 255, 255, .11), rgba(255, 255, 255, .03)); transform: translateY(-2px); }
 .trivia-answers button:hover span, .trivia-answers button:focus-visible span { color: var(--ink); background: var(--accent); border-color: var(--accent); }
 .trivia-answers.is-answered button { cursor: default; opacity: .55; }
 .trivia-answers.is-answered .is-correct { color: #c9e0c4; background: #1a2a1b; border-color: #517450; opacity: 1; }
@@ -168,7 +171,7 @@ body::before {
 .turntable-card {
   position: sticky; top: 78px; padding: clamp(1rem, 2.5vw, 2rem);
   background: linear-gradient(135deg, #4f3725 0, #251a12 42%, #15120f 100%);
-  border: 1px solid #725137; box-shadow: 0 18px 50px rgba(0, 0, 0, .45), inset 0 1px rgba(169, 131, 95, .33);
+  border: 0; border-radius: 6px; box-shadow: 0 18px 50px rgba(0, 0, 0, .45);
 }
 .turntable-toggle { width: 100%; padding: 0; border: 0; background: none; cursor: pointer; }
 .turntable-deck { position: relative; display: block; aspect-ratio: 1.55; overflow: hidden; background: linear-gradient(145deg, #30291f, #171511 62%); border: 1px solid rgba(141, 116, 83, .2); box-shadow: inset 0 0 40px rgba(0, 0, 0, .6); }
@@ -188,7 +191,7 @@ body::before {
 .now-playing { padding: 1.4rem .25rem 0; display: grid; grid-template-columns: 1fr auto; gap: .4rem 1rem; align-items: end; }
 .now-playing > .eyebrow { grid-column: 1 / -1; }
 .now-playing strong { font-family: var(--serif); font-weight: 400; font-size: clamp(1.45rem, 2.6vw, 2.2rem); }
-.play-state { padding: .5rem 0; color: var(--text-3); background: none; border: 0; border-bottom: 1px solid var(--line); font-size: .72rem; cursor: pointer; transition: color .2s ease; }
+.play-state { padding: .5rem .85rem; color: var(--text-3); border: 0; border-radius: 999px; font-size: .72rem; cursor: pointer; transition: color .2s ease; }
 .play-state:hover, .play-state:focus-visible { color: var(--paper); }
 .preview-note { grid-column: 1 / -1; width: max-content; max-width: 100%; margin-top: .35rem; color: var(--muted); font-family: var(--mono); font-size: .7rem; text-decoration: none; transition: color .2s ease; }
 .preview-note:hover, .preview-note:focus-visible { color: var(--paper); }
@@ -245,12 +248,11 @@ body::before {
 .machine-tempo input { width: clamp(90px, 14vw, 150px); accent-color: var(--accent); }
 .machine-actions { margin-left: auto; display: flex; gap: .5rem; }
 .machine-actions button {
-  padding: .5rem .75rem; color: var(--text-3); background: none;
-  border: 1px solid var(--line-strong); cursor: pointer;
+  padding: .5rem .8rem; color: var(--text-3); cursor: pointer; border: 0; border-radius: 999px;
   font-family: var(--mono); font-size: .66rem; text-transform: uppercase;
-  transition: color .2s ease, border-color .2s ease;
+  transition: color .2s ease;
 }
-.machine-actions button:hover, .machine-actions button:focus-visible { color: var(--paper); border-color: var(--accent); }
+.machine-actions button:hover, .machine-actions button:focus-visible { color: var(--paper); }
 
 .machine-grid-wrap { overflow-x: auto; padding: 1.2rem; }
 .machine-grid { display: grid; gap: .3rem; min-width: 520px; }
