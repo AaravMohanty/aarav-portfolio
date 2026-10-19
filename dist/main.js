@@ -119,7 +119,7 @@
       { group: 'world', lat: 9.7489, lon: -83.7534, label: 'COSTA RICA', image: '/places/costa-rica.jpg', alt: 'Dusk on the Pacific coast of Costa Rica' },
       { group: 'world', lat: -9.19, lon: -75.0152, label: 'PERU', featured: true, image: '/places/peru.jpg', alt: 'A horse below the peaks in the Andes near Cusco' },
       { group: 'world', lat: 56.1304, lon: -106.3468, label: 'CANADA', image: '/places/canada.jpg', alt: 'A creek in the rainforest outside Vancouver' },
-      { group: 'world', lat: 19.8968, lon: -155.5828, label: 'HAWAII', image: '/places/hawaii.jpg', alt: 'The Na Pali Coast on Kauai, Hawaii', credit: 'Christian Joudrey · CC0', source: 'https://commons.wikimedia.org/wiki/File:Na_Pali_Coast_(Unsplash).jpg' },
+      { group: 'world', lat: 19.8968, lon: -155.5828, label: 'HAWAII', image: '/places/hawaii.jpg', alt: 'The Na Pali Coast on Kauai' },
       { group: 'world', lat: 64.2008, lon: -149.4937, label: 'ALASKA', image: '/places/alaska.jpg', alt: 'A valley near Skagway, Alaska' },
       { group: 'world', lat: 18.1096, lon: -77.2975, label: 'JAMAICA' },
       { group: 'world', lat: 25.0343, lon: -77.3963, label: 'BAHAMAS' },
