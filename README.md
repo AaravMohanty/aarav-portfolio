@@ -85,9 +85,9 @@ id or a moved image faster than clicking around does.
 | **Cloudflare Pages** | Build command empty, output directory `dist`. Reads `_headers` and `_redirects`. |
 | **GitHub Pages** | Enable Pages with source **GitHub Actions**. `.github/workflows/deploy-pages.yml` publishes on every push to `main`. |
 
-The live site is https://aarav-portfolio-one.vercel.app
+The live site is https://aaravmohanty.com
 
-Before going live on a new domain, search and replace `https://aarav-portfolio-one.vercel.app`
+Before going live on a new domain, search and replace `https://aaravmohanty.com`
 in the four `index.html` files, `robots.txt`, and `sitemap.xml`. Those strings
 are only used for canonical URLs, social cards, and the sitemap.
 
