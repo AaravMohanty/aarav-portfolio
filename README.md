@@ -42,6 +42,24 @@ dist/
 - After editing any asset, bump the `?v=` on the `<link>` and `<script>` tags so
   browsers pick it up.
 
+## Swapping in your own photos
+
+The globe's photo cards live in the `locations` array in `dist/main.js`.
+Seven already use my own shots; the rest are still Wikimedia placeholders.
+
+To replace one:
+
+1. Put the full-size photo in `incoming/`, named after the one it replaces
+   (`india.jpg`, `hawaii.jpg`, and so on, matching the filenames in
+   `dist/places/`).
+2. `npm run photos` — resizes to 1400px on the long edge, re-encodes as
+   JPEG, and writes it into `dist/places/`.
+3. In `dist/main.js`, delete the `credit:` and `source:` fields from that
+   location. Without them the card stops showing a Wikimedia line, which
+   is what you want for a photo you took. Update `alt:` while you're there.
+
+`incoming/` is gitignored, so the originals never get committed.
+
 ## Running it
 
 ```bash

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "npx --yes serve dist -l 4321",
     "build": "node -e \"console.log('Static site: nothing to build, dist/ is the output.')\"",
-    "check": "node scripts/check-links.mjs"
+    "check": "node scripts/check-links.mjs",
+    "photos": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/optimize-photos.ps1"
   }
 }

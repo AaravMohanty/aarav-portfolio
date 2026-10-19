@@ -117,7 +117,7 @@
       { group: 'world', lat: 4.2105, lon: 101.9758, label: 'MALAYSIA', image: '/places/malaysia.jpg', alt: 'The Petronas Towers at night in Kuala Lumpur, Malaysia', credit: 'Dcubillas · CC BY-SA 3.0', source: 'https://commons.wikimedia.org/wiki/File:Petronas_Towers_at_Night_-_from_the_base_upwards.jpg' },
       { group: 'world', lat: 3.2028, lon: 73.2207, label: 'MALDIVES', featured: true, image: '/places/maldives.jpg', alt: 'A small island and coral reef in the Maldives', credit: 'Ondřej Havelka · CC BY-SA 4.0', source: 'https://commons.wikimedia.org/wiki/File:Aerial_shot_of_a_small_island_on_a_coral_reef_in_the_Maldives.jpg' },
       { group: 'world', lat: 9.7489, lon: -83.7534, label: 'COSTA RICA', image: '/places/costa-rica.jpg', alt: 'La Paz waterfall in Costa Rica', credit: 'Matthias Bethke · CC BY-SA 4.0', source: 'https://commons.wikimedia.org/wiki/File:2006-08-04_Cascada_La_Paz.jpg' },
-      { group: 'world', lat: -9.19, lon: -75.0152, label: 'PERU', featured: true, image: '/places/peru.jpg', alt: 'Machu Picchu in Peru', credit: 'Diego Delso · CC BY-SA 4.0', source: 'https://commons.wikimedia.org/wiki/File:Machu_Picchu,_Per%C3%BA,_2015-07-30,_DD_47.JPG' },
+      { group: 'world', lat: -9.19, lon: -75.0152, label: 'PERU', featured: true, image: '/photos/destinations/peru.jpg', alt: 'Machu Picchu' },
       { group: 'world', lat: 56.1304, lon: -106.3468, label: 'CANADA', image: '/places/canada.jpg', alt: 'Moraine Lake in Banff National Park, Canada', credit: 'Chensiyuan · CC BY-SA 4.0', source: 'https://commons.wikimedia.org/wiki/File:1_moraine_lake_pano_2019.jpg' },
       { group: 'world', lat: 19.8968, lon: -155.5828, label: 'HAWAII', image: '/places/hawaii.jpg', alt: 'The Na Pali Coast on Kauai, Hawaii', credit: 'Christian Joudrey · CC0', source: 'https://commons.wikimedia.org/wiki/File:Na_Pali_Coast_(Unsplash).jpg' },
       { group: 'world', lat: 64.2008, lon: -149.4937, label: 'ALASKA', image: '/places/alaska.jpg', alt: 'Denali National Park in Alaska', credit: 'Diego Delso · CC BY-SA 4.0', source: 'https://commons.wikimedia.org/wiki/File:Parque_nacional_y_reserva_Denali,_Alaska,_Estados_Unidos,_2017-08-30,_DD_72.jpg' },
@@ -128,13 +128,13 @@
       { group: 'world', lat: 39.3999, lon: -8.2245, label: 'PORTUGAL' },
       { group: 'world', lat: 46.8182, lon: 8.2275, label: 'SWITZERLAND', image: '/places/switzerland.jpg', alt: 'The Matterhorn reflected in Stellisee, Switzerland', credit: 'Giles Laurent · CC BY-SA 4.0', source: 'https://commons.wikimedia.org/wiki/File:008_Milky_way_aligned_with_the_Matterhorn_reflecting_in_Stellisee_Photo_by_Giles_Laurent.jpg' },
       { group: 'world', lat: 41.8719, lon: 12.5674, label: 'ITALY', featured: true, image: '/places/italy.jpg', alt: 'St. Angelo Bridge in Rome, Italy', credit: 'AngMoKio · CC BY-SA 2.5', source: 'https://commons.wikimedia.org/wiki/File:StAngelo_Bridge_Rome.jpg' },
-      { group: 'world', lat: 41.0082, lon: 28.9784, label: 'TURKEY', featured: true, image: '/places/istanbul.jpg', alt: 'Hagia Sophia at night in Turkey', credit: 'Jorge1767 · Public domain', source: 'https://commons.wikimedia.org/wiki/File:Hagiasophia.jpg' },
-      { group: 'world', lat: 39.0742, lon: 21.8243, label: 'GREECE', image: '/places/greece.jpg', alt: 'The blue domes of Oia in Santorini, Greece', credit: 'Giles Laurent · CC BY-SA 4.0', source: 'https://commons.wikimedia.org/wiki/File:1000_Three_domes_of_Oia_in_Santorini_Photo_by_Giles_Laurent.jpg' },
+      { group: 'world', lat: 41.0082, lon: 28.9784, label: 'TURKEY', featured: true, image: '/photos/destinations/turkey.jpg', alt: 'Hagia Sophia at night, Istanbul' },
+      { group: 'world', lat: 39.0742, lon: 21.8243, label: 'GREECE', image: '/photos/destinations/greece.jpg', alt: 'Santorini' },
       { group: 'world', lat: 23.6345, lon: -102.5528, label: 'MEXICO', image: '/places/mexico.jpg', alt: 'Chichén Itzá in Mexico', credit: 'Daniel Schwen · CC BY-SA 4.0', source: 'https://commons.wikimedia.org/wiki/File:Chichen_Itza_2.jpg' },
-      { group: 'parks', lat: 41.2132, lon: -124.0046, label: 'REDWOODS', image: '/places/redwoods.jpg', alt: 'Fog among the trees in Redwood National Park', credit: 'Michael Schweppe · CC BY-SA 2.0', source: 'https://commons.wikimedia.org/wiki/File:Redwood_National_Park,_fog_in_the_forest.jpg' },
-      { group: 'parks', lat: 44.6, lon: -124.1, label: 'OREGON COAST' },
-      { group: 'parks', lat: 46.8523, lon: -121.7603, label: 'MT. RAINIER', featured: true, image: '/places/mt-rainier.jpg', alt: 'Mount Rainier behind the flowering meadows of Paradise Park', credit: 'Bob Collowan · CC BY-SA 3.0', source: 'https://commons.wikimedia.org/wiki/File:Mount_Rainier_behind_the_flowering_meadows_of_Paradise_Park_(18_August_2012).jpg' },
-      { group: 'parks', lat: 47.8021, lon: -123.6044, label: 'OLYMPIC' },
+      { group: 'parks', lat: 41.2132, lon: -124.0046, label: 'REDWOODS', image: '/photos/hike.jpg', alt: 'Redwood National Park' },
+      { group: 'parks', lat: 44.6, lon: -124.1, label: 'OREGON COAST', image: '/photos/coast.jpg', alt: 'The Oregon coast' },
+      { group: 'parks', lat: 46.8523, lon: -121.7603, label: 'MT. RAINIER', featured: true, image: '/photos/friends-hike.jpg', alt: 'Hiking at Mount Rainier' },
+      { group: 'parks', lat: 47.8021, lon: -123.6044, label: 'OLYMPIC', image: '/photos/creek.jpg', alt: 'A creek in Olympic National Park' },
       { group: 'parks', lat: 44.428, lon: -110.5885, label: 'YELLOWSTONE' },
       { group: 'parks', lat: 37.8651, lon: -119.5383, label: 'YOSEMITE', featured: true },
       { group: 'parks', lat: 37.2982, lon: -113.0263, label: 'ZION' },
@@ -388,8 +388,15 @@
       placeImage.src = location.image;
       placeImage.alt = location.alt;
       placeTitle.textContent = location.label.replace(' / HOME', '');
-      placeCredit.textContent = `${location.credit} / Wikimedia Commons`;
-      placeCredit.href = location.source;
+      // Only borrowed photos carry a credit. Mine have none, so the line goes.
+      if (location.credit) {
+        placeCredit.hidden = false;
+        placeCredit.textContent = `${location.credit} / Wikimedia Commons`;
+        placeCredit.href = location.source;
+      } else {
+        placeCredit.hidden = true;
+        placeCredit.removeAttribute('href');
+      }
       globeIntro.classList.add('is-zoomed');
       window.clearTimeout(focusTimer);
       placeCard.classList.remove('is-open');
