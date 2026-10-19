@@ -533,7 +533,24 @@
 
     if (!alreadyEntered) {
       loadCountries();
-      window.setTimeout(() => enterButton?.classList.add('is-ready'), reduceMotion ? 0 : 180);
+      // The three list items drive the globe. Clicking one is how most people
+    // work out what they are looking at, which a static legend never taught.
+    const GROUP_VIEW = {
+      now:   { lon: -86.9, lat: 40.4 },
+      world: { lon: 16, lat: 33 },
+      parks: { lon: -112, lat: 41 }
+    };
+    globeIntro.querySelectorAll('.globe-locations button').forEach((button) => {
+      button.addEventListener('click', () => {
+        const view = GROUP_VIEW[button.dataset.location];
+        if (!view) return;
+        if (activeLocation) closePlace();
+        targetLon = view.lon;
+        targetLat = view.lat;
+      });
+    });
+
+    window.setTimeout(() => enterButton?.classList.add('is-ready'), reduceMotion ? 0 : 180);
       requestAnimationFrame(draw);
     }
   } else if (document.body.classList.contains('globe-pending')) {

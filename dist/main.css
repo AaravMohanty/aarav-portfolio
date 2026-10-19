@@ -402,9 +402,18 @@
 .globe-title em { color: var(--accent); font-style: italic; }
 .globe-intro-note { max-width: 430px; margin: 1.3rem 0 0; color: var(--text-3); font-size: clamp(.84rem, 1.2vw, 1rem); line-height: 1.6; }
 .globe-locations { position: relative; z-index: 2; width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); margin: 1.35rem 0 0; padding: 0; list-style: none; border-top: 1px solid rgba(238, 236, 231, .2); }
-.globe-locations li { display: block; padding: .85rem .8rem .85rem 0; color: var(--muted); border-bottom: 1px solid rgba(238, 236, 231, .1); transition: color .45s ease, transform .45s ease; }
-.globe-locations li + li { padding-left: .8rem; border-left: 1px solid rgba(238, 236, 231, .1); }
-.globe-locations li span { display: block; margin-bottom: .4rem; color: var(--muted); font-family: var(--mono); font-size: .7rem; }
+.globe-locations li { display: block; color: var(--muted); border-bottom: 1px solid rgba(238, 236, 231, .1); transition: color .45s ease, transform .45s ease; }
+.globe-locations li + li { border-left: 1px solid rgba(238, 236, 231, .1); }
+.globe-locations button {
+  width: 100%; padding: .85rem .8rem .85rem 0; display: block;
+  color: inherit; background: none; border: 0; text-align: left; cursor: pointer;
+  pointer-events: auto;
+  transition: color .25s ease;
+}
+.globe-locations li + li button { padding-left: .8rem; }
+.globe-locations button:hover, .globe-locations button:focus-visible { color: var(--paper); }
+.globe-locations button:hover span, .globe-locations button:focus-visible span { color: var(--accent); }
+.globe-locations span { display: block; margin-bottom: .4rem; color: var(--muted); font-family: var(--mono); font-size: .7rem; transition: color .25s ease; }
 .globe-locations strong { font-size: .82rem; font-weight: 500; }
 .globe-locations small { display: block; margin-top: .18rem; font-size: .72rem; line-height: 1.4; }
 .globe-locations li.is-active { color: var(--paper); transform: translateY(-5px); }
@@ -510,7 +519,8 @@
   .globe-kicker { margin-bottom: .8rem; }
   .globe-intro-note { max-width: 290px; margin-top: .9rem; font-size: .78rem; }
   .globe-locations { position: fixed; top: auto; right: var(--pad); bottom: 6.5rem; left: var(--pad); width: auto; margin: 0; }
-  .globe-locations li { padding: .65rem .5rem .65rem 0; border-bottom: 0; }
+  .globe-locations li { border-bottom: 0; }
+  .globe-locations button { padding: .65rem .5rem .65rem 0; }
   .globe-enter { left: var(--pad); right: var(--pad); bottom: 1.3rem; width: auto; }
   .globe-orbit-note { display: none; }
   .globe-topline { top: 1.25rem; }
@@ -541,7 +551,7 @@
   .globe-kicker { margin-bottom: .55rem; font-size: .64rem; }
   .globe-title { font-size: clamp(2.1rem, 5.6vw, 2.8rem); }
   .globe-locations { right: auto; bottom: 4.1rem; width: 42%; }
-  .globe-locations li { padding-top: .45rem; padding-bottom: .45rem; }
+  .globe-locations button { padding-top: .45rem; padding-bottom: .45rem; }
   .globe-enter { bottom: .45rem; }
 }
 
@@ -556,7 +566,7 @@
   .globe-title { font-size: clamp(2.5rem, 5vw, 4.2rem); }
   .globe-intro-note { margin-top: .75rem; font-size: .78rem; }
   .globe-locations { margin-top: .8rem; }
-  .globe-locations li { padding-top: .55rem; padding-bottom: .55rem; }
+  .globe-locations button { padding-top: .55rem; padding-bottom: .55rem; }
   .globe-enter { bottom: .8rem; }
 }
 
