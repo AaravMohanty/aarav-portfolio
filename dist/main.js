@@ -69,7 +69,7 @@
     if (reduceMotion || seen) {
       finishFlight(true);
     } else {
-      window.setTimeout(() => finishFlight(false), 5800);
+      window.setTimeout(() => finishFlight(false), 5200);
       flightIntro.querySelector('.flight-skip')?.addEventListener('click', () => finishFlight(false));
       // Any reasonable "get me out of here" gesture should work.
       const escape = (event) => {
