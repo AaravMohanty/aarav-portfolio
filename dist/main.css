@@ -334,7 +334,7 @@
    as a caption: italic, a beat later, its own attribution */
 .flight-answer { margin: 2.2rem 0 0; opacity: 0; animation: finiteReveal .75s ease 2.3s forwards; }
 .flight-answer span {
-  display: block; color: #d8a76d; font-family: var(--serif); font-style: italic;
+  display: block; color: #d8a76d; font-family: var(--serif);
   font-size: clamp(1.5rem, 3.4vw, 3.6rem); line-height: 1.1; letter-spacing: -.02em;
 }
 .flight-answer cite {
