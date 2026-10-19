@@ -84,7 +84,7 @@
   palette.setAttribute('aria-modal', 'true');
   palette.setAttribute('aria-label', 'Quick jump');
   palette.innerHTML = `
-    <div class="palette-panel">
+    <div class="palette-panel glass">
       <div class="palette-search">
         <span aria-hidden="true">&gt;</span>
         <input type="text" placeholder="Jump to a page or a project" aria-label="Search" autocomplete="off" spellcheck="false"

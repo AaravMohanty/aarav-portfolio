@@ -140,13 +140,73 @@ h1, h2, h3, blockquote { text-wrap: balance; }
 }
 .palette-key:hover, .palette-key:focus-visible { color: var(--paper); border-color: var(--accent); background: var(--accent-soft); }
 
+/* ------------------------------ glass ------------------------------
+   For things that float above other content. Three layers do the work:
+   a blurred, saturation-lifted backdrop; a specular rim that is bright
+   at the top-left and fades away, which is what reads as a curved edge
+   catching light; and a soft inner top-light. Everything degrades to a
+   plain translucent panel if the browser or the user says no.         */
+
+.glass {
+  position: relative;
+  background: linear-gradient(165deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .018));
+  -webkit-backdrop-filter: blur(22px) saturate(1.7);
+  backdrop-filter: blur(22px) saturate(1.7);
+  border: 0;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .16),
+    inset 0 -1px 0 rgba(255, 255, 255, .03),
+    0 12px 34px rgba(0, 0, 0, .42);
+}
+
+/* the rim: a gradient ring drawn with a masked pseudo-element, so the
+   highlight can fade around the edge instead of being a flat border */
+.glass::before {
+  content: "";
+  position: absolute; inset: 0; z-index: 0;
+  border-radius: inherit; padding: 1px;
+  background: linear-gradient(150deg,
+    rgba(255, 255, 255, .42) 0%,
+    rgba(255, 255, 255, .10) 32%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(209, 154, 97, .16) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.glass > * { position: relative; z-index: 1; }
+
+/* glass that reacts to being touched */
+.glass-interactive { transition: background .3s ease, box-shadow .3s ease; }
+.glass-interactive:hover, .glass-interactive:focus-within {
+  background: linear-gradient(165deg, rgba(255, 255, 255, .105), rgba(255, 255, 255, .03));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .24),
+    inset 0 -1px 0 rgba(255, 255, 255, .05),
+    0 16px 42px rgba(0, 0, 0, .5);
+}
+
+/* No backdrop-filter, or the viewer asked for less transparency: fall
+   back to something opaque enough to read against anything. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass { background: rgba(26, 26, 24, .97); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .glass {
+    background: rgba(26, 26, 24, .97);
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+  }
+  .glass::before { opacity: .5; }
+}
+
 /* --------------------------- contact dock --------------------------- */
 
 .contact-dock {
   position: fixed; z-index: 60; right: 1rem; bottom: 1rem;
   display: flex; gap: .15rem; padding: .32rem;
-  background: rgba(14, 14, 13, .88); border: 1px solid var(--line); border-radius: 999px;
-  backdrop-filter: blur(16px); box-shadow: 0 14px 34px rgba(0, 0, 0, .35);
+  border-radius: 999px;
 }
 .contact-dock a {
   padding: .48rem .7rem; color: var(--text-3); border-radius: 999px;
@@ -192,7 +252,8 @@ h1, h2, h3, blockquote { text-wrap: balance; }
   position: fixed; inset: 0; z-index: 900;
   display: grid; place-items: start center;
   padding: clamp(3rem, 12vh, 9rem) 1rem 2rem;
-  background: rgba(6, 6, 6, .72); backdrop-filter: blur(7px);
+  background: rgba(6, 6, 6, .6);
+  -webkit-backdrop-filter: blur(10px) saturate(1.2); backdrop-filter: blur(10px) saturate(1.2);
   opacity: 0; pointer-events: none; transition: opacity .2s ease;
 }
 .palette.is-open { opacity: 1; pointer-events: auto; }
@@ -200,8 +261,10 @@ h1, h2, h3, blockquote { text-wrap: balance; }
 .palette-panel {
   width: min(620px, 100%); max-height: min(560px, 76vh);
   display: flex; flex-direction: column; overflow: hidden;
-  background: var(--ink-2); border: 1px solid var(--line-strong);
-  border-radius: 10px; box-shadow: 0 40px 100px rgba(0, 0, 0, .7);
+  border-radius: 14px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .17),
+    0 40px 100px rgba(0, 0, 0, .72);
   transform: translateY(-10px) scale(.985); transition: transform .26s var(--ease);
 }
 .palette.is-open .palette-panel { transform: none; }
