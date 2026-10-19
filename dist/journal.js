@@ -129,17 +129,125 @@
     loadRecord(0, false);
   }
 
-  /* =========================== bookshelf =========================== */
+  /* =========================== bookshelf ===========================
+     Click a spine and it lifts out of the row; the jacket copy opens
+     underneath. Clicking the same one again puts it back. */
 
-  const shelfCurrent = document.querySelector('.shelf-current');
-  document.querySelectorAll('.book').forEach((book) => {
-    const showTitle = () => {
-      if (shelfCurrent) shelfCurrent.textContent = `${book.dataset.title} · ${book.dataset.topic}`;
+  const BOOKS = {
+    'mind-over-machine': {
+      title: 'Mind Over Machine',
+      author: 'Hubert and Stuart Dreyfus',
+      cover: '/covers/mind-over-machine.jpg',
+      link: 'https://openlibrary.org/search?q=Mind+Over+Machine+Dreyfus',
+      blurb: 'A philosopher and a mathematician argue that real expertise is not rule-following at all. ' +
+             'A chess master does not calculate their way to a move, they see it. The book lays out five ' +
+             'stages from novice to expert and claims that anything built on explicit rules stalls somewhere ' +
+             'around the third. Written in 1986, which makes the argument more interesting now, not less.'
+    },
+    'naval': {
+      title: 'The Almanack of Naval Ravikant',
+      author: 'Eric Jorgenson',
+      cover: '/covers/naval.jpg',
+      link: 'https://openlibrary.org/isbn/9781544514215',
+      blurb: 'A collected account of how one investor thinks wealth actually gets made: specific knowledge ' +
+             'nobody can train you for, leverage from code and media that keeps working while you sleep, and ' +
+             'long games played with people who will still be around to finish them. The second half turns to ' +
+             'happiness and treats it as a skill rather than a circumstance.'
+    },
+    'wisdom': {
+      title: 'The Wisdom of Insecurity',
+      author: 'Alan Watts',
+      cover: '/covers/wisdom.jpg',
+      link: 'https://penguinrandomhouselibrary.com/book/?isbn=9780307741202',
+      blurb: 'Watts argues that the anxiety is not a problem to be solved, it is the direct result of trying ' +
+             'to solve it. Chasing security is the thing that makes you insecure, because what you are trying ' +
+             'to pin down is a river. From 1951, and aimed at anyone who has tried to think their way out of ' +
+             'worrying and found it made the worrying worse.'
+    },
+    'sweetness-and-power': {
+      title: 'Sweetness and Power',
+      author: 'Sidney Mintz',
+      cover: '/covers/sweetness-and-power.jpg',
+      link: 'https://openlibrary.org/search?q=Sweetness+and+Power+Sidney+Mintz',
+      blurb: 'How a rare luxury turned into a daily necessity, and what it cost to do that. Mintz follows ' +
+             'sugar from Caribbean plantations to the tea of English factory workers, and shows that changing ' +
+             'what ordinary people ate took slavery, empire, and a reorganisation of labour. A history of the ' +
+             'modern world told through one ingredient.'
+    },
+    'david-and-goliath': {
+      title: 'David and Goliath',
+      author: 'Malcolm Gladwell',
+      cover: '/covers/david-and-goliath.jpg',
+      link: 'https://openlibrary.org/search?q=David+and+Goliath+Malcolm+Gladwell',
+      blurb: 'The case that advantages we assume are advantages often are not. Being outgunned forces you to ' +
+             'fight differently, and difficulty you come through can leave you better equipped than an easy ' +
+             'run would have. It opens with the original David and Goliath and argues almost everyone has that ' +
+             'story the wrong way round.'
+    },
+    'crime-and-punishment': {
+      title: 'Crime and Punishment',
+      author: 'Fyodor Dostoevsky',
+      cover: '/covers/crime-and-punishment.jpg',
+      link: 'https://openlibrary.org/isbn/9780140449136',
+      blurb: 'A broke student in St Petersburg talks himself into believing that extraordinary men are not ' +
+             'bound by ordinary morality, and that he is one of them. He kills a pawnbroker to prove it. The ' +
+             'rest of the novel is what that idea does to him from the inside. Nobody has written guilt better, ' +
+             'before or since.'
+    }
+  };
+
+  const shelfRow = document.querySelector('.shelf-row');
+  const bookDetail = document.querySelector('.book-detail');
+  const bookButtons = [...document.querySelectorAll('.book')];
+
+  if (shelfRow && bookDetail && bookButtons.length) {
+    const coverEl = bookDetail.querySelector('.book-cover');
+    const titleEl = bookDetail.querySelector('.book-title');
+    const authorEl = bookDetail.querySelector('.book-author');
+    const blurbEl = bookDetail.querySelector('.book-blurb');
+    const linkEl = bookDetail.querySelector('.book-link');
+    let openSlug = null;
+
+    const closeBook = () => {
+      openSlug = null;
+      bookDetail.hidden = true;
+      shelfRow.classList.remove('has-open');
+      bookButtons.forEach((b) => {
+        b.classList.remove('is-open');
+        b.setAttribute('aria-expanded', 'false');
+      });
     };
-    book.addEventListener('pointerenter', showTitle);
-    book.addEventListener('focus', showTitle);
-    book.addEventListener('click', () => markFound('book'));
-  });
+
+    const openBook = (button) => {
+      const slug = button.dataset.book;
+      const book = BOOKS[slug];
+      if (!book) return;
+      if (openSlug === slug) { closeBook(); return; }
+
+      openSlug = slug;
+      shelfRow.classList.add('has-open');
+      bookButtons.forEach((b) => {
+        const active = b === button;
+        b.classList.toggle('is-open', active);
+        b.setAttribute('aria-expanded', String(active));
+      });
+
+      coverEl.src = book.cover;
+      coverEl.alt = `${book.title} cover`;
+      titleEl.textContent = book.title;
+      authorEl.textContent = book.author;
+      blurbEl.textContent = book.blurb;
+      linkEl.href = book.link;
+      bookDetail.hidden = false;
+      markFound('book');
+    };
+
+    bookButtons.forEach((button) => button.addEventListener('click', () => openBook(button)));
+    bookDetail.querySelector('.book-close')?.addEventListener('click', closeBook);
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && openSlug) closeBook();
+    });
+  }
 
   /* =========================== keepy uppy ===========================
      Tap the ball before it drops. Every touch moves it somewhere new

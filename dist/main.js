@@ -115,7 +115,7 @@
     const placeClose = placeCard?.querySelector('.place-card-close');
 
     const locations = [
-      { group: 'now', lat: 40.4259, lon: -86.9081, label: 'WEST LAFAYETTE / NOW', featured: true },
+      { group: 'now', lat: 40.4259, lon: -86.9081, label: 'WEST LAFAYETTE / NOW', featured: true, image: '/places/west-lafayette.jpg', alt: 'The Purdue bell tower at the end of the day' },
       { group: 'world', lat: 38.8462, lon: -77.3064, label: 'VIRGINIA / HOME', featured: true },
       { group: 'world', lat: 20.5937, lon: 78.9629, label: 'INDIA', featured: true, image: '/places/india.jpg', alt: 'The Taj Mahal in Agra, India', credit: 'Jakub Michankow · CC BY 2.0', source: 'https://commons.wikimedia.org/wiki/File:Taj_Mahal,_Agra,_India1.jpg' },
       { group: 'world', lat: 4.2105, lon: 101.9758, label: 'MALAYSIA', image: '/places/malaysia.jpg', alt: 'The Petronas Towers at night in Kuala Lumpur, Malaysia', credit: 'Dcubillas · CC BY-SA 3.0', source: 'https://commons.wikimedia.org/wiki/File:Petronas_Towers_at_Night_-_from_the_base_upwards.jpg' },
@@ -392,7 +392,7 @@
       targetZoom = width < 720 ? 2.05 : 2.45;
       placeImage.src = `${location.image}?v=${PHOTO_V}`;
       placeImage.alt = location.alt;
-      placeTitle.textContent = location.label.replace(' / HOME', '');
+      placeTitle.textContent = location.label.replace(/ \/ (HOME|NOW)$/, '');
       // Only borrowed photos carry a credit. Mine have none, so the line goes.
       if (location.credit) {
         placeCredit.hidden = false;

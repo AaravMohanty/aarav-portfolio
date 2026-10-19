@@ -9,20 +9,13 @@ body::before {
 
 /* ----------------------------- intro ----------------------------- */
 
-.outside-intro {
-  min-height: 320px; padding-block: clamp(2.8rem, 5vw, 4.5rem);
-  display: grid; grid-template-columns: 1.2fr .8fr; grid-template-rows: auto 1fr;
-  align-items: end; gap: 1rem 4rem;
-}
-.outside-intro > .eyebrow { grid-column: 1 / -1; align-self: start; }
+.outside-intro { min-height: 0; padding-block: clamp(2.8rem, 5vw, 4.5rem); }
+.outside-intro > .eyebrow { display: block; margin-bottom: 1rem; }
 .outside-intro h1 {
   margin: 0; font-family: var(--serif); font-weight: 400;
   font-size: clamp(3.6rem, 7vw, 6.4rem); line-height: .9; letter-spacing: -.04em;
 }
 .outside-intro h1 em { color: var(--accent); font-style: italic; }
-.intro-note { max-width: 440px; justify-self: end; align-self: end; padding-left: 2rem; border-left: 1px solid var(--line-strong); }
-.intro-note p { margin: 0 0 1rem; color: var(--text-2); font-size: clamp(.98rem, 1.5vw, 1.15rem); line-height: 1.6; letter-spacing: -.01em; }
-.intro-note span { color: var(--muted); font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
 
 /* --------------------------- section nav --------------------------- */
 
@@ -47,13 +40,12 @@ body::before {
 /* ---------------------------- sections ---------------------------- */
 
 .journal-section { padding-block: clamp(3.5rem, 5vw, 5.5rem); border-bottom: 1px solid var(--line-strong); scroll-margin-top: 72px; }
-.section-heading { margin-bottom: clamp(2rem, 4vw, 3.5rem); display: grid; grid-template-columns: 1.1fr .9fr; align-items: end; gap: 3rem; }
+.section-heading { margin-bottom: clamp(2rem, 4vw, 3.5rem); }
 .section-heading h2 {
   margin: .85rem 0 0; font-family: var(--serif); font-weight: 400;
   font-size: clamp(2.6rem, 4.8vw, 4.4rem); line-height: .95; letter-spacing: -.035em;
 }
 .section-heading h2 em { color: var(--accent); font-style: italic; }
-.section-heading > p { max-width: 420px; margin: 0; color: var(--text-3); font-size: .95rem; line-height: 1.65; }
 .compact-heading { margin-bottom: 1.8rem; }
 
 /* ------------------- the little discovery meter ------------------- */
@@ -212,21 +204,50 @@ body::before {
 .album-stack figcaption { margin-top: .65rem; font-family: var(--mono); font-size: .72rem; letter-spacing: .02em; }
 .album-stack figcaption span { display: block; color: var(--muted); font-size: .7rem; }
 
-/* ---------------------------- bookshelf ---------------------------- */
+/* ---------------------------- bookshelf ----------------------------
+   Click a spine: it lifts out of the row and tilts, the rest dim back,
+   and the jacket copy opens underneath. */
 
 .bookshelf-wrap { background: #141412; border: 0; border-radius: 8px; overflow: hidden; }
-.bookshelf { padding: clamp(2rem, 4vw, 4rem); background: radial-gradient(circle at 50% 0, #211c17, #141412 68%); }
+.bookshelf { padding: clamp(2rem, 4vw, 4rem) clamp(2rem, 4vw, 4rem) 0; background: radial-gradient(circle at 50% 0, #211c17, #141412 68%); }
 .shelf-row {
-  min-height: 270px; padding: 0 0 1rem;
+  min-height: 270px; padding: 0 0 1rem; perspective: 1400px;
   display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); align-items: end;
   gap: clamp(.7rem, 1.5vw, 1.4rem);
   border-bottom: 7px solid #4d3525; box-shadow: 0 8px 0 #21160f;
 }
-.book { width: 100%; transition: transform .35s var(--ease), filter .35s ease; }
-.book img { width: 100%; aspect-ratio: 2 / 3; max-height: 250px; object-fit: contain; object-position: bottom; box-shadow: 6px 9px 14px rgba(0, 0, 0, .5); }
-.book:hover, .book:focus-visible { transform: translateY(-14px) scale(1.025); z-index: 2; filter: brightness(1.08); }
-.shelf-caption { padding: 1.3rem clamp(1rem, 3vw, 3rem); display: flex; justify-content: space-between; gap: 1.5rem; color: var(--text-2); }
-.shelf-caption p { margin: 0; font-size: .85rem; }
+.book {
+  width: 100%; padding: 0; background: none; border: 0; cursor: pointer;
+  transform-origin: bottom center;
+  transition: transform .5s var(--ease), filter .35s ease, opacity .35s ease;
+}
+.book img {
+  width: 100%; aspect-ratio: 2 / 3; max-height: 250px; object-fit: contain; object-position: bottom;
+  box-shadow: 6px 9px 14px rgba(0, 0, 0, .5); transition: box-shadow .35s ease;
+}
+.book:hover, .book:focus-visible { transform: translateY(-14px); }
+.book.is-open { transform: translateY(-30px) rotateY(-16deg) scale(1.05); z-index: 3; }
+.book.is-open img { box-shadow: 16px 20px 34px rgba(0, 0, 0, .66); }
+.shelf-row.has-open .book:not(.is-open) { filter: brightness(.45) saturate(.55); opacity: .75; }
+
+.book-detail {
+  display: grid; grid-template-columns: 116px minmax(0, 1fr) auto;
+  gap: clamp(1.2rem, 3vw, 2.4rem); align-items: start;
+  padding: clamp(1.4rem, 3vw, 2.2rem) clamp(1.5rem, 3vw, 2.5rem);
+  border-top: 1px solid var(--line);
+  animation: bookOpen .45s var(--ease);
+}
+.book-detail[hidden] { display: none; }
+@keyframes bookOpen { from { opacity: 0; transform: translateY(-10px); } }
+.book-cover { width: 116px; height: auto; box-shadow: 8px 12px 22px rgba(0, 0, 0, .55); }
+.book-copy { display: grid; gap: .35rem; }
+.book-title { font-family: var(--serif); font-size: clamp(1.4rem, 2.8vw, 2.1rem); font-weight: 400; line-height: 1.1; letter-spacing: -.02em; }
+.book-author { color: var(--accent); font-family: var(--mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; }
+.book-blurb { max-width: 62ch; margin: .7rem 0 0; color: var(--text-2); font-size: .92rem; line-height: 1.65; }
+.book-link { width: max-content; margin-top: .9rem; color: var(--paper); font-size: .82rem; text-decoration-color: var(--accent); text-underline-offset: .25em; transition: color .2s ease; }
+.book-link:hover, .book-link:focus-visible { color: var(--accent); }
+.book-close { padding: .3rem .6rem; color: var(--text-3); background: none; border: 0; font-size: 1.4rem; line-height: 1; cursor: pointer; transition: color .2s ease; }
+.book-close:hover, .book-close:focus-visible { color: var(--paper); }
 
 /* ---------------------------- four bars ---------------------------- */
 
@@ -269,7 +290,6 @@ body::before {
 .machine-cell.is-playing { transform: scaleY(1.14); }
 .machine-cell.is-playing:not(.is-on) { background: #2b2924; }
 .machine-cell.is-on.is-playing { background: #f0c389; box-shadow: 0 0 14px rgba(209, 154, 97, .6); }
-.machine-note { margin: 0; padding: 0 1.2rem 1.2rem; color: var(--muted); font-size: .76rem; }
 
 /* --------------------------- reveal + sizes --------------------------- */
 
@@ -277,23 +297,19 @@ body::before {
 .js .journal-section.is-in { opacity: 1; transform: none; }
 
 @media (max-width: 920px) {
-  .outside-intro { grid-template-columns: 1fr; min-height: 300px; }
-  .intro-note { justify-self: start; }
-  .section-heading { grid-template-columns: 1fr; }
   .listening-room { grid-template-columns: 1fr; }
   .turntable-card { position: static; max-width: 760px; }
   .shelf-row { min-height: 280px; grid-template-columns: repeat(3, 1fr); row-gap: 2.5rem; }
+  .book-detail { grid-template-columns: 96px minmax(0, 1fr) auto; }
   .book img { max-height: 220px; }
 }
 
 @media (max-width: 650px) {
-  .outside-intro { min-height: 280px; padding-top: 2.4rem; }
-  .intro-note { padding-left: 0; border-left: 0; }
+  .outside-intro { padding-top: 2.4rem; }
   .outside-intro h1 { font-size: clamp(3.2rem, 16vw, 5.2rem); }
   .section-nav a { min-height: 54px; padding: 0 .32rem; justify-content: center; font-size: .72rem; }
   .section-nav a:first-child { padding-left: .32rem; }
   .section-nav a span { display: none; }
-  .section-heading { gap: 1.4rem; }
   .section-heading h2 { font-size: clamp(2.8rem, 14vw, 4.2rem); }
   .turntable-deck { aspect-ratio: 1.25; }
   .platter { width: 70%; left: 3%; top: 10%; }
@@ -303,8 +319,8 @@ body::before {
   .bookshelf { padding: 1.4rem .7rem; }
   .shelf-row { min-height: 205px; gap: 1.8rem .6rem; padding-inline: .2rem; }
   .book img { max-height: 165px; }
-  .shelf-caption { display: block; }
-  .shelf-caption p { margin-top: .6rem; }
+  .book-detail { grid-template-columns: 1fr auto; }
+  .book-cover { display: none; }
   .discovery-meter { left: .75rem; bottom: .75rem; }
   .discovery-meter > span { display: none; }
   .arcade-grid { grid-template-columns: 1fr; }

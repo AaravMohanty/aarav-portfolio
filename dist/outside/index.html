@@ -19,8 +19,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Libre+Caslon+Display&display=swap">
-  <link rel="stylesheet" href="/base.css?v=69">
-  <link rel="stylesheet" href="/journal.css?v=69">
+  <link rel="stylesheet" href="/base.css?v=70">
+  <link rel="stylesheet" href="/journal.css?v=70">
   <script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="outside-page" id="top">
@@ -51,10 +51,6 @@
     <section class="outside-intro">
       <p class="eyebrow">03 / Off the clock</p>
       <h1>Outside <em>work.</em></h1>
-      <div class="intro-note">
-        <p>Six things on this page you can play with. The counter in the corner keeps track.</p>
-        <span>Go on</span>
-      </div>
     </section>
 
     <nav class="section-nav" aria-label="Sections of this page">
@@ -71,7 +67,6 @@
     <section id="play" class="journal-section play-section">
       <header class="section-heading compact-heading">
         <div><span class="eyebrow">01 / Warm up</span><h2>Waste a <em>minute.</em></h2></div>
-        <p>Three games. None of them count for anything. The loop is the one to beat.</p>
       </header>
       <div class="arcade-grid">
         <article class="keepy-game glass-rim">
@@ -121,7 +116,6 @@
     <section id="music" class="journal-section music-section">
       <header class="section-heading">
         <div><span class="eyebrow">02 / On rotation</span><h2>Records in <em>reach.</em></h2></div>
-        <p>Six albums I keep coming back to. Click one to put it on.</p>
       </header>
 
       <div class="listening-room">
@@ -192,23 +186,40 @@
     <section id="reading" class="journal-section reading-section">
       <header class="section-heading">
         <div><span class="eyebrow">03 / On the shelf</span><h2>Shelf <em>check.</em></h2></div>
-        <p>What I've been reading. Some finished, some not.</p>
       </header>
 
       <div class="bookshelf-wrap glass-rim">
         <div class="bookshelf">
           <div class="shelf-row">
-            <a class="book" data-title="Mind Over Machine" data-topic="Expertise" href="https://openlibrary.org/search?q=Mind+Over+Machine+Dreyfus" target="_blank" rel="noopener"><img src="/covers/mind-over-machine.jpg" alt="Mind Over Machine" width="320" height="480" loading="lazy"></a>
-            <a class="book" data-title="The Almanack of Naval Ravikant" data-topic="Leverage" href="https://openlibrary.org/isbn/9781544514215" target="_blank" rel="noopener"><img src="/covers/naval.jpg" alt="The Almanack of Naval Ravikant" width="320" height="480" loading="lazy"></a>
-            <a class="book" data-title="The Wisdom of Insecurity" data-topic="Presence" href="https://penguinrandomhouselibrary.com/book/?isbn=9780307741202" target="_blank" rel="noopener"><img src="/covers/wisdom.jpg" alt="The Wisdom of Insecurity" width="320" height="480" loading="lazy"></a>
-            <a class="book" data-title="Sweetness and Power" data-topic="Sugar, and empire" href="https://openlibrary.org/search?q=Sweetness+and+Power+Sidney+Mintz" target="_blank" rel="noopener"><img src="/covers/sweetness-and-power.jpg" alt="Sweetness and Power" width="320" height="480" loading="lazy"></a>
-            <a class="book" data-title="David and Goliath" data-topic="Underdogs" href="https://openlibrary.org/search?q=David+and+Goliath+Malcolm+Gladwell" target="_blank" rel="noopener"><img src="/covers/david-and-goliath.jpg" alt="David and Goliath" width="320" height="480" loading="lazy"></a>
-            <a class="book" data-title="Crime and Punishment" data-topic="Conscience" href="https://openlibrary.org/isbn/9780140449136" target="_blank" rel="noopener"><img src="/covers/crime-and-punishment.jpg" alt="Crime and Punishment by Fyodor Dostoevsky" width="320" height="480" loading="lazy"></a>
+            <button class="book" type="button" data-book="mind-over-machine" aria-expanded="false">
+              <img src="/covers/mind-over-machine.jpg" alt="Mind Over Machine book cover" width="320" height="480" loading="lazy">
+            </button>
+            <button class="book" type="button" data-book="naval" aria-expanded="false">
+              <img src="/covers/naval.jpg" alt="The Almanack of Naval Ravikant book cover" width="320" height="480" loading="lazy">
+            </button>
+            <button class="book" type="button" data-book="wisdom" aria-expanded="false">
+              <img src="/covers/wisdom.jpg" alt="The Wisdom of Insecurity book cover" width="320" height="480" loading="lazy">
+            </button>
+            <button class="book" type="button" data-book="sweetness-and-power" aria-expanded="false">
+              <img src="/covers/sweetness-and-power.jpg" alt="Sweetness and Power book cover" width="320" height="480" loading="lazy">
+            </button>
+            <button class="book" type="button" data-book="david-and-goliath" aria-expanded="false">
+              <img src="/covers/david-and-goliath.jpg" alt="David and Goliath book cover" width="320" height="480" loading="lazy">
+            </button>
+            <button class="book" type="button" data-book="crime-and-punishment" aria-expanded="false">
+              <img src="/covers/crime-and-punishment.jpg" alt="Crime and Punishment book cover" width="320" height="480" loading="lazy">
+            </button>
           </div>
         </div>
-        <div class="shelf-caption">
-          <span class="eyebrow">Pull one out</span>
-          <p class="shelf-current" aria-live="polite">Hover over a spine.</p>
+        <div class="book-detail" hidden>
+          <img class="book-cover" src="" alt="" width="320" height="480">
+          <div class="book-copy">
+            <strong class="book-title"></strong>
+            <span class="book-author"></span>
+            <p class="book-blurb"></p>
+            <a class="book-link" href="" target="_blank" rel="noopener">Find it &#8599;</a>
+          </div>
+          <button class="book-close" type="button" aria-label="Close">&times;</button>
         </div>
       </div>
     </section>
@@ -216,7 +227,6 @@
     <section id="machine" class="journal-section machine-section">
       <header class="section-heading">
         <div><span class="eyebrow">04 / Make some noise</span><h2>Four <em>bars.</em></h2></div>
-        <p>Click the grid, hit play. No samples, no library. Every sound is built from oscillators in your browser.</p>
       </header>
 
       <div class="machine glass-rim">
@@ -231,7 +241,6 @@
         <div class="machine-grid-wrap">
           <div class="machine-grid" role="group" aria-label="Step sequencer grid"></div>
         </div>
-        <p class="machine-note">Sixteen steps, five voices. Kick and bass do the work, hat keeps time.</p>
       </div>
     </section>
   </main>
@@ -255,7 +264,7 @@
     </div>
   </footer>
 
-  <script src="/site.js?v=69" defer></script>
-  <script src="/journal.js?v=69" defer></script>
+  <script src="/site.js?v=70" defer></script>
+  <script src="/journal.js?v=70" defer></script>
 </body>
 </html>
