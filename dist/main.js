@@ -161,13 +161,10 @@
     let centerLat = 22, targetLat = 22;
     let pointerDown = false, pointerX = 0, pointerY = 0;
     let pointerStartX = 0, pointerStartY = 0, pointerMoved = false;
-    let dragged = false, finished = false;
+    let finished = false;
     let activeLocation = null;
     let focusTimer = 0;
     let hitTargets = [];
-    let startedAt = performance.now();
-
-    window.addEventListener('intro:quote-done', () => { startedAt = performance.now(); });
 
     let geoRequested = false;
     const loadCountries = () => {
@@ -321,16 +318,6 @@
       if (finished) return;
       if (document.hidden) { requestAnimationFrame(draw); return; }
 
-      const elapsed = time - startedAt;
-      if (!dragged && !reduceMotion) {
-        const sequence = [
-          { lon: -87, lat: 28 }, { lon: 78, lat: 16 }, { lon: -76, lat: 18 },
-          { lon: 12, lat: 38 }, { lon: -121, lat: 42 }
-        ];
-        const scene = sequence[Math.floor((Math.max(0, elapsed) % 15000) / 3000)];
-        targetLon = scene.lon;
-        targetLat = scene.lat;
-      }
       centerLon += (targetLon - centerLon) * (reduceMotion ? 1 : .025);
       centerLat += (targetLat - centerLat) * (reduceMotion ? 1 : .025);
       zoom += (targetZoom - zoom) * (reduceMotion ? 1 : .055);
@@ -368,8 +355,17 @@
       context.lineWidth = 1.2;
       context.stroke();
 
-      const sequenceIndex = Math.floor((Math.max(0, elapsed) % 15000) / 3000);
-      const activeGroup = activeLocation?.group ?? (sequenceIndex === 0 ? 'now' : sequenceIndex === 4 ? 'parks' : 'world');
+      // The list used to cycle on a timer alongside the auto-tour. With the
+      // globe still until you move it, highlight whichever group has a
+      // featured marker turned most directly toward the viewer instead.
+      let facingGroup = 'now';
+      let facingZ = -2;
+      locations.forEach((location) => {
+        if (!location.featured) return;
+        const { z } = project(location.lon, location.lat);
+        if (z > facingZ) { facingZ = z; facingGroup = location.group; }
+      });
+      const activeGroup = activeLocation?.group ?? facingGroup;
       const activeIndex = activeGroup === 'now' ? 0 : activeGroup === 'world' ? 1 : 2;
 
       if (!activeLocation) {
@@ -386,7 +382,6 @@
     const openPlace = (location) => {
       if (!placeCard || !placeImage || !placeTitle || !placeCredit) return;
       activeLocation = location;
-      dragged = true;
       targetLon = location.lon;
       targetLat = clamp(location.lat, -68, 68);
       targetZoom = width < 720 ? 2.05 : 2.45;
@@ -448,7 +443,6 @@
       if (!finished && document.body.classList.contains('globe-pending')) return;
       finished = false;
       activeLocation = null;
-      dragged = false;
       zoom = 1;
       targetZoom = 1;
       if (placeCard) { placeCard.classList.remove('is-open'); placeCard.hidden = true; }
@@ -463,7 +457,6 @@
       try { sessionStorage.removeItem(ENTERED_KEY); } catch (error) {}
       loadCountries();
       resize();
-      startedAt = performance.now();
       enterButton?.classList.add('is-ready');
       requestAnimationFrame(draw);
     };
@@ -481,7 +474,6 @@
     canvas.addEventListener('pointermove', (event) => {
       if (pointerDown) {
         if (Math.hypot(event.clientX - pointerStartX, event.clientY - pointerStartY) > 4) {
-          dragged = true;
           pointerMoved = true;
         }
         targetLon -= (event.clientX - pointerX) * .35;
@@ -497,7 +489,6 @@
     canvas.addEventListener('pointercancel', () => { pointerDown = false; });
     canvas.addEventListener('wheel', (event) => {
       event.preventDefault();
-      dragged = true;
       targetLon -= event.deltaX * .09;
       targetLat = clamp(targetLat + event.deltaY * .055, -72, 72);
     }, { passive: false });
@@ -515,14 +506,27 @@
     enterButton?.addEventListener('click', finishIntro);
     placeClose?.addEventListener('click', closePlace);
 
+    // Enter comes inside, from anywhere on the globe screen.
+    window.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' || finished) return;
+      if (document.body.classList.contains('flight-pending')) return;
+      if (globeIntro.hidden) return;
+      if (placeCard && !placeCard.hidden) { closePlace(); return; }
+      // let a focused control handle its own Enter
+      const tag = document.activeElement?.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'BUTTON' || tag === 'A') return;
+      event.preventDefault();
+      finishIntro();
+    });
+
     // Arrow keys spin the globe for anyone not using a mouse.
     globeIntro.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && placeCard && !placeCard.hidden) { closePlace(); return; }
       const step = event.shiftKey ? 18 : 7;
-      if (event.key === 'ArrowLeft') { dragged = true; targetLon -= step; }
-      else if (event.key === 'ArrowRight') { dragged = true; targetLon += step; }
-      else if (event.key === 'ArrowUp') { dragged = true; targetLat = clamp(targetLat + step, -72, 72); }
-      else if (event.key === 'ArrowDown') { dragged = true; targetLat = clamp(targetLat - step, -72, 72); }
+      if (event.key === 'ArrowLeft') targetLon -= step;
+      else if (event.key === 'ArrowRight') targetLon += step;
+      else if (event.key === 'ArrowUp') targetLat = clamp(targetLat + step, -72, 72);
+      else if (event.key === 'ArrowDown') targetLat = clamp(targetLat - step, -72, 72);
       else return;
       event.preventDefault();
     });
@@ -540,10 +544,13 @@
 
   /* ---- getting back to the globe after you have entered ---- */
 
+  // On the home page this opens the globe in place. Everywhere else the
+  // element is a real link to /?globe, so leave the navigation alone.
   document.querySelectorAll('[data-open-globe]').forEach((button) => {
     button.addEventListener('click', (event) => {
+      if (!openGlobe) return;
       event.preventDefault();
-      openGlobe?.();
+      openGlobe();
     });
   });
 
