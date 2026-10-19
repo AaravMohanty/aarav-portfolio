@@ -395,7 +395,7 @@
 @keyframes grain { 0% { transform: translate(0, 0); } 25% { transform: translate(2%, -1%); } 50% { transform: translate(-1%, 2%); } 75% { transform: translate(1%, 1%); } }
 /* these sit over the canvas, so let drags pass straight through them */
 .globe-topline { position: absolute; z-index: 2; top: 1.75rem; left: var(--pad); right: var(--pad); display: flex; justify-content: flex-end; color: var(--text-3); font-family: var(--mono); font-size: .68rem; letter-spacing: .11em; pointer-events: none; }
-.globe-clock { display: inline-flex; align-items: center; gap: .6rem; }
+.globe-clock { display: inline-flex; align-items: center; gap: .6rem; padding: .5rem .85rem; border-radius: 999px; }
 .globe-copy { position: absolute; z-index: 2; left: var(--pad); top: 14%; width: min(460px, 36vw); pointer-events: none; }
 .globe-kicker { margin: 0 0 1.2rem; color: var(--text-3); font-family: var(--mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; }
 .globe-title { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(2.7rem, 5.4vw, 5.8rem); line-height: .9; letter-spacing: -.035em; }
@@ -412,7 +412,7 @@
 .globe-place-card {
   position: absolute; z-index: 5; right: clamp(1rem, 3vw, 3rem); top: 50%;
   width: min(540px, 40vw); height: min(64vh, 560px); overflow: hidden;
-  background: #11110f; border: 1px solid rgba(255, 255, 255, .22); box-shadow: 0 30px 90px rgba(0, 0, 0, .7);
+  background: #11110f; border: 0; box-shadow: 0 30px 90px rgba(0, 0, 0, .7);
   opacity: 0; transform: translateY(-46%) scale(.965); transition: opacity .35s ease, transform .6s var(--ease);
 }
 .globe-place-card::after { content: ""; position: absolute; inset: 40% 0 0; background: linear-gradient(transparent, rgba(7, 7, 6, .62)); pointer-events: none; }
@@ -426,8 +426,8 @@
 .place-card-close { position: absolute; z-index: 3; top: .8rem; left: .8rem; padding: .55rem .75rem; color: var(--paper); border-radius: 999px; font-family: var(--mono); font-size: .7rem; cursor: pointer; }
 .globe-enter {
   position: absolute; z-index: 3; left: var(--pad); bottom: 2.2rem; width: min(460px, 36vw);
-  padding: .9rem 0; display: flex; align-items: center; justify-content: space-between;
-  color: var(--paper); background: transparent; border: 0; border-top: 1px solid rgba(238, 236, 231, .42);
+  padding: .95rem 1.2rem; display: flex; align-items: center; justify-content: space-between;
+  color: var(--paper); border-radius: 999px;
   opacity: .55; transform: translateY(3px); cursor: pointer;
   transition: opacity .3s ease, transform .3s ease, color .2s ease;
 }
@@ -436,7 +436,7 @@
 .globe-enter b { font-family: var(--mono); font-size: 1.1rem; font-weight: 400; transition: transform .3s var(--ease); }
 .globe-enter:hover, .globe-enter:focus-visible { color: var(--accent); }
 .globe-enter:hover b, .globe-enter:focus-visible b { transform: translateX(5px); }
-.globe-orbit-note { position: absolute; z-index: 2; right: var(--pad); bottom: 2.9rem; color: var(--muted); font-family: var(--mono); font-size: .68rem; letter-spacing: .07em; text-transform: uppercase; pointer-events: none; }
+.globe-orbit-note { position: absolute; z-index: 2; right: var(--pad); bottom: 2.9rem; padding: .5rem .85rem; border-radius: 999px; color: var(--text-3); font-family: var(--mono); font-size: .68rem; letter-spacing: .07em; text-transform: uppercase; pointer-events: none; }
 .globe-topline, .globe-copy, .globe-locations, .globe-enter, .globe-orbit-note { transition: opacity .35s ease, transform .5s var(--ease), filter .35s ease; }
 .globe-intro.is-zoomed .globe-orbit-note { opacity: 0; }
 

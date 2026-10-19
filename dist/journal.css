@@ -71,7 +71,7 @@ body::before {
 /* ----------------------------- arcade ----------------------------- */
 
 .arcade-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.arcade-grid article { position: relative; min-height: 410px; overflow: hidden; padding: 1.2rem; border: 1px solid var(--line-strong); background: #151513; }
+.arcade-grid article { position: relative; min-height: 410px; overflow: hidden; padding: 1.2rem; border: 0; border-radius: 6px; background: #151513; }
 .game-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-family: var(--mono); font-size: .66rem; letter-spacing: .08em; }
 .game-top > span { color: var(--accent); }
 .game-top strong { color: var(--text-3); font-weight: 400; }
@@ -211,7 +211,7 @@ body::before {
 
 /* ---------------------------- bookshelf ---------------------------- */
 
-.bookshelf-wrap { background: #141412; border: 1px solid var(--line-strong); }
+.bookshelf-wrap { background: #141412; border: 0; border-radius: 8px; overflow: hidden; }
 .bookshelf { padding: clamp(2rem, 4vw, 4rem); background: radial-gradient(circle at 50% 0, #211c17, #141412 68%); }
 .shelf-row {
   min-height: 270px; padding: 0 0 1rem;
@@ -227,7 +227,7 @@ body::before {
 
 /* ---------------------------- four bars ---------------------------- */
 
-.machine { border: 1px solid var(--line-strong); background: #141412; }
+.machine { border: 0; border-radius: 8px; background: #141412; }
 .machine-bar {
   display: flex; flex-wrap: wrap; align-items: center; gap: 1rem;
   padding: 1rem 1.2rem; border-bottom: 1px solid var(--line);

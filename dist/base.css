@@ -133,12 +133,11 @@ h1, h2, h3, blockquote { text-wrap: balance; }
 /* keyboard hint that opens the command palette */
 .palette-key {
   display: inline-flex; align-items: center; gap: .3rem;
-  padding: .32rem .5rem; color: var(--text-3); background: transparent;
-  border: 1px solid var(--line-strong); border-radius: 5px;
+  padding: .34rem .55rem; color: var(--text-3); border-radius: 7px;
   font-family: var(--mono); font-size: .66rem; letter-spacing: .04em; cursor: pointer;
   transition: color .2s ease, border-color .2s ease, background .2s ease;
 }
-.palette-key:hover, .palette-key:focus-visible { color: var(--paper); border-color: var(--accent); background: var(--accent-soft); }
+.palette-key:hover, .palette-key:focus-visible { color: var(--paper); }
 
 /* ------------------------------ glass ------------------------------
    For things that float above other content. Three layers do the work:
@@ -199,6 +198,25 @@ h1, h2, h3, blockquote { text-wrap: balance; }
     -webkit-backdrop-filter: none; backdrop-filter: none;
   }
   .glass::before { opacity: .5; }
+}
+
+/* Rim only, no blur. For panels that are already opaque but should still
+   catch light along the edge the way the glass does. */
+.glass-rim { position: relative; }
+.glass-rim::before {
+  content: "";
+  position: absolute; inset: 0; z-index: 2;
+  border-radius: inherit; padding: 1px;
+  background: linear-gradient(150deg,
+    rgba(255, 255, 255, .3) 0%,
+    rgba(255, 255, 255, .07) 34%,
+    rgba(255, 255, 255, 0) 62%,
+    rgba(209, 154, 97, .14) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 /* --------------------------- contact dock --------------------------- */
