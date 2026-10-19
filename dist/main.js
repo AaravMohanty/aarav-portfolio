@@ -498,9 +498,11 @@
         .map((item) => ({ ...item, distance: Math.hypot(event.clientX - item.x, event.clientY - item.y) }))
         .filter((item) => item.distance < 18)
         .sort((a, b) => a.distance - b.distance)[0];
+      // Clicking bare globe used to drop you into the site, which made a
+      // misaimed click feel like the page had run off. Only the Enter
+      // button and the Enter key come inside now.
       if (target) openPlace(target.location);
       else if (activeLocation) closePlace();
-      else finishIntro();
     });
 
     enterButton?.addEventListener('click', finishIntro);
